@@ -126,7 +126,7 @@ export class DataService {
     }
 
     Resta_Pendientes(data: any): Observable<any>{
-      return this.http.post(this.apiUrl + 'insert.php?resta_pendientes=1', data);
+      return this.http.post(this.apiUrl + "insert.php?resta_pendientes=1", data);
     }
     //------------------SUPER-ADMIN METODOS (END)-------------------
 

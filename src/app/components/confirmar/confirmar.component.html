@@ -19,7 +19,7 @@
         <p>Carácter: {{Comunicacion[0].caracter}}</p>
     </div>
         <button id="Button_Confirmar_Comunicacion" class="Button_Confirmar_Recibido" (click)="Open_Ventana_Emergente()">Confirmar como Recibida</button>
-        <a style="color: rgb(50,50,50); margin-top: 20px; margin-bottom: 20px;" href="https://tinogasta.gob.ar/MEDi/#/LogIn" target="_blank">Acceder al Panel de Administración ➚</a>
+        <a style="color: rgb(50,50,50); margin-top: 20px; margin-bottom: 20px;" href="https://tinogasta.gob.ar/MEDi/#/LogIn" target="_self">Acceder al Panel de Administración ➚</a>
 </section>
 <section *ngIf="this.flag_error === true">
     <img src="../../../MEDi/assets/img/centro_de_reclamo_logon1.png">

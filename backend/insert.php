@@ -383,14 +383,14 @@ if(isset($_GET["cambio_color"])){
 
 if(isset($_GET["resta_pendientes"])){
     $data = json_decode(file_get_contents("php://input"));
-    $destinacion=$data->destinacion;
+    $clave_poder=$data->clave_poder;
     // Verificar si alguno de los campos está vacío
-    if (empty($destinacion)) {
+    if (empty($clave_poder)) {
         // Devolver un mensaje de error si algún campo está vacío
         echo json_encode(["error" => "Error: Todos los campos son obligatorios"]);
     } else {
         // Si todos los campos tienen valores, realizar la inserción en la base de datos
-        $insert_sql = "UPDATE destinaciones SET pendientes = pendientes - 1 WHERE clave_poder = '$destinacion'";
+        $insert_sql = "UPDATE destinaciones SET pendientes = pendientes - 1 WHERE clave_poder = '$clave_poder'";
 
         if ($conexionBD->query($insert_sql) === TRUE) {
             echo json_encode(["success" => 1, "message" => "Restado 1 en Pendientes"]);

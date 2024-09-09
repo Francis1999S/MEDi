@@ -199,7 +199,9 @@ Clave_Poder_2: any;
       }
       this.Mensaje_Delegar_Function = 'Reenviando...';
       this.dataService.DelegateClaim(this.Destinacion.value).subscribe(data => {
+     
         this.dataService.Resta_Pendientes(this.Clave_Poder.value).subscribe(data2 => {
+       
           this.dataService.AddStatistics(this.Destinacion.value).subscribe(res => {
             this.Mensaje_Delegar_Function = '¡Comunicación reenviada con éxito!';
           });
