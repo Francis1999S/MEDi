@@ -1,0 +1,166 @@
+
+@keyframes Intro_Component {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+#Header_Desktop {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.Section_Info {
+    margin: 0;
+    padding: 0 0 3vw 0;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    background-color: white;
+    h1 {
+        margin: 50px 0 0 0;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+        color: rgb(24,29,56);
+        font-family: Nunito;
+        font-weight: bold;
+    }
+    h2 {
+        margin: 2vw 0 0 0;
+        color: rgb(24,29,56);
+        font-family: Nunito;
+    }
+    h4 {
+        margin: 2vw 0 0 0;
+        color: rgb(24,29,56);
+        font-family: Nunito;
+    }
+    p {
+        margin: 0;
+        color: rgb(40,40,40);
+        font-family: Heebo;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        flex-direction: column;
+    }
+    li {
+        margin: 0 0 0 3vw;
+        color: rgb(80,80,80);
+        font-family: Heebo;
+    }
+}
+body {
+    animation-name: Intro_Component;
+    animation-duration: .5s;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Boton_Enviar_Feedback {
+    transition: .2s;
+    cursor: pointer;
+    margin: 20px 0 0 0;
+    width: 40%;
+    height: 35px;
+    border: none;
+    outline: none;
+    background-color: rgb(255, 120, 50);
+    color: white;
+    font-family: Heebo;
+    font-weight: bold;
+    font-size: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Boton_Enviar_Feedback:hover {
+    transition: .2s;
+    background-color: rgb(53, 193, 204);
+}
+@media (min-width: 1001px) {
+    .Section_Info {
+        width: 100%;
+        h1 {
+            font-size: 140%;
+        }
+        h2 {
+            font-size: 100%;
+        }
+        h4 {
+            font-size: 100%;
+        }
+        p {
+            font-size: 100%;
+        }
+        li {
+            font-size: 100%;
+        }
+    }
+}
+@media (max-width: 1000px) {
+    .Section_Info {
+        width: 100%;
+        h1 {
+            font-size: 140%;
+        }
+        h2 {
+            font-size: 100%;
+        }
+        h4 {
+            font-size: 100%;
+        }
+        p {
+            font-size: 100%;
+        }
+        li {
+            font-size: 100%;
+        }
+    }
+}
+.Info_Card {
+    transition: .3s;
+    width: 300px;
+    height: 430px;
+    margin: 20px 0 0 0;
+    padding: 10px;
+    background-color: rgb(240,251,252);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    overflow:hidden;
+    p {
+        color: rgb(60,60,60);
+    }
+    text-align: center;
+}
+.Info_Card:hover {
+    img {
+        transition: .3s;
+        filter: brightness(200%) saturate(0);
+    }
+    transition: .3s;
+    transform: translate(0, -10px);
+    background-color: rgb(255, 120, 50);
+}
+.Section_Cards {
+    margin: 50px 0 0 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}

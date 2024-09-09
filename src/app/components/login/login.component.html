@@ -1,0 +1,21 @@
+<app-header id="Header_Desktop"></app-header>
+<form [formGroup]="credenciales" enctype="multipart/form-data">
+    <div class="Animated_Title">
+        <div class="Bar_boxes_1">
+            <div class="Bar_1"></div>
+            <div class="Bar_2"></div>
+        </div>
+        <h5>ACCEDER [1/2]</h5>
+        <div class="Bar_boxes_2">
+            <div class="Bar_1"></div>
+            <div class="Bar_2"></div>
+        </div>
+    </div>
+    <h1 id="h1_error">{{Mensaje_Error}}</h1>
+        <div class="form-floating">
+            <input type="text" id="Input_user" formControlName="user" class="form-control" (focus)="handleFocus()" required>
+            <label for="subject" id="Label_User">Usuario</label>
+            <button id="Btn_submit_LogIn" type="submit" (click)="LogIn()">CONTINUAR ⇨</button>
+            <img id="Loader_LogIn" src="../../../MEDi/assets/icons/loader.gif">
+        </div>
+</form>

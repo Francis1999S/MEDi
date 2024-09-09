@@ -1,0 +1,25 @@
+<app-header id="Header_Desktop"></app-header>
+<form [formGroup]="credenciales2" enctype="multipart/form-data">
+    <div class="Animated_Title">
+        <div class="Bar_boxes_1">
+            <div class="Bar_1"></div>
+            <div class="Bar_2"></div>
+        </div>
+        <h5>ACCEDER [2/2]</h5>
+        <div class="Bar_boxes_2">
+            <div class="Bar_1"></div>
+            <div class="Bar_2"></div>
+        </div>
+    </div>
+    <h1 id="h1_error">{{Mensaje_Error}}</h1>
+        <div class="form-floating">
+            <h3>Vas a ingresar como:</h3>
+            <h4>{{this.Title_User_Name}}</h4>
+            <p style="color: rgb(40,40,40);">Rol: {{this.Rol_User}}</p>
+            <input type="password" id="Input_pass" formControlName="pass" class="form-control" (focus)="handleFocus2()" required>
+            <label for="subject" id="Label_Pass">Contraseña</label>
+            <button id="Btn_submit_LogIn" type="submit" (click)="LogIn_2()">INGRESAR</button>
+            <img id="Loader_LogIn" src="../../../MEDi/assets/icons/loader.gif">
+            <button id="Btn_submit_LogIn" style="margin-top: 20px;" (click)="oY4Tp3u7PfjyofOheVyRVAiMgPDTQKgqG9zQiZHVL3xdGf7qR01Ss10WXiBFqvwR()">⇦ VOLVER</button>
+        </div>
+</form>

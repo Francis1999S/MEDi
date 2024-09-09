@@ -1,0 +1,77 @@
+
+<section class="Super_Container">
+    <aside class="Panel_Admin">
+        <img class="usuario_logo" src="../../../MEDi/assets/icons/User_icon.png">
+        <p>Has ingresado como Super Administrador</p>
+        <fieldset class="Controlls_Admin">
+            <legend>Opciones</legend>
+            <button class="Buttons5" (click)="Resumen_Mensual()">Resumen</button>
+            <button class="Buttons" (click)="UsuariosDisplay()">Ver Usuarios</button>
+            <button class="Buttons" (click)="AreasDisplay()">Ver Áreas</button>
+            <button class="Buttons3" (click)="NavigateToCreateArea()">Crear Área</button>
+            <button class="Buttons4" (click)="AreasDisplay_2()">Editar Área</button>
+        </fieldset>
+        <button class="Buttons" (click)="NavigateToHome()">SALIR ⇘</button>
+    </aside>
+    <section class="Data_Show">
+        <div id="Loader_Data_2">
+            <h4>Cargando...</h4>
+            <img src="../../../MEDi/assets/icons/Estadisticas_Loader.gif">
+        </div>
+        <div class="Bandeja_Entrada">
+            <h1>{{Titulo_Dinamico}}</h1>
+            <div class="Scroll_Box_Container">
+                <div id="Resumen_Global">
+                    <h4>Números Estadísticos de Cada Área</h4>
+                    <p style="width: 100%; margin: 10px 0 0 0; padding: 0; text-align: start;">Consultado en fecha: {{formatDate | date: 'dd/MM/yyyy'}}</p>
+                    <p style="width: 100%; margin: 0; padding: 0; text-align: start;">Hora: {{formatTime}}</p>
+                    <div class="ngFor_Box" *ngFor="let Registro_4 of Registros_4">
+                        <div style="display: flex; justify-content: start; align-items: center; margin: 0; width: 100%; height: 100%;">
+                            <p style="font-weight: bold; margin: 0 0 0 10px;">{{Registro_4.nombre_area}}</p>
+                            <p style="margin: 0 0 0 10px; color: rgb(60,60,60);">| Tiempo Promedio de Resolución: {{Registro_4.promedio}}</p>
+                        </div>
+                        <div class="Box_Data_Numbers">
+                            <p>Pendientes: {{Registro_4.pendientes}}</p>
+                            <p>Iniciados: {{Registro_4.iniciados}}</p>
+                            <p>Demorados: {{Registro_4.demorados}}</p>
+                            <p>Resueltos: {{Registro_4.resueltos}}</p>
+                        </div>
+                    </div>
+                    <button class="Buttons" style="margin: 20px 0 20px 0;" (click)="generarPDF()">Descargar PDF</button>
+                </div>
+                <div id="Usuarios_Control_display" *ngFor="let Registro of Registros_1">
+                    <img src="../../../MEDi/assets/icons/users.png">
+                    <div class="Info_User">
+                        <h3 style="text-decoration: underline; text-shadow: 0 1px 3px black;" *ngIf="Registro.nombre_area">{{Registro.nombre_area}}</h3>
+                        <h3 style="text-decoration: underline; text-shadow: 0 1px 3px black;" *ngIf="!Registro.nombre_area">Super Administrador</h3>
+                        <h3>Rol: {{Registro.rol}}</h3>
+                        <p>Usuario: {{Registro.user}}</p>
+                        <p>Contraseña: {{Registro.pass}}</p>
+                    </div>
+                </div>
+                <div id="Usuarios_Control_display" *ngFor="let Registro_2 of Registros_2">
+                    <img src="../../../MEDi/assets/icons/Areas.png">
+                    <div class="Info_User">
+                        <h3 style="text-decoration: underline; text-shadow: 0 1px 3px black;">{{Registro_2.nombre_area}}</h3>
+                        <h3>Descripción: {{Registro_2.descripcion}}</h3>
+                        <button class="Button_Enter" (click)="Entry_Area(Registro_2.clave_poder)">Entrar ⇨</button>
+                    </div>
+                </div>
+                <div id="Usuarios_Control_display" *ngFor="let Registro_3 of Registros_3">
+                    <img src="../../../MEDi/assets/icons/Areas.png">
+                    <div class="Info_User">
+                        <h3>Área: "{{Registro_3.nombre_area}}"</h3>
+                        <h3>Descripción: {{Registro_3.descripcion}}</h3>
+                        <button class="Button_Enter" (click)="Modificar_Area(Registro_3.clave_poder)">Modificar ⇨</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Micro_Container">
+            <div class="Estadistica_Basica">
+                <app-estadistica-admin class="Estadisticas_Basicas_c"></app-estadistica-admin>
+                <img id="Estadisticas_Loader_2" src="../../../MEDi/assets/icons/Estadisticas_Loader.gif">
+            </div>
+        </div>
+    </section>
+</section>

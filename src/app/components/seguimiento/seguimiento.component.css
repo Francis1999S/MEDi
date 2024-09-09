@@ -1,0 +1,272 @@
+@keyframes Intro_Component {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes Intro_Text {
+    from {
+        transform: translate(0, 100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+#Header_Desktop {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+section {
+    animation-name: Intro_Component;
+    animation-duration: 0.5s;
+    margin: 0;
+    padding: 0 0 60px 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    h1 {
+        animation-name: Intro_Text;
+        animation-duration: .5s;
+        margin: 50px 0 0 0;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+        color: rgb(40,40,40);
+        font-family: Nunito;
+        font-weight: bold;
+    }
+    p {
+        margin: 0;
+        color: rgb(80,80,80);
+        font-family: Nunito;
+    }
+    #Info_Seguimiento_Comunicacion {
+        animation-name: Intro_Component;
+        animation-duration: 0.5s;
+        display: none;
+    }
+    #Formulario_Seguimiento_Comunicacion {
+        animation-name: Intro_Component;
+        animation-duration: 0.5s;
+        display: flex;
+    }
+    #Formulario_Seguimiento_Comunicacion, #Info_Seguimiento_Comunicacion {
+        padding: 10px;
+        margin: 60px 0 0 0;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+        text-align: center;
+        input {
+            margin: 30px 0 30px 0;
+            width: 80%;
+            font-size: 130%;
+            font-family: Heebo;
+            border: 1px solid gray;
+            outline: 3px solid rgba(255, 0, 0, 0);
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            border-radius: 5px;
+            color: rgb(40,40,40);
+            transition: .5s ease-in-out;
+        }
+    }
+}
+
+@media (min-width: 1001px) {
+    section {
+        width: 100%;
+        h1 {
+            font-size: 2.2vw;
+        }
+        h2 {
+            font-size: 1.7vw;
+        }
+        h4 {
+            font-size: 2vw;
+        }
+        p {
+            font-size: 1.2vw;
+        }
+        li {
+            font-size: 1.2vw;
+        }
+    }
+    #Formulario_Seguimiento_Comunicacion, #Info_Seguimiento_Comunicacion {
+        width: 40%;
+    }
+}
+@media (max-width: 1000px) {
+    section {
+        width: 100%;
+        h1 {
+            font-size: 140%;
+        }
+        h2 {
+            font-size: 100%;
+        }
+        h4 {
+            font-size: 100%;
+        }
+        p {
+            font-size: 100%;
+        }
+        li {
+            font-size: 100%;
+        }
+    }
+    #Formulario_Seguimiento_Comunicacion, #Info_Seguimiento_Comunicacion {
+        width: 90%;
+    }
+}
+
+.Button_Buscar {
+    transition: .5s;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-family: Nunito;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 10px 0 0 0;
+    width: 200px;
+    height: 60px;
+    background-color: rgb(255, 120, 50);
+    font-size: 100%;
+    font-weight: 500;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.Button_Buscar:hover {
+    transition: .5s;
+    color: rgb(40,40,40);
+    background-color: rgb(53, 193, 204);
+}
+.Sub_Box_Info_Seguimiento {
+    width: 90%;
+    margin: 20px 0 20px 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    p {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        text-align: left;
+    }
+}
+.Marcar_Conformidad_Box {
+    display: none;
+}
+.Marcar_Conformidad_Box_2 {
+    display: flex;
+}
+.Marcar_Conformidad_Box, .Marcar_Conformidad_Box_2 {
+    animation-name: Intro_Animation_Box;
+    animation-duration: 1s;
+    margin: 20px 0 0 0;
+    padding: 20px 0 20px 0;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background-color: rgb(255, 120, 50);
+    p {
+        text-align: center;
+        margin: 0;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Nunito;
+        color: white;
+    }
+    div {
+    margin: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    button {
+        animation-name: Buttons_Intro;
+        animation-duration: 1s;
+        transition: .5s ease-in-out;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        font-family: Nunito;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 40px 0 0 0;
+        width: 90px;
+        height: 40px;
+        background-color: rgb(255, 120, 50);
+        border: 1px solid white;
+        font-size: 100%;
+        font-weight: 500;
+        color: white;
+        box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+        text-shadow: 0 0 7px black;
+    }
+    button:hover {
+        transition: .3s;
+        scale: 1.1;
+        filter: brightness(130%);
+    }
+    button:active {
+        transition: 0.1s;
+        scale: 0.8;
+        filter: brightness(80%);
+    } 
+}
+textarea {
+    transition: .3s ease-in-out;
+    border: none;
+    outline: none;
+    width: 90%;
+    background-color: rgb(200,200,200);
+    color: rgb(50,50,50);
+    height: 180px;
+    border-radius: 5px;
+    font-family: Nunito;
+    margin: 0;
+    padding: 5px;
+    resize: none;
+}
+textarea:focus {
+    transition: .3s ease-in-out;
+    background-color: white;
+}
+}
+@keyframes Intro_Animation_Box {
+    from {
+        opacity: 0;
+        scale: 0.8;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}

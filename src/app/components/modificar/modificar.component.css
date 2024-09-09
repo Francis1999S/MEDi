@@ -1,0 +1,275 @@
+#Modificar_Area_Container_1, #Modificar_Area_Container_2 ,#Modificar_Area_Container_3, #Modificar_Area_Container_1_2 {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background-image: linear-gradient( 288deg,  rgba(0,85,255,1) 1.5%, rgba(4,56,115,1) 91.6% );
+    overflow: hidden;
+    form {
+        opacity: 0;
+        animation-name: Intro_Form;
+        animation-duration: 1s;
+        animation-delay: .5s;
+        animation-fill-mode: forwards;
+        padding: 0;
+    }
+    .Fieldset_creating {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        border: 1px solid cyan;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        div {
+            margin: 0;
+            padding: 0;
+            width: 70%;
+        }
+        legend {
+            color: rgb(230, 230, 230);
+            font-family: Nunito;
+            font-size: 120%;
+        }
+        label {
+            color: rgb(230, 230, 230);
+            font-family: Heebo;
+            font-size: 100%;
+        }
+        input {
+            transition: 1s;
+            margin: 0;
+            padding: 10px;
+            width: 100%;
+            border-top: none;
+            border-left: 1px solid cyan;
+            border-bottom: 1px solid cyan;
+            border-right: none;
+            font-family: Heebo;
+            background-color: rgba(255, 255, 255, 0);
+            color: rgb(230,230,230);
+            outline: none;
+            font-size: 100%;
+        }
+        input:focus {
+            background-color: rgb(40, 40, 40);
+        }
+    }
+}
+.Final_Info_Confirmation {
+    opacity: 0;
+    animation-name: Intro_Form;
+    animation-duration: 1s;
+    animation-delay: .5s;
+    animation-fill-mode: forwards;
+    border: 1px solid cyan;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    legend {
+        color: rgb(230, 230, 230);
+        font-family: Nunito;
+        font-size: 120%;
+    }
+    p {
+        color: rgb(230, 230, 230);
+    }
+}
+.Container_Info_Confirm {
+    margin: 0;
+    padding: 2%;
+    width: 96%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+    flex-direction: column;
+}
+@keyframes Intro_Section {
+    from {
+        opacity: 0.5;
+        scale: 0.8;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+@keyframes Intro_Form {
+    from {
+        transform: translate(0, 100px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+#Modificar_Area_Container_1, #Modificar_Area_Container_1_2, #Modificar_Area_Container_2, #Modificar_Area_Container_3 {
+    animation-name: Intro_Section;
+    animation-duration: 1s;
+    display: none;
+}
+#Container_Results_Modificar_Area {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation-name: Intro_Results_Anim;
+    animation-duration: .5s;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+}
+.Info_Container_Results {
+    animation-name: Intro_Results_Anim;
+    animation-duration: 1s;
+    background-image: linear-gradient( 288deg,  rgba(0,85,255,1) 1.5%, rgba(4,56,115,1) 91.6% );
+    margin: 0;
+    padding: 0;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+#Btn_2_volver_super_admin {
+    animation-name: Intro_Results_Anim;
+    animation-duration: .5s;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 10px 4px 10px;
+}
+#Loader_Modificar, #Exito_Logo_Modificar {
+    animation-name: Intro_Results_Anim;
+    animation-duration: .5s;
+    display: none;
+    width: 70px;
+}
+@keyframes Intro_Results_Anim {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+#Error_Display_1_modificar, #Error_Display_2_modificar, #Error_Display_3_modificar {
+    display: none;
+    background-color: black;
+    color: red;
+    margin: 0;
+    padding: 4px 0 4px 0;
+    width: 0;
+    height: 0;
+    animation-name: Intro_Error;
+    animation-duration: .3s;
+    animation-fill-mode: forwards;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+@keyframes Intro_Error {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 100%;
+        height: 20px;
+        opacity: 1;
+    }
+}
+@media (min-width: 769px) {
+    #Modificar_Area_Container_1, #Modificar_Area_Container_2 ,#Modificar_Area_Container_3, #Modificar_Area_Container_1_2 {
+        justify-content: start;
+        align-items: center;
+        height: 100vh;
+        form {
+            width: 40%;
+            height: 90%;
+            margin: 0 0 0 10%;
+        }
+    }
+    .Imagen_Areas {
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        opacity: 0.5;
+    }
+    .Buttons2 {
+        margin: 0;
+        position: absolute;
+        bottom: 50px;
+        right: 50px;
+    }
+    #Container_Results_Modificar_Area {
+        height: 100vh;
+    }
+    .Final_Info_Confirmation {
+        margin: 0 0 0 10%;
+        padding: 0;
+        width: 40%;
+        height: 90%;
+    }
+    .Info_Container_Results {
+        width: 45%;
+        height: 60%;
+    }
+}
+@media (max-width: 768px) {
+    #Modificar_Area_Container_1, #Modificar_Area_Container_2 ,#Modificar_Area_Container_3, #Modificar_Area_Container_1_2 {
+        justify-content: center;
+    align-items: center;
+    height: 87dvh;
+    position: relative;
+        form {
+            width: 95%;
+            height: 90%;
+            margin: 0;
+        }
+    }
+    .Imagen_Areas {
+        padding: 0;
+        margin: 0;
+        width: 50px;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        opacity: 0.4;
+    }
+    .Buttons2 {
+        margin: 0;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+    #Container_Results_Modificar_Area {
+        height: 87dvh;
+    }
+    .Final_Info_Confirmation {
+        margin: 0;
+        padding: 0;
+        width: 95%;
+        height: 90%;
+    }
+    .Info_Container_Results {
+        width: 95%;
+        height: 70%;
+    }
+}

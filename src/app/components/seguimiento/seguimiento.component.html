@@ -1,0 +1,43 @@
+<app-header id="Header_Desktop"></app-header>
+<section>
+    <h1>Seguimientos</h1>
+    <form [formGroup]="Seguimiento" id="Formulario_Seguimiento_Comunicacion">
+        <p>Por favor, a continuación ingresá el código de seguimiento de tu Comunicación.</p>
+        <input id="Input_Codigo_Seguimiento" type="text" formControlName="seguimiento" required placeholder="Ej. 1025-REC-942102">
+        <p style="color: red;">{{Error_Mensaje}}</p>
+        <button id="Button_Buscar_Seguimiento" class="Button_Buscar" (click)="Buscar()">Buscar</button>
+        <img id="Loader_Seguimiento" style="animation-name: Intro_Component; animation-duration: .5s; height: 65px; display: none;" src="../../../MEDi/assets/icons/loader.gif">
+    </form>
+    <div id="Info_Seguimiento_Comunicacion">
+        <p>Información Actual de la Comunicación</p>
+        <div class="Sub_Box_Info_Seguimiento">
+            <p style="font-weight: bold; color: rgb(255, 120, 50);">Número: {{Comunicacion[0].id}}</p>
+            <p><strong>Carácter:</strong> {{Comunicacion[0].caracter}}</p>
+            <p><strong>Asunto:</strong> {{Comunicacion[0].titulo}}</p>
+            <p><strong>Descripción:</strong> {{Comunicacion[0].descripcion}}</p>
+            <p><strong>Estado:</strong> {{Estado}}</p>
+            <p><strong>Fecha de Inicio:</strong> {{Comunicacion[0].fecha}}</p>
+            <p><strong>Fecha límite:</strong> {{Fecha_Vencimiento}}</p><br>
+            <p><strong>Resolución:</strong> {{Resolucion}}</p>
+            <p *ngIf="!(Comunicacion[0].fecha_r === '0000-00-00')"><strong>Fecha de Resolución:</strong> {{Comunicacion[0].fecha_r | date: 'dd/MM/yyyy'}}</p>
+            <div id="Mensaje_Resultado_Conformidad_Form_Seguimiento"  class="Marcar_Conformidad_Box">
+                <p>¡Muchas gracias por dejar su Valoración!</p>
+            </div>
+            <div id="Form_Conformidad_Seguimiento" style="width: 95%;">
+                <form class="Marcar_Conformidad_Box_2" *ngIf="Comunicacion[0].estado === 'Resuelto' && Comunicacion[0].conforme === 'Aún sin valoración'" [formGroup]="Conformidad">
+                    <p>¿Ha Quedado Conforme con la Resolución?</p>
+                    <div>
+                        <button id="Button_Conformidad_Negativa" (click)="Marcar_Conformidad(false)">No</button>
+                        <button id="Button_Conformidad_Positivia" (click)="Marcar_Conformidad(true)">Sí</button>
+                    </div>
+                    <p style="margin-top: 20px;">Puede dejar su mensaje:</p>
+                    <textarea maxlength="1000" placeholder="Su mensaje..." formControlName="feedback"></textarea>
+                    <button (click)="Enviar_Conformidad()" class="Button_Buscar" style="border: 1px solid white;" *ngIf="this.Opcion_Marcada === true">Enviar Mensaje</button>
+                </form>
+            </div>
+            
+        </div>
+        <button class="Button_Buscar" (click)="Buscar_Otro()">Hacer otro Seguimiento</button>
+    </div>
+</section>
+<app-footer></app-footer>

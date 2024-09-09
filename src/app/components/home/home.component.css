@@ -1,0 +1,714 @@
+@keyframes Intro_Component {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes Intro_Text_1 {
+    from {
+        opacity: 0;
+        transform: translate(0, -50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes Intro_Text_2 {
+    from {
+        opacity: 0;
+        transform: translate(0, -100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes Buttons_Intro {
+    from {
+        opacity: 0;
+        transform: translate(-200px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+#Header_Desktop {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    animation-name: Intro_Component;
+    animation-duration: .5s;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 87vh;
+    background-image: url('../../../assets/img/carousel-1.png');
+    background-position: center center;
+    font-family: Nunito;
+}
+
+.Caja_Centrada {
+    width: 90%;
+    height: 80%;
+    display: flex;
+    justify-content: end;
+    align-items: start;
+    flex-direction: column;
+    h5 {
+        animation-name: Intro_Text_1;
+        animation-duration: 1s;
+        margin: 0 0 0 0;
+        padding: 0;
+        width: auto;
+        height: auto;
+        font-size: 130%;
+        font-weight: 500;
+        color: rgb(255, 120, 50);
+    }
+    h1 {
+        animation-name: Intro_Text_2;
+        animation-duration: 1s;
+        margin: 0;
+        padding: 0;
+        width: auto;
+        height: auto;
+        font-size: 400%;
+        font-weight: 1000;
+        color: white;
+    }
+    button {
+        animation-name: Buttons_Intro;
+        animation-duration: 1s;
+        transition: .5s;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        font-family: Nunito;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 40px 0 0 0;
+        width: 200px;
+        height: 60px;
+        background-color: rgb(255, 120, 50);
+        font-size: 100%;
+        font-weight: 500;
+        color: white;
+    }
+
+    button:hover {
+        transition: .5s;
+        color: rgb(40,40,40);
+        background-color: rgb(53, 193, 204);
+    }
+}
+
+section {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+@keyframes Intro_Datos_Personales {
+    from {
+        opacity: 0;
+        scale: 0.5;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+    
+}
+#Box_Datos_Personales {
+    animation-name: Intro_Datos_Personales;
+    animation-duration: 1s;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    display: none;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+form {
+    font-family: Nunito;
+    margin: 100px 0 50px 0;
+    padding: 0 0 20px 0;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 7px rgb(200, 200, 200);
+    h1 {
+        margin: 0 0 0 0;
+        padding: 0;
+        width: auto;
+        height: auto;
+        font-size: 250%;
+        font-weight: 1000;
+        color: rgb(50, 50, 50);
+        text-align: center;
+    }
+
+    p {
+        margin: 0 0 0 0;
+        padding: 0;
+        width: auto;
+        height: auto;
+        font-weight: 700;
+        color: rgb(50, 50, 50);
+        text-align: center;
+    }
+
+    .Global_Label {
+        margin: 20px 0 0 0;
+        padding: 0;
+        width: 95%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        height: auto;
+        font-weight: 700;
+        color: rgb(100, 100, 100);
+        text-align: start;
+    }
+
+    input,
+    textarea {
+        resize: none;
+        transition: .5s;
+        font-family: Nunito;
+        outline: 2px solid rgba(70, 70, 70, 0);
+        width: 94%;
+        padding: 5px 0 5px 1%;
+        border: 0.2px solid rgb(200, 200, 200);
+        border-radius: 5px;
+        font-size: 130%;
+        color: rgb(70, 70, 70);
+    }
+
+    select {
+        transition: .5s;
+        font-family: Nunito;
+        outline: 2px solid rgba(70, 70, 70, 0);
+        width: 94%;
+        padding: 5px 0 5px 1%;
+        border: 0.2px solid rgb(200, 200, 200);
+        border-radius: 5px;
+        font-size: 130%;
+        color: rgb(70, 70, 70);
+    }
+
+    textarea {
+        height: 50px;
+    }
+
+    input:focus {
+        transition: .5s;
+        outline: 2px solid rgba(70, 70, 70, 1);
+    }
+
+    textarea:focus {
+        transition: .5s;
+        height: 200px;
+        outline: 2px solid rgba(70, 70, 70, 1);
+    }
+
+    input:hover {
+        transition: .5s;
+        border: 0.2px solid rgb(50, 50, 50);
+    }
+
+    textarea:hover {
+        transition: .5s;
+        border: 0.2px solid rgb(50, 50, 50);
+    }
+
+    select:hover {
+        transition: .5s;
+        border: 0.2px solid rgb(50, 50, 50);
+    }
+}
+
+.Info_Icon {
+    transition: .5s;
+    cursor: pointer;
+    margin-left: 20px;
+    height: 30px;
+}
+
+.Info_Icon:hover {
+    transition: .5s;
+    scale: 1.1;
+    rotate: 360deg;
+}
+@media (min-width: 1001px) {
+    .Validation_Icon_Error {
+        transform: translate(28vw, -38px);
+    }
+    body {
+        background-size: 130%;
+    }
+    form {
+        width: 65%;
+    }
+    #Ventana_Información {
+        width: 500px;
+        height: 300px;
+    }
+}
+@media (max-width: 1000px) {
+    .Validation_Icon_Error {
+        transform: translate(36vw, -35px);
+    }
+    form {
+        width: 90%;
+    }
+    #Ventana_Información {
+        width: 95%;
+        height: 400px;
+    }
+    body {
+        background-size: auto 100%;
+    }
+}
+@keyframes Intro_Ventana_Info {
+    from {
+        opacity: 0;
+        scale: 0.5;
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+#Ventana_Información {
+    animation-name: Intro_Ventana_Info;
+    animation-duration: .5s;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(230,230,230);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    p {
+        animation-name: Intro_Text;
+        animation-duration: .5s;
+        animation-delay: .2s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+        margin: 10px 0 0 0;
+        padding: 0;
+        width: 95%;
+        height: auto;
+        color: rgb(70, 70, 70);
+    }
+}
+#Ventana_Ventana_Información {
+    animation-name: Intro_Ventana_Info_2;
+    animation-duration: .5s;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2100;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+@keyframes Intro_Ventana_Info_2 {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes Intro_Text {
+    from {
+        opacity: 0;
+        scale: 0.7;
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+
+}
+.Header_Ventana_Info {
+    margin: 0;
+    padding: 0;
+    width: 95%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(255, 120, 50);
+    h1 {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(255, 120, 50);
+        img {
+            height: 80%;
+        }
+    }
+    img {
+        transition: .2s;
+        cursor: pointer;
+        height: 80%;
+    }
+    img:hover {
+        transition: .2s;
+        filter: brightness(150%);
+        scale: 1.05;
+    }
+}
+.Boton_Guardar_Ubicacion,
+.Boton_Enviar_Reclamo {
+    transition: .2s;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    width: 80%;
+    height: 50px;
+    border: none;
+    outline: none;
+    background-color: rgb(255, 120, 50);
+    color: white;
+    font-family: Heebo;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 100%;
+}
+.Boton_Guardar_Ubicacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.Boton_Guardar_Ubicacion:active {
+    transition: .1s;
+    scale: 0.9;
+    background-color: white;
+}
+@keyframes Intro_Loader {
+    from {
+        width: 0;
+    }
+    to {
+width: 100%;
+    }
+}
+#Loader_Bar_Btn {
+    animation-name: Intro_Loader;
+    animation-duration: 5s;
+    transition: 5s ease-in-out;
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 100%;
+    background-color: green;
+}
+.Boton_Enviar_Reclamo {
+    transform: rotateY(1deg);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    overflow: hidden;
+    p {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: white;
+        transform: translate(-50%, -50%);
+    }
+}
+#Boton_Send_Reclam_2 {
+    display: none;
+}
+#Ventana_Resultado {
+    animation-name: Intro_Ventana_Info_2;
+    animation-duration: .5s;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 4000;
+}
+@media (min-width: 768px) {
+    .Text_Box_Resultado {
+        width: 35%;
+        height: 75%;
+    }
+}
+@media (max-width: 768px) {
+    .Text_Box_Resultado {
+        width: 95%;
+        height: 80%;
+    }
+}
+.Text_Box_Resultado {
+    animation-name: Intro_Ventana_Info;
+    animation-duration: .5s;
+    padding: 1%;
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,120,50,1) 55%);
+    color: rgb(255, 255, 255);
+    h1 {
+        text-align: center;
+    }
+    p {
+        text-align: center;
+    }
+}
+#Success_msg_ubicacion {
+    animation-name: Intro_Success_msg_Ubicacion;
+    animation-duration: 1s;
+    padding: 0;
+    margin: 0;
+    width: 90%;
+    height: 70px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: rgb(230,230,230);
+    border-radius: 5px;
+    img {
+        height: 80%;
+    }
+    p {
+        color: rgb(50, 50, 50);
+        margin-right: 20px;
+    }
+}
+@keyframes Intro_Success_msg_Ubicacion {
+    from {
+        opacity: 0;
+        scale: 0.5;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+/*/////////////Mapas Controlls Buttons/////////////////*/
+.Maps_Generators_Buttons_Container {
+    margin: 0;
+    padding: 20px 0 20px 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.Btn_Map {
+    transition: .2s;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    width: 40%;
+    height: 50px;
+    border: none;
+    outline: none;
+    background-color: rgb(255, 120, 50);
+    color: white;
+    font-family: Heebo;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 100%;
+}
+.Btn_Map:hover {
+    transition: .5s;
+    color: rgb(40,40,40);
+    background-color: rgb(53, 193, 204);
+}
+.Btn_Map:active {
+    transition: .1s;
+    background-color: rgb(255, 255, 255);
+    scale: 0.8;
+}
+
+#map {
+    display: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+#map2 {
+    display: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+.Upload_Files_Input {
+    transition: .3s;
+    padding: 0;
+    margin: 0;
+    width: 100px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    img {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+}
+.Upload_Files_Input:hover {
+    transition: .3s;
+    scale: 1.05;
+    filter: brightness(130%);
+}
+.File_Name_Uploading {
+    margin: 20px 0 20px 0;
+    padding: 5px;
+    width: auto;
+    color: white;
+    background-color: rgb(255, 120, 50);
+    border-radius: 5px;
+}
+
+.Aceptar_Button_Ventana_Resultado {
+    transition: .5s;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-family: Nunito;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 10px 0 0 0;
+    width: 200px;
+    height: 60px;
+    background-color: rgb(255, 120, 50);
+    font-size: 100%;
+    font-weight: 500;
+    color: white;
+    border: 1px solid rgb(255, 163, 117);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.Aceptar_Button_Ventana_Resultado:hover {
+    transition: .5s;
+    color: rgb(40,40,40);
+    background-color: rgb(53, 193, 204);
+}
+
+#Ventana_Codigo_Copiado_Exitoso {
+    animation-name: Intro_Success_msg_Ubicacion;
+    animation-duration: .3s;
+    transition: .3s ease-in-out;
+    padding: 15px;
+    background-color: rgb(230, 230, 230);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    color: rgb(50,50,50);
+    position: absolute;
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5000;
+    p {
+        font-weight: bold;
+    }
+}
+.Copy_Button {
+    transition: .3s;
+    width: 20px;
+    cursor: pointer;
+    margin: 0 0 0 10px;
+}
+.Copy_Button:hover {
+    transition: .3s;
+    scale: 1.1;
+}
+.Delete_File_from_Form {
+    color: red;
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+.Delete_File_from_Form:hover {
+    color: rgb(0, 126, 199);
+}
+span {
+    font-family: Nunito;
+    width: 92%;
+    padding: 5px 1% 5px 1%;
+    margin: 5px 0 0 0;
+    background-color: rgba(255, 0, 0, 0.2);
+    color: red;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Validation_Icon_Error {
+    margin: 0;
+    padding: 0;
+    width: 30px;
+    z-index: 2000;
+}

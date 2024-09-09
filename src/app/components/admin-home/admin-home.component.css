@@ -1,0 +1,916 @@
+.Super_Container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-position: center bottom;
+    font-size: 90%;
+}
+.Cambio_Screen_Color_Button {
+    transition: .3s;
+    width: 30px;
+    cursor: pointer;
+}
+.Cambio_Screen_Color_Button:hover {
+    transition: .3s;
+    scale: 1.05;
+    filter: brightness(130%);
+}
+.Cambio_Screen_Color_Button:active {
+    transition: .1s;
+    scale: 0.9;
+    filter: brightness(80%);
+}
+#Background_N1{
+    background-image: url('../../../assets/img/Background_Abstract_Blue.webp');
+}
+#Background_N2{
+    background-image: url('../../../assets/img/Background_Abstract_Yellow.webp');
+}
+#Background_N3{
+    background-image: url('../../../assets/img/Background_Abstract_Black.webp');
+}
+#Background_N4{
+    background-image: url('../../../assets/img/Background_Abstract_Green.webp');
+}
+#Background_N5{
+    background-image: url('../../../assets/img/Background_Abstract_Pink.webp');
+}
+#Background_N6{
+    background-image: url('../../../assets/img/Background_Abstract_Red.webp');
+}
+.Filtros_Comunicados {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    outline: none;
+}
+.No_Registros_Mensaje {
+    animation-name: Intro_Loader;
+    animation-duration: .3s;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#Loader_Bandeja_Entrada {
+    animation-name: Intro_Loader;
+    animation-duration: .3s;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    background-color: rgba(0, 0, 0, 0.6);
+    img {
+        width: 4vw;
+    }
+}
+#Loader_Data_2 {
+    transition: 1s ease-in-out;
+    animation-name: Intro_Loader;
+    animation-duration: .3s;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    background-color: rgba(0, 0, 0, 0.6);
+    img { 
+        width: 6vw;
+    }
+}
+@keyframes Intro_Loader {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+    
+}
+
+@media (min-width: 769px) {
+    .Cambio_Color_Panel {
+        width: 90%;
+        height: auto;
+        margin: 0;
+        padding: 7px 0 7px 0;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        border: 1px solid white;
+        border-radius: 5px;
+        outline: none;
+    }
+    .Super_Container {
+        background-size: 100% 100%;
+        height: 100vh;
+    }
+    .buttons_add_styles {
+        margin-left: 20px;  
+    }
+    .buttons_3_add_styles {
+        width: 200px;
+    }
+    .Panel_Admin {
+        width: 25%;
+        height: 95%;
+        margin: 0;
+        animation-name: Intro_Global_Boxes;
+        animation-duration: .5s;
+    }
+
+    .Data_Show {
+        width: 73%;
+        height: 95%;
+    }
+    .Micro_Container {
+        margin: 0;
+        height: 30%;        
+    }
+    .Estadistica_Basica {
+        margin: 0;
+        width: 48%;
+        height: 100%;
+        animation-name: Intro_Global_Boxes;
+        animation-duration: .5s;
+    }
+    .Estadisticas_Basicas_c {
+        width: 90%;
+    }
+    .En_proceso {
+        margin: 0;
+        width: 48%;
+        height: 100%;
+        animation-name: Intro_Global_Boxes;
+        animation-duration: .5s;
+    }
+    .Filtros_Comunicados {
+        flex-direction: column;
+        width: 80%;
+        height: 55%;
+    }
+    .Bandeja_Entrada {
+        margin: 0;
+        height: 50%;
+        animation-name: Intro_Global_Boxes;
+        animation-duration: .5s;
+    }
+    .Header_Filter {
+        margin: 0;
+        height: 17%;
+        animation-name: Intro_Global_Boxes;
+        animation-duration: .5s;
+    }
+    .Box_1 {
+        width: 9%;
+    }
+    .Box_2 {
+        width: 45%;
+    }
+    .Box_2_2 {
+        width: 45%;
+    }
+    .Box_3 {
+        width: 10%;
+
+    }
+    .Box_4 {
+        width: 10%;
+
+    }
+    .Box_5 {
+        width: 10%;
+    }
+    .Box_6 {
+        width: 10%;
+        font-size: 90%;
+    }
+    .Filtros_Aplicados_Show {
+        top: 3px;
+        right: 3px;
+        padding: 5px 30px 5px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .Cambio_Color_Panel {
+        display: none;
+    }
+    .Super_Container {
+        background-position: center bottom;
+        background-size: auto 100%;
+        flex-direction: column;
+        height: auto;
+    }
+    .buttons_3_add_styles {
+        width: 100px;
+        margin: 5px;
+    }
+    .buttons_add_styles {
+        width: 80px;
+        margin: 5px;  
+    }
+    .Panel_Admin {
+        width: 95%;
+        height: 30%;
+        margin: 20px 0 20px 0;
+    }
+
+    .Data_Show {
+        width: 95%;
+        height: auto;
+    }
+    .Micro_Container {
+        margin: 0;
+        height: 440px;        
+    }
+    .Estadistica_Basica {
+        margin: 10px 0 10px 0;
+        width: 98%;
+        height: 200px;
+    }
+    .Estadisticas_Basicas_c {
+        width: 100%;
+    }
+    .En_proceso {
+        margin: 10px 0 10px 0;
+        width: 98%;
+        height: 200px;
+    }
+    .Filtros_Comunicados {
+        flex-wrap: wrap;
+        width: 95%;
+        height: 60%;
+    }
+    .Bandeja_Entrada {
+        font-size: 60%;
+        height: 400px;
+        margin: 10px 0 10px 0;
+    }
+    .Header_Filter {
+        margin: 10px 0 10px 0;
+        height: auto;
+    }
+    .Box_1 {
+        width: 14%;
+    }
+    .Box_2 {
+        width: 45%;
+    }
+    .Box_2_2 {
+        width: 45%;
+    }
+    .Box_3 {
+        width: 10%;
+        font-size: 80%;
+    }
+    .Box_4 {
+        width: 10%;
+        font-size: 80%;
+    }
+    .Box_5 {
+        width: 10%;
+        font-size: 80%;
+    }
+    .Box_6 {
+        width: 10%;
+        font-size: 70%;
+    }
+    .Filtros_Aplicados_Show {
+        font-size: 55%;
+        top: 0;
+        right: 0;
+        padding: 3px 20px 3px 20px;
+    }
+}
+
+.Panel_Admin {
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    color: white;
+    overflow: hidden;
+    text-align: center;
+}
+
+.Data_Show {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Header_Filter {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    overflow: hidden;
+    flex-wrap: wrap;
+    position: relative;
+}
+.Bandeja_Entrada {
+    padding: 0;
+    width: 100%;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    color: white;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(255, 255, 255) rgba(0, 255, 255, 0);
+    h1 {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.Filtros_Aplicados_Show {
+    margin: 0;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: white;
+}
+.Micro_Container {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.Estadistica_Basica {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    color: rgb(40, 40, 40);
+    overflow: hidden;
+    position: relative;
+}
+.Estadisticas_Basicas_c {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.En_proceso {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+    background-image: url('../../../assets/img/Micro_Background.png');
+    background-size: 100% auto;
+    background-position: center center;
+    position: relative;
+}
+
+.usuario_logo {
+    margin: 20px 0 0 0;
+    height: 50px;
+}
+
+.Scroll_Box_Container {
+    margin: 0 1% 0 1%;
+    padding: 0;
+    width: 98%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    position: relative;
+}
+
+#Scroll_Box_Container_Open_Reclamo {
+    animation-name: Intro_Open_Reclamo;
+    animation-duration: .5s;
+    margin: 0;
+    padding: 0 2% 50px 2%;
+    width: 96%;
+    height: auto;
+    display: none;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: rgb(230,230,230);
+    color: black;
+}
+.Controles_Visualizador_Reclamo {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(0, 50, 63);
+}
+.Btns_Controls {
+    transition: .5s;
+    height: 60%;
+    cursor: pointer;
+}
+.Btns_Controls:hover {
+    transition: .2s;
+    scale: 1.1;
+    filter: brightness(80%);
+}
+.Btns_Controls:active {
+    transition: .1s;
+    scale: 0.8;
+    filter: brightness(100%);
+}
+@keyframes Intro_Open_Reclamo {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*/////////////////Reclamos Filas de Lista/////////////////*/
+.Register_Unit_2 {
+    background: rgb(0,101,214);
+    background: linear-gradient(325deg, rgba(0,101,214,1) 0%, rgba(102,127,154,1) 100%);
+    text-shadow: 0 0 7px black;
+    color: white;
+}
+.Register_Unit {
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,81,156,0.6755077030812324) 45%, rgba(41,122,198,0.45702030812324934) 100%);
+}
+.Register_Unit, .Register_Unit_2 {
+    animation-name: Intro_Loader;
+    animation-duration: .3s;
+    transition: .2s;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.2px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    border-radius: 3px;
+}
+.Register_Unit:hover {
+    transition: .2s;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.Box_1 {
+    margin: 0;
+    padding: 0 0 0 1%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.Box_2 {
+    margin: 0;
+    padding: 0;
+    height: 60%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: start;
+}
+.Box_2_2 {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.Box_3 {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+#COLOR_Iniciado {
+    color: rgb(47, 248, 255);
+}
+#COLOR_Demorado {
+    color: red;
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.6);
+    font-weight: bold;
+}
+#COLOR_Pendiente {
+    color: rgb(255, 155, 41);
+    text-decoration: underline;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+#COLOR_Resuelto {
+    color: rgb(47, 255, 57);
+    text-decoration: underline;
+}
+#COLOR_Conforme {
+    color: rgb(47, 255, 57);
+    text-decoration: underline;
+}
+#COLOR_Inconforme {
+    color: red;
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.6);
+    font-weight: bold;
+}
+.Box_4 {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-weight: bold;
+}
+.Box_5 {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-weight: bold;
+    text-align: center;
+}
+.Box_6 {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/*//////////////Visualizador de Reclamos Styles///////////////////////*/
+
+.Titulo_Visual {
+    margin: 20px 0 20px 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-size: 120%;
+}
+.Numero_Visual, .Fecha_Visual, .Hora_Visual, .Lugar_Visual, .Caracter_Visual, .Asunto_Visual, .Plazo_Visual, .Vencimientos_Visual {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    font-size: 80%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-weight: 100;
+}
+.Sub_Titulo_Visual {
+    margin: 20px 0 20px 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    font-size: 120%;
+    text-align: center;
+}
+.Descripcion_Visual, .Ubicacion_Visual {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    font-size: 100%;
+    display: flex;
+    text-align: left;
+    justify-content: start;
+    align-items: center;
+    font-weight: 100;
+}
+.Marca_Centro_Reclamos {
+    margin: 60px 0 0 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    font-size: 80%;
+    display: flex;
+    text-align: left;
+    justify-content: end;
+    align-items: center;
+    font-weight: 100;
+    color: rgb(100,100,100);
+}
+.Marca_Tinogasta {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    font-size: 80%;
+    display: flex;
+    text-align: left;
+    justify-content: end;
+    align-items: center;
+    font-weight: 100;
+    color: rgb(100,100,100);
+}
+@keyframes Intro_Map {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+    
+}
+#map_2 {
+    animation-name: Intro_Map;
+    animation-duration: 1s;
+    display: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+#Success_ReSend {
+    animation-name: Intro_Map;
+    animation-duration: .3s;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3000;
+    background-color: rgba(0, 0, 0, 0.7);
+    form {
+        transition: 1s ease-in-out;
+        margin: 0;
+        padding: 20px;
+        height: auto;
+        background: rgb(0,67,143);
+        background: linear-gradient(325deg, rgba(0,67,143,1) 0%, rgba(0,47,100,1) 100%);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+        border-radius: 5px;
+        color: white;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        h3 {
+            margin: 20px 0 20px 0;
+            text-align: center;
+        }
+        select {
+            margin: 20px 0 20px 0;
+            transition: .3s ease-in-out;
+            outline: none;
+            border: none;
+            padding: 5px;
+            font-size: 110%;
+            border-radius: 5px;
+            font-family: Heebo;
+            background-color: white;
+        }
+    }
+  
+}
+#Estadisticas_Loader {
+    animation-name: Intro_Map;
+    animation-duration: .5s;
+    width: 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#Confirmar_Iniciado_Window {
+        animation-name: Intro_Map;
+    animation-duration: .3s;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3000;
+    background-color: rgba(0, 0, 0, 0.7);
+    .Windows_Confirmar_Iniciado {
+        margin: 0;
+        padding: 0 10px 0 10px;
+        width: 400px;
+        height: 260px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 5px;
+        background: rgb(0,67,143);
+        background: linear-gradient(325deg, rgba(0,67,143,1) 0%, rgba(0,47,100,1) 100%);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        color: white;
+        text-align: center;
+        div {
+            display: flex;
+            justify-content: space-evenly;
+        }
+    }
+}
+#Confirmar_Resuelto_Window {
+    animation-name: Intro_Map;
+    animation-duration: .3s;
+    margin: 0;
+    padding: 0 10px 0 10px;
+    width: 400px;
+    height: 260px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(0,67,143);
+    background: linear-gradient(325deg, rgba(0,67,143,1) 0%, rgba(0,47,100,1) 100%);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    color: white;
+    z-index: 4000;
+    text-align: center;
+    div {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}
+#Ventana_Emergente_Confirmar_Resuelto {
+    animation-name: Intro_Map;
+    animation-duration: .3s;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 3000;
+    form { 
+        margin: 0;
+        padding: 30px 0 30px 0;
+        width: 400px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 5px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: rgb(0,67,143);
+        background: linear-gradient(325deg, rgba(0,67,143,1) 0%, rgba(0,47,100,1) 100%);
+        color: white;
+        z-index: 4000;
+        text-align: center;
+        label {
+            color: white;
+            width: 100%;
+            margin: 0 0 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        #Resolucion_TextArea {
+            transition: .3s ease-in-out;
+            border: none;
+            outline: none;
+            width: 90%;
+            background-color: rgb(200,200,200);
+            color: rgb(50,50,50);
+            height: 180px;
+            border-radius: 5px;
+            font-family: Nunito;
+            margin: 0;
+            padding: 5px;
+            resize: none;
+        }
+        #Resolucion_TextArea:focus {
+            transition: .3s ease-in-out;
+            background-color: white;
+        }
+        a {
+            margin: 20px 0 0 0;
+            color: white;
+            transition: .3s;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        a:hover {
+            transition: .3s;
+            color: aqua;
+        }
+    }
+}
+@keyframes Intro_Global_Boxes {
+    from {
+        opacity: 0;
+        scale: 0.9;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+    
+}
+
+.SIN_UBICACION {
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    img {
+        height: 20%;
+    }
+}

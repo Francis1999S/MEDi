@@ -1,0 +1,102 @@
+header {
+    margin: 0;
+    padding: auto;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 13dvh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid rgb(255,120,50);
+    img {
+        transition: .2s;
+        height: 70%;
+    }
+    img:active {
+        transform: .01s;
+        rotate: -30deg;
+        scale: 0.7;
+        filter: brightness(50%);
+    }
+}
+@keyframes Intro_Menu {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+#Menu_Cellphones {
+animation-name: Intro_Menu;
+animation-duration: .5s;
+transition: .2s ease-in-out;
+overflow: hidden;
+margin: 0;
+padding: 0;
+width: 100%;
+height: 87dvh;
+position: absolute;
+top: 0;
+left: 0;
+z-index: 3000;
+background: transparent;
+backdrop-filter: blur(10px);
+display: none;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background: rgb(255,255,255);
+background: linear-gradient(0deg, rgba(255,255,255,0) 46%, rgba(255,255,255,1) 100%);
+}
+.Header_Menu {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 80%;
+    }
+}
+#Menu_Principal {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    button {
+        animation-name: Intro_Buttons;
+        animation-duration: .3s;
+        animation-delay: .2s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+        margin: 30px 0 0 0;
+        padding: 0;
+        width: 150px;
+        height: 50px;
+        background-color: white;
+        outline: none;
+        border: none;
+        font-family: Heebo;
+        color: rgb(77, 77, 77);
+        font-weight: 1000;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+}
+@keyframes Intro_Buttons {
+    from {
+opacity: 0;
+transform: translate(-100px,0);
+    }
+    to {
+opacity: 1;
+transform: translate(0,0);
+    }
+    
+}

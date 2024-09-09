@@ -1,0 +1,183 @@
+@keyframes Intro_Component {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes Intro_Text {
+  from {
+    transform: translate(0, 100px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+@keyframes Intro_Inputs {
+  from {
+    transform: translate(0, 100px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+#Header_Desktop {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+form {
+  animation-name: Intro_Component;
+  animation-duration: 0.5s;
+  padding: 0;
+  margin: 0;
+  height: 87vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  h1 {
+    animation-name: Intro_Text;
+    animation-duration: .5s;
+    margin: 0 0 40px 0;
+    padding: 0;
+    font-family: Nunito;
+    color: rgb(50, 50, 50);
+    font-size: 270%;
+    text-align: center;
+  }
+}
+.Animated_Title {
+  animation-name: Intro_Text;
+  animation-duration: .5s;
+  transition: 0.5s;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h5 {
+    margin: 0 15px 0 15px;
+    padding: 0;
+    font-size: 110%;
+    color: rgb(255, 120, 50);
+  }
+}
+.Animated_Title:hover {
+  .Bar_boxes_1,
+  .Bar_boxes_2 {
+    transition: 0.5s;
+    width: 130px;
+  }
+}
+.Bar_boxes_1,
+.Bar_boxes_2 {
+  transition: 0.5s;
+  padding: 0;
+  margin: 0;
+  width: 70px;
+  height: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.Bar_boxes_1 {
+  align-items: end;
+}
+.Bar_boxes_2 {
+  align-items: start;
+}
+.Bar_1 {
+  padding: 0;
+  margin: 0;
+  width: 70%;
+  height: 2px;
+  background-color: rgb(255, 120, 50);
+}
+.Bar_2 {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(255, 120, 50);
+}
+.form-floating {
+  animation-name: Intro_Inputs;
+  animation-duration: .5s;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  width: 370px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  label {
+    transition: 0.2s ease-in-out;
+    transform: translate(5px, -40px);
+    z-index: 1;
+    margin: 0 0 0 0;
+    padding: 0;
+    width: 95%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: auto;
+    font-weight: 700;
+    color: rgb(100, 100, 100);
+    text-align: start;
+    font-weight: 100;
+  }
+  button {
+    animation-name: Buttons_Intro;
+    animation-duration: 1s;
+    transition: 0.5s;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-family: Nunito;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    width: 102%;
+    height: 60px;
+    background-color: rgb(255, 120, 50);
+    font-size: 100%;
+    font-weight: 500;
+    color: white;
+  }
+  button:hover {
+    transition: 0.5s;
+    background-color: rgb(53, 193, 204);
+  }
+}
+.form-control {
+  z-index: 200;
+  width: 100%;
+  transition: 0.2s;
+  font-family: Nunito;
+  outline: 5px solid rgba(50, 50, 50, 0);
+  width: 100%;
+  margin: 0;
+  padding: 25px 0 10px 10px;
+  border: 0.2px solid rgb(200, 200, 200);
+  font-size: 95%;
+  color: rgb(100, 100, 100);
+  background-color: rgba(0, 255, 255, 0);
+}
+.form-control:focus {
+  transition: 0.2s;
+  outline: 5px solid rgba(53, 193, 204, 0.5);
+}
+#Loader_LogIn {
+  display: none;
+  height: 60px;
+}

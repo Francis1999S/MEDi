@@ -1,0 +1,445 @@
+.Super_Container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-image: url('../../../assets/img/Background_Super_Admin.jpg');
+    background-position: center bottom;
+    font-size: 90%;
+}
+#Loader_Data_2 {
+    transition: 0.5s ease-in-out;
+    animation-name: Intro_Loader;
+    animation-duration: .5s;
+    margin: 0;
+    padding: 5px 30px 5px 30px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 0px 0px 5px 5px;
+    z-index: 2000;
+    color: white;
+    font-weight: bold;
+    h4 {
+        margin: 0 0 2px 0;
+    }
+    img { 
+        height: 40px;
+    }
+}
+@keyframes Intro_Loader {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+    
+}
+@media (min-width: 769px) {
+    /*/////////////////Lista de Cuentas de Usuario (START)/////////////////*/
+#Usuarios_Control_display {
+    margin: 0 0 20px 0;
+    padding: 0;
+    width: 45%;
+    height: 130px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: rgba(0, 153, 255, 0.4);
+    img {
+        margin: 0;
+        padding: 0;
+        height: 80%;
+    }
+    .Info_User {
+        padding: 0;
+        margin: 0;
+        width: 70%;
+        height: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: start;
+        flex-direction: column;
+        border-left: 1px solid white;
+        position: relative;
+        h3 {
+            margin: 0 0 0 1%;
+            padding: 0;
+            font-size: 90%;
+        }
+        p {
+            margin: 0 0 0 1%;
+            padding: 0;
+            color: yellow;
+            font-size: 90%;
+        }
+    }
+}
+
+/*/////////////////Lista de Cuentas de Usuario (END)/////////////////*/
+    .Controlls_Admin {
+        justify-content: space-evenly;
+        align-items: center;
+        width: 80%;
+        height: 60%;
+        flex-direction: column;
+    }
+    .Estadistica_Basica {
+        width: 48%;
+    }
+    .Estadisticas_Basicas_c {
+        width: 90%;
+    }
+    .Micro_Container {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 33%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .Super_Container {
+        background-size: 100% 100%;
+        height: 100vh;
+    }
+    .Bandeja_Entrada {
+        height: 65%;
+    }
+
+    .Panel_Admin {
+        width: 25%;
+        height: 90%;
+        margin: 0;
+    }
+
+    .Data_Show {
+        width: 70%;
+        height: 90%;
+    }
+    .Box_1 {
+        width: 9%;
+    }
+    .Box_2 {
+        width: 55%;
+    }
+    .Box_3 {
+        width: 10%;
+
+    }
+    .Box_4 {
+        width: 10%;
+
+    }
+    .Box_5 {
+        width: 10%;
+        font-size: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .Estadisticas_Basicas_c {
+        width: 100%;
+    }
+    /*/////////////////Lista de Cuentas de Usuario (START)/////////////////*/
+#Usuarios_Control_display {
+    margin: 0 0 20px 0;
+    padding: 0;
+    width: 45%;
+    height: 130px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: rgba(0, 153, 255, 0.4);
+    img {
+        margin: 0;
+        padding: 0;
+        width: 50px;
+    }
+    .Info_User {
+        padding: 0;
+        margin: 0;
+        width: 70%;
+        height: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        flex-direction: column;
+        border-left: 1px solid white;
+        position: relative;
+        h3 {
+            margin: 3px 0 5px 3%;
+            padding: 0;
+            font-size: 95%;
+        }
+        p {
+            margin: 3px 0 0 3%;
+            padding: 0;
+            color: yellow;
+            font-size: 95%;
+        }
+    }
+}
+
+/*/////////////////Lista de Cuentas de Usuario (END)/////////////////*/
+    .Controlls_Admin {
+        justify-content: start;
+        align-items: start;
+        width: 95%;
+        height: auto;
+        flex-wrap: wrap;
+        button {
+            margin: 3px 0 10px 2%;
+            width: 30%;
+        }
+    }
+    .Estadistica_Basica {
+        width: 100%;
+    }
+    .Micro_Container {
+        margin: 0 0 20px 0;
+        padding: 0;
+        width: 100%;
+        height: 20%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .Super_Container {
+        background-position: center bottom;
+        background-size: auto 100%;
+        flex-direction: column;
+        height: 150vh;
+    }
+
+    .Panel_Admin {
+        width: 95%;
+        height: 370px;
+        margin: 20px 0 20px 0;
+    }
+
+    .Data_Show {
+        width: 95%;
+        height: 90%;
+    }
+
+    .Bandeja_Entrada {
+        font-size: 60%;
+        height: 70%;
+    }
+    .Box_1 {
+        width: 14%;
+    }
+    .Box_2 {
+        width: 55%;
+    }
+    .Box_3 {
+        width: 10%;
+        font-size: 80%;
+    }
+    .Box_4 {
+        width: 10%;
+        font-size: 80%;
+    }
+    .Box_5 {
+        width: 10%;
+        font-size: 70%;
+    }
+}
+
+.Panel_Admin {
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 119, 255, 0.2);
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+    overflow: hidden;
+    text-align: center;
+}
+
+.Data_Show {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+.Bandeja_Entrada {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    border: 1px solid rgb(255, 255, 255);
+    color: white;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(0, 87, 185) rgba(0, 255, 255, 0);
+    background-image: linear-gradient( 114.3deg,  rgba(49,75,90,0.3) 48.8%, rgba(3,155,193,0.3) 94.9% );
+    h1 {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 119, 255, 0.4);
+        font-size: 130%;
+    }
+}
+
+.Estadistica_Basica {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgba(0, 57, 122, 0.5);
+    color: rgb(40, 40, 40);
+    overflow: hidden;
+    position: relative;
+}
+.Estadisticas_Basicas_c {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: white;
+}
+
+.usuario_logo {
+    margin: 20px 0 0 0;
+    height: 50px;
+}
+
+.Scroll_Box_Container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.Controlls_Admin {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+#Estadisticas_Loader_2 {
+    animation-name: Intro_Map;
+    animation-duration: .5s;
+    width: 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.Button_Enter {
+    margin: 0;
+    opacity: 0.7;
+    padding: 5px 15px 5px 15px;
+    text-align: center;
+    font-family: Heebo;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    background: rgba(3,163,216,1);
+background: -moz-linear-gradient(top, rgba(3,163,216,1) 0%, rgba(0,110,138,1) 49%, rgba(0,145,189,1) 50%, rgba(3,163,216,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(3,163,216,1)), color-stop(49%, rgba(0,110,138,1)), color-stop(50%, rgba(0,145,189,1)), color-stop(100%, rgba(3,163,216,1)));
+background: -webkit-linear-gradient(top, rgba(3,163,216,1) 0%, rgba(0,110,138,1) 49%, rgba(0,145,189,1) 50%, rgba(3,163,216,1) 100%);
+background: -o-linear-gradient(top, rgba(3,163,216,1) 0%, rgba(0,110,138,1) 49%, rgba(0,145,189,1) 50%, rgba(3,163,216,1) 100%);
+background: -ms-linear-gradient(top, rgba(3,163,216,1) 0%, rgba(0,110,138,1) 49%, rgba(0,145,189,1) 50%, rgba(3,163,216,1) 100%);
+background: linear-gradient(to bottom, rgba(3,163,216,1) 0%, rgba(0,110,138,1) 49%, rgba(0,145,189,1) 50%, rgba(3,163,216,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#03a3d8', endColorstr='#03a3d8', GradientType=0 );
+    text-shadow: 0 0 5px black;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+position: absolute;
+    right: 0;
+    bottom: 0;
+    transition: .3s;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    color: white;
+}
+.Button_Enter:hover {
+    transition: .3s;
+    filter: brightness(130%);
+    opacity: 1;
+}
+#Resumen_Global {
+    margin: 0;
+    padding: 0 1% 0 1%;
+    width: 98%;
+    height: auto;
+    display: none;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(230,230,230);
+    color: rgb(50,50,50);
+    h4 {
+        margin: 20px 0 0 0;
+        padding: 0;
+        width: 100%;
+        font-weight: bold;
+        text-decoration: underline;
+        text-align: center;
+    }
+    .ngFor_Box {
+        margin: 10px 0 10px 0;
+        padding: 0;
+        width: 90%;
+        height: auto;
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        flex-direction: column;
+        border: 1px solid rgb(100,100,100);
+    }
+    .Box_Data_Numbers {
+        border-top: 1px solid rgb(50,50,50);
+        margin: 00;
+        padding: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        p {
+            margin: 0;
+        }
+    }
+}

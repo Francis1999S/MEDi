@@ -1,0 +1,141 @@
+<app-header id="Header_Desktop"></app-header>
+
+<body>
+    <div class="Caja_Centrada">
+        <h1>Mesa de Entrada Digital MEDi</h1>
+        <h5>Tu voz, nuestra acción</h5>
+        <button (click)="navigateToEmpezar()">¿Cómo Empezar?</button>
+        <button (click)="ScrollDown()">Comunicar Ahora</button>
+    </div>
+</body>
+<div id="Ventana_Codigo_Copiado_Exitoso">
+    <p>Código Copiado con Éxito ✔️</p>
+</div>
+<div id="Ventana_Ventana_Información">
+    <div id="Ventana_Información">
+        <div class="Header_Ventana_Info">
+            <h1><img src="../../../MEDi/assets/icons/info.png">{{MasInfo_Inputs_Form[Index_info].titulo}}</h1>
+            <img (click)="openInfo(0)" src="../../../MEDi/assets/icons/close.png">
+        </div>
+        <p>{{MasInfo_Inputs_Form[Index_info].info}}</p>
+        <p *ngIf="Error_File == true">*Archivo No Seleccionado o Formato Inválido: Asegúrate de que sea PDF, JPG o PNG.
+        </p>
+    </div>
+</div>
+<div id="Ventana_Resultado">
+    <div class="Text_Box_Resultado">
+        <img src="../../../MEDi/assets/img/Centro_Reclamos_Logon_Small.png">
+        <h1>{{Resultados_Text}}</h1>
+        <p>{{Resultados_Text2}}</p>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <p style="font-weight: bold;">{{Resultados_Text3}}</p>
+            <img (click)="CopyToClipboard()" class="Copy_Button" src="../../../MEDi/assets/icons/Copy.png"
+                alt="Copiar-Código">
+        </div>
+        <p style="margin-top: -20px;">Copia y guarda este código</p>
+        <p>Para descargar tu {{this.Reclamo.get('caracter').value}} en PDF haz click <strong
+                style="text-decoration: underline; color: Aqua; cursor: pointer;" (click)="generarPDF()">AQUÍ</strong>
+        </p>
+        <button class="Aceptar_Button_Ventana_Resultado" (click)="Aceptar_Reload_Function()">Aceptar</button>
+    </div>
+</div>
+<section id="Form_Section_Scroll_Ref">
+    <form [formGroup]="Reclamo" enctype="multipart/form-data" id="Form_Reclamo">
+        <h1>Formulario de Comunicación Ciudadana [1/{{number_datos_module}}]</h1>
+        <p>Por favor, a continuación, brindanos información acerca de lo que quieres comunicarnos.</p>
+        <p>Los campos marcados con (*) son obligatorios.</p>
+        <label class="Global_Label">*Carácter del Comunicado:<img (click)="openInfo(0)" class="Info_Icon"
+                src="../../../MEDi/assets/icons/info.png"></label>
+        <select id="Input_Tipo" formControlName="caracter" (change)="FormInteraction();Validacion_Form(1)">
+
+            <option value="Sugerencia">Sugerencia/Reclamo</option>
+           
+            <option value="Solicitud">Solicitud/Consulta</option>
+
+            <option value="Denuncia">Denuncia</option>
+  
+        </select>
+        <img class="Validation_Icon_Error" *ngIf="this.Reclamo.get('caracter').value.length > 2" src="../../../MEDi/assets/icons/Ok.png" alt="Error">
+        <span id="Valid_Error_Display_1">{{Form_Valid_Error_1}}</span>
+        <label class="Global_Label">*Asunto: <img (click)="openInfo(1)" class="Info_Icon"
+                src="../../../MEDi/assets/icons/info.png"></label>
+        <input type="text" id="Input_Titulo" formControlName="titulo" (change)="Validacion_Form(2)" required>
+        <img class="Validation_Icon_Error" *ngIf="this.Reclamo.get('titulo').value.length > 5" src="../../../MEDi/assets/icons/Ok.png" alt="Error">
+        <span id="Valid_Error_Display_2" *ngIf="this.Reclamo.get('titulo').value.length < 6">{{Form_Valid_Error_2}}</span>
+        <label class="Global_Label">*Descripción:<img (click)="openInfo(2)" class="Info_Icon"
+                src="../../../MEDi/assets/icons/info.png"></label>
+        <textarea id="Input_Descripcion" formControlName="descripcion" (change)="Validacion_Form(3)" cols="30" rows="10" maxlength="500"></textarea>
+        <img class="Validation_Icon_Error" *ngIf="this.Reclamo.get('descripcion').value.length > 49" src="../../../MEDi/assets/icons/Ok.png" alt="Error">
+        <span id="Valid_Error_Display_3" *ngIf="this.Reclamo.get('descripcion').value.length < 50" > {{Form_Valid_Error_3}}</span>
+        
+        <label class="Global_Label">Adjuntar Archivo: <img (click)="openInfo(8)" class="Info_Icon"
+                src="../../../MEDi/assets/icons/info.png"></label>
+        <input type="file" style="display: none;" id="Files_Upload" formControlName="file" required name="file1"
+            (change)="onFileSelected1($event);Validacion_Form(4)">
+        <br /><br><label class="Upload_Files_Input" for="Files_Upload"><img
+                src="../../../MEDi/assets/icons/Upload_Icon.png" alt="Subir Archivos">Subir Archivo</label>
+        <h3 class="File_Name_Uploading">{{file_url}}</h3>
+        <p class="Delete_File_from_Form" *ngIf="file_url.length > 0" (click)="Delete_Files_Form();">Eliminar Archivo</p>
+        
+        <span id="Valid_Error_Display_4" *ngIf="this.Archivo_Valido == false">{{Form_Valid_Error_4}}</span>
+
+        <label class="Global_Label">Dirección/Localidad:<img (click)="openInfo(3)" class="Info_Icon"
+                src="../../../MEDi/assets/icons/info.png"></label>
+        <input type="text" formControlName="ubicacion_1" id="Input_Ubicacion" required>
+        <label class="Global_Label">Mapa:<img (click)="openInfo(4)" class="Info_Icon"
+                src="../../../MEDi/assets/icons/info.png"></label>
+        <div class="Maps_Generators_Buttons_Container">
+            <button class="Btn_Map" (click)="Map_Inject_2()">Mapa Satelital</button>
+            <button class="Btn_Map" (click)="Map_Inject_1()">Mapa de Calles</button>
+        </div>
+        <div id="Mapa_Ubicacion">
+            <div id="map"></div>
+            <div id="map2"></div>
+        </div>
+        <br>
+        <button (click)="AsignarCoordenadas()" class="Boton_Guardar_Ubicacion">Guardar Ubicación del Mapa</button>
+        <br>
+        <div id="Success_msg_ubicacion">
+            <p>¡Ubicación adjuntada con éxito! <br> {{coordenadas_mapa}}</p><img
+                src="../../../MEDi/assets/icons/Ok.png">
+        </div>
+        <br>
+        <label class="Global_Label">*Destino:<img (click)="openInfo(5)" class="Info_Icon"
+                src="../../../MEDi/assets/icons/info.png"></label>
+        <select formControlName="destinacion">
+            <option *ngFor="let areas_row of Areas_row" [ngValue]="areas_row.clave_poder">{{areas_row.nombre_area}}
+            </option>
+        </select>
+        <img class="Validation_Icon_Error" *ngIf="this.Reclamo.get('destinacion').value.length > 1" src="../../../MEDi/assets/icons/Ok.png" alt="Error">
+        <span id="Valid_Error_Display_5" *ngIf="this.Reclamo.get('destinacion').value.length == 0">Este campo es obligatorio</span>
+        <div id="Box_Datos_Personales">
+            <h1>Datos Personales [2/2]</h1>
+            <label class="Global_Label">*Nombre y Apellido:</label>
+            <input type="text" formControlName="nombre" (change)="Validacion_Form(6)">
+            <img class="Validation_Icon_Error" *ngIf="this.Reclamo.get('nombre').value.length > 5" src="../../../MEDi/assets/icons/Ok.png" alt="Error">
+            <span id="Valid_Error_Display_6" *ngIf="this.Reclamo.get('nombre').value.length < 6" >{{Form_Valid_Error_6}}</span>
+
+            <label class="Global_Label">*Teléfono:</label>
+            <input type="number" formControlName="telefono" (change)="Validacion_Form(7)">
+            <img class="Validation_Icon_Error" *ngIf="this.Reclamo.get('telefono').value > 999" src="../../../MEDi/assets/icons/Ok.png" alt="Error">
+            <span id="Valid_Error_Display_7" *ngIf="this.Reclamo.get('telefono').value < 1000">{{Form_Valid_Error_7}}</span>
+            <label class="Global_Label">*E-mail:</label>
+            <input type="email" formControlName="email" (change)="Validacion_Form(8)">
+            <img class="Validation_Icon_Error" *ngIf="this.Reclamo.get('email').value.length > 5 && this.Reclamo.get('email').value.includes('@')" src="../../../MEDi/assets/icons/Ok.png" alt="Error">
+            <span id="Valid_Error_Display_8" *ngIf="this.Reclamo.get('email').value.length < 6 || !(this.Reclamo.get('email').value.includes('@'))">{{Form_Valid_Error_8}}</span>
+            <label class="Global_Label">*Domicilio:</label>
+            <input type="text" formControlName="domicilio" (change)="Validacion_Form(9)">
+            <img class="Validation_Icon_Error" *ngIf="this.Reclamo.get('domicilio').value.length > 5" src="../../../MEDi/assets/icons/Ok.png" alt="Error">
+            <span id="Valid_Error_Display_9" *ngIf="this.Reclamo.get('domicilio').value.length < 6">{{Form_Valid_Error_9}}</span>
+        </div>
+        <br>
+        <button class="Boton_Enviar_Reclamo" id="Boton_Send_Reclam_1" (click)="ValidarReclamo()">
+            <p>Enviar Comunicación</p>
+        </button>
+        <button class="Boton_Enviar_Reclamo" id="Boton_Send_Reclam_2">
+            <div id="Loader_Bar_Btn"></div>
+            <p>Enviar Comunicación</p>
+        </button>
+    </form>
+</section>
+<app-footer></app-footer>

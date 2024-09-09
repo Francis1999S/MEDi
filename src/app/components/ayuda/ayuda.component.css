@@ -1,0 +1,130 @@
+@keyframes Intro_Component {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+#Header_Desktop {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+section {
+    margin: 0;
+    padding: 0 0 3vw 0;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    background-color: white;
+    h1 {
+        margin: 50px 0 0 0;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+        color: rgb(40,40,40);
+        font-family: Nunito;
+        font-weight: bold;
+    }
+    h2 {
+        margin: 2vw 0 0 0;
+        color: rgb(40,40,40);
+        font-family: Nunito;
+    }
+    h4 {
+        margin: 2vw 0 0 0;
+        color: rgb(40,40,40);
+        font-family: Nunito;
+    }
+    p {
+        margin: 0;
+        color: rgb(80,80,80);
+        font-family: Heebo;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        flex-direction: column;
+    }
+    li {
+        margin: 0 0 0 3vw;
+        color: rgb(80,80,80);
+        font-family: Heebo;
+    }
+}
+body {
+    animation-name: Intro_Component;
+    animation-duration: .5s;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Boton_Enviar_Feedback {
+    transition: .2s;
+    cursor: pointer;
+    margin: 20px 0 0 0;
+    width: 40%;
+    height: 35px;
+    border: none;
+    outline: none;
+    background-color: rgb(255, 120, 50);
+    color: white;
+    font-family: Heebo;
+    font-weight: bold;
+    font-size: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Boton_Enviar_Feedback:hover {
+    transition: .2s;
+    background-color: rgb(53, 193, 204);
+}
+@media (min-width: 1001px) {
+    section {
+        width: 55%;
+        h1 {
+            font-size: 2.2vw;
+        }
+        h2 {
+            font-size: 1.7vw;
+        }
+        h4 {
+            font-size: 2vw;
+        }
+        p {
+            font-size: 1.2vw;
+        }
+        li {
+            font-size: 1.2vw;
+        }
+    }
+}
+@media (max-width: 1000px) {
+    section {
+        width: 80%;
+        h1 {
+            font-size: 140%;
+        }
+        h2 {
+            font-size: 100%;
+        }
+        h4 {
+            font-size: 100%;
+        }
+        p {
+            font-size: 100%;
+        }
+        li {
+            font-size: 100%;
+        }
+    }
+}

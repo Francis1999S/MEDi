@@ -1,0 +1,27 @@
+<section *ngIf="this.flag_error === false">
+    <div id="Ventana_Emergente_Confirmar_Recibido">
+        <div class="Info_Box">
+            <p>¿Realmente quiere Confirmar como Recibida e Iniciar esta Comunicación?</p>
+            <div class="Box_Btns">
+                <button (click)="Open_Ventana_Emergente()">No</button>
+                <button (click)="Marcar_Iniciada();Open_Ventana_Emergente()">Sí</button>
+            </div>
+        </div>
+    </div>
+    <img src="../../../MEDi/assets/img/centro_de_reclamo_logon1.png">
+    <h1>Confirmando Comunicación como Recibida</h1>
+    <p style="text-align: center; color: red; font-weight: bold;">¡Advertencia!: <br>Una vez confirmada la recepción, se iniciará el plazo de resolución y el estado cambiará a "Iniciado". <br>
+        Si la comunicación no corresponde a su área, reenvíela al área correspondiente desde el Panel de Administración sin confirmar su recepción.</p>
+    <div class="Box_Comunicacion_Info">
+        <h4 style="width: 100%; margin: 0; text-align: center;">Información de la Comunicación:</h4>
+        <p>Identificador: {{Comunicacion[0].id}}</p>
+        <p>Asunto: {{Comunicacion[0].titulo}}</p>
+        <p>Carácter: {{Comunicacion[0].caracter}}</p>
+    </div>
+        <button id="Button_Confirmar_Comunicacion" class="Button_Confirmar_Recibido" (click)="Open_Ventana_Emergente()">Confirmar como Recibida</button>
+        <a style="color: rgb(50,50,50); margin-top: 20px; margin-bottom: 20px;" href="https://tinogasta.gob.ar/MEDi/#/LogIn" target="_blank">Acceder al Panel de Administración ➚</a>
+</section>
+<section *ngIf="this.flag_error === true">
+    <img src="../../../MEDi/assets/img/centro_de_reclamo_logon1.png">
+    <h1 style="text-align: center;">{{Mensaje_Error}}</h1>
+</section>

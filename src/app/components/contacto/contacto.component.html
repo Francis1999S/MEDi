@@ -1,0 +1,61 @@
+<app-header id="Header_Desktop"></app-header>
+<section>
+    <div class="Banner_Contacto">
+        <h1>Contacto</h1>
+    </div>
+    <div class="Animated_Title">
+        <div class="Bar_boxes_1">
+            <div class="Bar_1"></div>
+            <div class="Bar_2"></div>
+        </div>
+        <h5>CONTÁCTANOS</h5>
+        <div class="Bar_boxes_2">
+            <div class="Bar_1"></div>
+            <div class="Bar_2"></div>
+        </div>
+    </div>
+    <h1 class="Titulo_Form">Formulario de Contacto</h1>
+    <div class="Container_Contacto">
+        <div class="Boxes">
+            <h3>Contacto</h3>
+            <div class="Container_Contacto_Data">
+                <img src="../../../MEDi/assets/icons/Ubicacion_icon.png">
+                <div class="Title_Data_Contacto">
+                    <h1>Oficina</h1>
+                    <p>Calle Eva Perón N° 691</p>
+                </div>
+            </div>
+            <div class="Container_Contacto_Data">
+                <img src="../../../MEDi/assets/icons/Call_icon.png">
+                <div class="Title_Data_Contacto">
+                    <h1>Teléfono</h1>
+                    <p>+54 9 383 466-9002</p>
+                </div>
+            </div>
+            <div class="Container_Contacto_Data">
+                <img src="../../../MEDi/assets/icons/Mail_icon.png">
+                <div class="Title_Data_Contacto">
+                    <h1>E-mail</h1>
+                    <p>amartinez&#64;tinogasta.gob.ar</p>
+                </div>
+            </div>
+        </div>
+        <div class="Boxes">
+            <iframe class="mapa"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1046.7245049566366!2d-67.5675060807698!3d-28.062732257474693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x969e0554d044888f%3A0x665a15c5d3231333!2sEva%20Per%C3%B3n%20691%2C%20K5340%20Tinogasta%2C%20Catamarca!5e0!3m2!1ses-419!2sar!4v1713441743587!5m2!1ses-419!2sar"
+                frameborder="0" style="min-height: 300px; border:0;" allowfullscreen="" aria-hidden="false"
+                tabindex="0"></iframe>
+        </div>
+        <form class="Boxes" [formGroup]="Contacto">
+            <div class="Inputs_Header">
+                <input type="text" placeholder="Nombre" formControlName="nombre" required id="Input_nombre_cas_ctc">
+                <input type="text" placeholder="E-mail" formControlName="email" required id="Input_email_cas_ctc">
+            </div>
+            <input class="Input_Asunto" type="text" placeholder="Asunto" formControlName="asunto" required id="Input_asunto_cas_ctc">
+            <textarea class="textarea_Mensaje" name="" id="" cols="30" rows="10" placeholder="Mensaje" formControlName="mensaje" required id="Input_mensaje_cas_ctc"></textarea>
+            <p style="color: rgb(233, 132, 0)">{{Mensaje_Error}}</p>
+            <button *ngIf="this.Contacto.valid === true" class="Btn_Enviar_Mensaje" (click)="Enviar_Correo()" id="Button_Enviar_Casilla_Contacto">ENVIAR</button>
+        </form>
+    </div>
+</section>
+<app-footer></app-footer>
