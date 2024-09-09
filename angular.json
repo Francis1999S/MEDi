@@ -24,7 +24,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "baseHref": "/MEDi/",
-            "outputPath": "dist/centro_reclamos_proyecto",
+            "outputPath": "dist/MEDi",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
