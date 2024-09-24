@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './empezar.component.css'
 })
 export class EmpezarComponent {
-
+  RedirectTo(url: string): void {
+    window.open(url, '_blank');
+  }
 }
