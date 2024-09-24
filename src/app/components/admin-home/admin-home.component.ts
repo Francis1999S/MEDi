@@ -14,6 +14,8 @@ import { endWith } from 'rxjs';
   styleUrl: './admin-home.component.css'
 })
 export class AdminHomeComponent implements OnInit {
+  ///////HELP ACTIVATED//////////////////
+  Help_Activated: boolean = false
 
   ///////////////////UBICACIÓN ACTIVADA//////////////////
   Ubicacion_Existe: boolean = true;
@@ -149,6 +151,19 @@ Clave_Poder_2: any;
       feedback: [''],
     });
   }
+
+  Activate_Help_Window(): void {
+    if (this.Help_Activated) {
+      this.Help_Activated = false;
+    } else{ 
+      this.Help_Activated = true;
+    }
+  }
+
+  RedirectTo(url: string): void {
+    window.open(url, '_blank');
+  }
+
   ////////////////Obtención de Registros Correspondientes al Área de Recepción///////////////////////7
   ngOnInit(): void {
     this.LogIn3 = this.dataService.LogIn_3;

@@ -210,7 +210,7 @@
         width: 100%;
     }
     .Micro_Container {
-        margin: 0 0 20px 0;
+        margin: 20px 0 20px 0;
         padding: 0;
         width: 100%;
         height: 20%;
@@ -222,12 +222,12 @@
         background-position: center bottom;
         background-size: auto 100%;
         flex-direction: column;
-        height: 150vh;
+        height: auto;
     }
 
     .Panel_Admin {
         width: 95%;
-        height: 370px;
+        height: 400px;
         margin: 20px 0 20px 0;
     }
 
@@ -288,7 +288,6 @@
     margin: 0;
     padding: 0;
     width: 100%;
-
     display: block;
     overflow-y: scroll;
     overflow-x: hidden;

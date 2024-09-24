@@ -139,7 +139,7 @@
     }
     .Panel_Admin {
         width: 25%;
-        height: 95%;
+        height: 98%;
         margin: 0;
         animation-name: Intro_Global_Boxes;
         animation-duration: .5s;
@@ -147,7 +147,7 @@
 
     .Data_Show {
         width: 73%;
-        height: 95%;
+        height: 98%;
     }
     .Micro_Container {
         margin: 0;
@@ -173,7 +173,7 @@
     .Filtros_Comunicados {
         flex-direction: column;
         width: 80%;
-        height: 55%;
+        height: 40%;
     }
     .Bandeja_Entrada {
         margin: 0;
@@ -913,4 +913,124 @@
     img {
         height: 20%;
     }
+}
+
+.Modified_Button {
+    background: rgba(143,15,255,1);
+    background: -moz-linear-gradient(top, rgba(143,15,255,1) 0%, rgba(149,10,255,1) 29%, rgba(147,5,255,1) 49%, rgba(181,77,255,1) 50%, rgba(169,41,255,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(143,15,255,1)), color-stop(29%, rgba(149,10,255,1)), color-stop(49%, rgba(147,5,255,1)), color-stop(50%, rgba(181,77,255,1)), color-stop(100%, rgba(169,41,255,1)));
+    background: -webkit-linear-gradient(top, rgba(143,15,255,1) 0%, rgba(149,10,255,1) 29%, rgba(147,5,255,1) 49%, rgba(181,77,255,1) 50%, rgba(169,41,255,1) 100%);
+    background: -o-linear-gradient(top, rgba(143,15,255,1) 0%, rgba(149,10,255,1) 29%, rgba(147,5,255,1) 49%, rgba(181,77,255,1) 50%, rgba(169,41,255,1) 100%);
+    background: -ms-linear-gradient(top, rgba(143,15,255,1) 0%, rgba(149,10,255,1) 29%, rgba(147,5,255,1) 49%, rgba(181,77,255,1) 50%, rgba(169,41,255,1) 100%);
+    background: linear-gradient(to bottom, rgba(143,15,255,1) 0%, rgba(149,10,255,1) 29%, rgba(147,5,255,1) 49%, rgba(181,77,255,1) 50%, rgba(169,41,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8f0fff', endColorstr='#a929ff', GradientType=0 );
+border: 0.2px solid white;
+border-radius: 4px;
+color: white;
+font-family: Heebo;
+cursor: pointer;
+text-shadow: 0 0 5px black;
+box-shadow: 0 0 5px black;
+display: flex;
+justify-content: center;
+align-items: center;
+img {
+    margin: 0 0 0 5px;
+    height: 90%;
+}
+}
+.Modified_Button:hover {
+    transition: .2s;
+    filter: brightness(130%);
+}
+.Modified_Button:active {
+    transition: .1;
+    scale: 0.8;
+}
+
+@media (min-width: 769px) {
+    .Modified_Button {
+        padding: 0;
+        width: 150px;
+        height: 40px;
+        font-size: 90%;
+    }
+    .Container_Manuals{ 
+        width: 40%;
+        height: auto;
+    }
+    .version_span {
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%,0);
+    }
+}
+
+@media (max-width: 768px) {
+    .Modified_Button {
+        margin: 10px 0 10px 0;
+        padding: 10px;
+        width: auto;
+        height: 40px;
+        font-size: 70%;
+    }
+    .Container_Manuals {
+        width: 90%;
+        height: auto;
+    }
+    .version_span {
+        bottom: 0;
+        right: 5px;
+        transform: translate(0,0);
+    }
+}
+
+.Help_Window {
+    animation-name: Intro_Map;
+    animation-duration: .3s;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5000;
+    background-color: rgba(0, 0, 0, 0.7);
+    .Container_Manuals {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: rgb(0,67,143);
+        background: linear-gradient(325deg, rgba(0,67,143,1) 0%, rgba(0,47,100,1) 100%);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+        border-radius: 5px;
+        color: white;
+        p {
+            transition: .3s;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            padding: 5px;
+        }
+        p:hover {
+            transition: .3s;
+            text-shadow: 0 0 10px white;
+        }
+    }
+}
+
+.version_span {
+    font-size: 70%;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    padding: 0;
+    position: absolute;
+
 }
