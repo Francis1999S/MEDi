@@ -249,6 +249,9 @@ if(isset($_GET["Marcar_Conformidad"])){
 }
 //Inserta un nuevo registro
 if(isset($_GET["insertar"])){
+$fecha_actual = date('Y-m-d'); // Guarda la fecha en formato Año-Mes-Día
+$hora_actual = date('H:i:s'); // Guarda la hora en formato Horas:Minutos:Segundos
+
     $data = json_decode(file_get_contents("php://input"));
     // Obtener los datos del objeto JSON
 
@@ -266,13 +269,13 @@ if(isset($_GET["insertar"])){
         $domicilio = mysqli_real_escape_string($conexionBD, $data->domicilio);
 
        ////Form Data/////
-       $fecha = mysqli_real_escape_string($conexionBD, $data->fecha);
-       $hora = mysqli_real_escape_string($conexionBD, $data->hora);
+       $fecha = $fecha_actual;
+       $hora = $hora_actual;
        $estado = mysqli_real_escape_string($conexionBD, $data->estado);
        $plazo_resolucion = mysqli_real_escape_string($conexionBD, $data->plazo_resolucion);
        $vencimientos = mysqli_real_escape_string($conexionBD, $data->vencimientos);
        $anonimo = mysqli_real_escape_string($conexionBD, $data->anonimo);
-       $fecha_v = mysqli_real_escape_string($conexionBD, $data->fecha_v);
+       $fecha_v = $fecha_actual;
        $cod_conf = mysqli_real_escape_string($conexionBD, $data->cod_conf);
 
    // $fecha=$data->fecha;
