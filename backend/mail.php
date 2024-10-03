@@ -63,7 +63,7 @@ try {
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Notificacion de la MEDi';
+    $mail->Subject = 'Notificacion de MEDi';
 
     //$file = fopen("Mail.html", "r");
     //$str = fread($file, filesize("Mail.html"));
@@ -72,37 +72,37 @@ try {
     if ($file_1 === '*NINGUNO*') {
         $mail->Body = '<div style="padding: 30px 0;">
         <img src="https://tinogasta.gob.ar/MEDi/assets/img/centro_de_reclamo_logon1.png" alt="Logo">
-        <p style="color: #ff7832; font-weight: bold;">Su área ha recibido una nueva comunicación. Por favor, diríjase al panel de administración para ver más detalles.</p><br>
+        <p style="color: #ff7832; font-weight: bold;">Su area ha recibido una nueva comunicacion. Por favor, dirijase al panel de administracion para ver mas detalles.</p><br>
       
         <h2>'.$caracter.': '.$titulo.'</h2>
         <p>Iniciado el '.$fecha.' a las '.$hora.' Hs</p>
         <p>Ciudad: Tinogasta</p>
-        <p>Carácter: '.$caracter.'</p>
+        <p>Caracter: '.$caracter.'</p>
         <p>Asunto: '.$titulo.'</p>
-        <p>Plazo de Resolución: '.$plazo_resolucion.' días</p>
+        <p>Plazo de Resolucion: '.$plazo_resolucion.' días</p>
         <p>Próximo Vencimiento: '.$fecha_v.'</p>
-        <p>Descripción: '.$descripcion.'</p>
-        <p>Ubicación: '.$ubicacion_1.'</p><br><br>
-        <a href="https://Tinogasta.gob.ar/MEDi/#/Confirmar-Comunicacion/'.$cod_conf.'">CONFIRMAR COMUNICACIÓN</a><br><br><br>
-        <a href="https://Tinogasta.gob.ar/MEDi/#/LogIn" target="_blank">PANEL DE ADMINISTRACIÓN</a>
+        <p>Descripcion: '.$descripcion.'</p>
+        <p>Ubicacion: '.$ubicacion_1.'</p><br><br>
+        <a href="https://Tinogasta.gob.ar/MEDi/#/Confirmar-Comunicacion/'.$cod_conf.'">CONFIRMAR COMUNICACION</a><br><br><br>
+        <a href="https://Tinogasta.gob.ar/MEDi/#/LogIn" target="_blank">PANEL DE ADMINISTRACION</a>
         </div>';
     } else {
         $mail->Body = '<div style="padding: 30px 0;">
         <img src="https://tinogasta.gob.ar/MEDi/assets/img/centro_de_reclamo_logon1.png" alt="Logo">
-        <p style="color: #ff7832; font-weight: bold;">Su área ha recibido una nueva comunicación. Por favor, diríjase al panel de administración para ver más detalles.</p><br>
+        <p style="color: #ff7832; font-weight: bold;">Su area ha recibido una nueva comunicacion. Por favor, dirijase al panel de administracion para ver mas detalles.</p><br>
       
         <h2>'.$caracter.': '.$titulo.'</h2>
         <p>Iniciado el '.$fecha.' a las '.$hora.' Hs</p>
         <p>Ciudad: Tinogasta</p>
-        <p>Carácter: '.$caracter.'</p>
+        <p>Caracter: '.$caracter.'</p>
         <p>Asunto: '.$titulo.'</p>
-        <p>Plazo de Resolución: '.$plazo_resolucion.' días</p>
-        <p>Próximo Vencimiento: '.$fecha_v.'</p>
-        <p>Descripción: '.$descripcion.'</p>
+        <p>Plazo de Resolucion: '.$plazo_resolucion.' dias</p>
+        <p>Proximo Vencimiento: '.$fecha_v.'</p>
+        <p>Descripcion: '.$descripcion.'</p>
         <p>Ubicación: '.$ubicacion_1.'</p>
         <a href="'.$file_1.'">Archivo Adjunto ➙ '.$file_1.'</a><br><br><br>
-        <a href="https://Tinogasta.gob.ar/MEDi/#/Confirmar-Comunicacion/'.$cod_conf.'">CONFIRMAR COMUNICACIÓN</a><br><br><br>
-        <a href="https://Tinogasta.gob.ar/MEDi/#/LogIn" target="_blank">PANEL DE ADMINISTRACIÓN</a>
+        <a href="https://Tinogasta.gob.ar/MEDi/#/Confirmar-Comunicacion/'.$cod_conf.'">CONFIRMAR COMUNICACION</a><br><br><br>
+        <a href="https://Tinogasta.gob.ar/MEDi/#/LogIn" target="_blank">PANEL DE ADMINISTRACION</a>
         </div>';
     }
    

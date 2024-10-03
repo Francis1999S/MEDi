@@ -15,7 +15,7 @@ import { endWith } from 'rxjs';
 })
 export class AdminHomeComponent implements OnInit {
   ///////HELP ACTIVATED//////////////////
-  Help_Activated: boolean = false
+  Help_Activated: boolean = false;
 
   ///////////////////UBICACIÓN ACTIVADA//////////////////
   Ubicacion_Existe: boolean = true;
