@@ -1,6 +1,7 @@
 
 <section class="Super_Container">
     <aside class="Panel_Admin">
+        <span (click)="this.custom.NavigateToVersion()" class="version_span">{{this.custom.Versionado_Global_App}}</span>
         <img class="usuario_logo" src="../../../MEDi/assets/icons/User_icon.png">
         <p>Has ingresado como Super Administrador</p>
         <fieldset class="Controlls_Admin">
@@ -72,6 +73,38 @@
                 <app-estadistica-admin class="Estadisticas_Basicas_c"></app-estadistica-admin>
                 <img id="Estadisticas_Loader_2" src="../../../MEDi/assets/icons/Estadisticas_Loader.gif">
             </div>
+            <div class="Info_Global">
+                <img id="Comunicaciones_Loader_Super_Admin" src="../../../MEDi/assets/icons/Estadisticas_Loader.gif">
+                <p style="width: 100%; margin: 0; padding: 5px 0 5px 0; background-color: rgba(255, 255, 255, 0.5); border-bottom: 1px solid rgb(0, 78, 162); text-align: center;">Información Actualizada</p>
+                <h1 style="color: white; margin: 0; padding: 0;">Total de Comunicaciones Resueltas: {{Total_Resuelas}}</h1>
+                <div class="Buttons_Reclamos_Types">
+                    <button class="button-7" role="button" id="Button_Selector_SupAdm_1" (click)="Obtener_Comunicaciones(1)">Pendientes</button>
+                    <button class="button-7" role="button" id="Button_Selector_SupAdm_2" (click)="Obtener_Comunicaciones(2)">Iniciados</button>
+                    <button class="button-7" role="button" id="Button_Selector_SupAdm_3" (click)="Obtener_Comunicaciones(3)">Demorados</button>
+                    <button class="button-7" role="button" id="Button_Selector_SupAdm_4" (click)="Obtener_Comunicaciones(4)">Resueltos</button>
+                </div>
+                <div class="Scroll_Container_Info">
+                <div class="Container_Pendientes">
+                    <div class="Fila_Pendiente" style="    background: rgb(0,101,214);
+    background: linear-gradient(325deg, rgba(0,101,214,1) 0%, rgba(102,127,154,1) 100%);">
+                        <p class="p_n1" style="font-weight: bold;">ID</p>
+                        <p class="p_n2" style="font-weight: bold;">Asunto</p>
+                        <p class="p_n3" style="font-weight: bold;">Área</p>
+                        <p class="p_n4" style="font-weight: bold;">Fecha</p>
+                    </div>
+                    <div class="Fila_Pendiente hover_style" style="cursor: help;" *ngFor="let comun of Comunicaciones_Dinamicas_Row" title="N° {{comun.id}} - Fecha: {{comun.fecha | date: 'dd/MM/yyyy'}} - Asunto: {{comun.titulo}} - Descripción: {{comun.descripcion}} - Enviado a {{comun.nombre_area}}">
+                        <p class="p_n1">{{comun.id}}</p>
+                        <p class="p_n2">{{comun.titulo}}</p>
+                        <p class="p_n3">{{comun.nombre_area}}</p>
+                    <p class="p_n4">{{comun.fecha | date: 'dd/MM/yyyy'}}</p>
+                    </div>
+                   
+                </div>
+            </div>
+            </div>
         </div>
+   
+         
+      
     </section>
 </section>

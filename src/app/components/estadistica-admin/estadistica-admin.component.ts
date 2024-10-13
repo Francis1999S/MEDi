@@ -25,22 +25,20 @@ this.ctx = this.canvas.getContext('2d');
 new Chart(this.ctx, {
   type: 'bar',
   data: {
-    labels: ['Pendientes','Iniciados','Demorados','Resueltos', ''],
+    labels: ['Pendientes','Iniciados','Demorados', ''],
     datasets: [{
       label: 'Estados Actuales',
-      data: [this.dataService.Pendientes, this.dataService.Iniciados, this.dataService.Demorados, this.dataService.Resueltos, 0],
+      data: [this.dataService.Pendientes, this.dataService.Iniciados, this.dataService.Demorados, 0],
       backgroundColor: [
         'rgba(255, 255, 0, 0.2)',
         'rgba(0, 255, 255, 0.2)',
         'rgba(255, 0, 0, 0.2)',
-        'rgba(0, 255, 0, 0.2)',
         'rgba(0, 255, 0, 0)'
       ],
       borderColor: [
         'rgb(255, 255, 0)',
         'rgb(0, 255, 255)',
         'rgb(255, 0, 0)',
-        'rgb(0, 255, 0)',
         'rgba(0, 255, 0, 0)'
       ],
       borderWidth: 1

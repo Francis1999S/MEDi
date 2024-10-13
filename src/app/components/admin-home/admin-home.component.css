@@ -414,8 +414,8 @@
 }
 
 .usuario_logo {
-    margin: 20px 0 0 0;
-    height: 50px;
+    margin: 15px 0 0 0;
+    height: 45px;
 }
 
 .Scroll_Box_Container {
@@ -1032,5 +1032,8 @@ img {
     margin: 0;
     padding: 0;
     position: absolute;
-
+    cursor: pointer;
+}
+.version_span:hover {
+    text-decoration: underline;
 }

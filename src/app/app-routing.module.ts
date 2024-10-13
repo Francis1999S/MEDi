@@ -17,11 +17,13 @@ import { EmpezarComponent } from './components/empezar/empezar.component';
 import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
 import { ModificarComponent } from './components/modificar/modificar.component';
+import { VersionComponent } from './components/version/version.component';
 
 const routes: Routes = [
   {path: 'Como-Empezar', component: EmpezarComponent},
   { path: 'Confirmar-Comunicacion/:codigo', component: ConfirmarComponent},
     { path: 'Home', component: HomeComponent },
+    {path: 'Version', component: VersionComponent},
     { path: 'Ayuda', component: AyudaComponent},
     { path: 'Contacto', component: ContactoComponent},
     { path: 'LogIn', component: LoginComponent},

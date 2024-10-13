@@ -1,0 +1,50 @@
+
+@keyframes Intro_Component {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+#Header_Desktop {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+#changelog {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+#changelog h2 {
+    text-align: center;
+    color: #333;
+}
+
+.version {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.version-header {
+    font-size: 1.5em;
+    color: #0056b3;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.version-header:hover {
+    color: #003d80;
+}
+
+.version-details {
+    padding-left: 20px;
+}
+
+.version-details li {
+    margin-bottom: 10px;
+}

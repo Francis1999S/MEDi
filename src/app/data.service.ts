@@ -109,6 +109,18 @@ export class DataService {
     GetAllAreasSelect(data: Clave_Poder): Observable<any> {
       return this.http.post(this.apiUrl + "insert.php?Get_Areas_Select=1", data);
     }
+    Get_Reclamos_Pendientes(): Observable<any> {
+      return this.http.get(this.apiUrl + 'insert.php?Get_Reclamos_Pendientes');
+    }
+    Get_Reclamos_Iniciados(): Observable<any> {
+      return this.http.get(this.apiUrl + 'insert.php?Get_Reclamos_Iniciados');
+    }
+    Get_Reclamos_Demorados(): Observable<any> {
+      return this.http.get(this.apiUrl + 'insert.php?Get_Reclamos_Demorados');
+    }
+    Get_Reclamos_Resueltos(): Observable<any> {
+      return this.http.get(this.apiUrl + 'insert.php?Get_Reclamos_Resueltos');
+    }
     InsertArea(data: Destinacion): Observable<any> {
       return this.http.post(this.apiUrl + "insert.php?insertar_destinacion=1", data);
     }

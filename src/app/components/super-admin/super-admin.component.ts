@@ -6,6 +6,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import * as L from 'leaflet';
+import { CustomService } from '../../custom.service';
 
 @Component({
   selector: 'app-super-admin',
@@ -13,6 +14,11 @@ import * as L from 'leaflet';
   styleUrl: './super-admin.component.css'
 })
 export class SuperAdminComponent implements OnInit {
+
+  Comunicaciones_Dinamicas_Row: any;
+
+  Total_Resuelas: number = 0;
+
   Titulo_Dinamico: string = 'Cuentas de Usuarios';
 
   Datos_de_Areas_Permanente: any;
@@ -26,7 +32,7 @@ export class SuperAdminComponent implements OnInit {
   formatTime: string = '';
   Contenido_PDF: string = '';
   Promedios: any[] = [];
-  constructor(private router: Router, private dataService: DataService){}
+  constructor(private router: Router, private dataService: DataService, public custom: CustomService){}
   ngOnInit(): void {
     this.Estadisticas_Loader_Detroy();
     var Loader = document.getElementById('Loader_Data_2');
@@ -50,7 +56,21 @@ export class SuperAdminComponent implements OnInit {
       this.dataService.Iniciados = data[0].total_iniciados;
       this.dataService.Demorados = data[0].total_demorados;
       this.dataService.Resueltos = data[0].total_resueltos;
-    })
+      this.Total_Resuelas = data[0].total_resueltos;
+    });
+    this.dataService.Get_Reclamos_Pendientes().subscribe(res=> {
+      var btn1 = document.getElementById('Button_Selector_SupAdm_1');
+      var btn2 = document.getElementById('Button_Selector_SupAdm_2');
+      var btn3 = document.getElementById('Button_Selector_SupAdm_3');
+      var btn4 = document.getElementById('Button_Selector_SupAdm_4');
+      if (btn1 && btn2 && btn3 && btn4) {
+        btn1.style.borderBottom = '4px solid white';
+        btn2.style.borderBottom = '4px solid rgba(0,0,0,0)';
+        btn3.style.borderBottom = '4px solid rgba(0,0,0,0)';
+        btn4.style.borderBottom = '4px solid rgba(0,0,0,0)';
+      }
+      this.Comunicaciones_Dinamicas_Row = res;
+    });
   }
   NavigateToHome() {
     this.router.navigate(['/Home']);
@@ -61,6 +81,92 @@ export class SuperAdminComponent implements OnInit {
   NavigateToCreateArea() {
     this.router.navigate(['/Crear-Destinacion']);
   }
+
+  Obtener_Comunicaciones(key: number): void {
+    this.Comunicaciones_Dinamicas_Row = [];
+    var Loader_Comun = document.getElementById('Comunicaciones_Loader_Super_Admin');
+    if (Loader_Comun) {
+      Loader_Comun.style.display = 'flex';
+    }
+    switch (key) {
+      case 1:
+        
+        this.dataService.Get_Reclamos_Pendientes().subscribe(res=> {
+          var btn1 = document.getElementById('Button_Selector_SupAdm_1');
+          var btn2 = document.getElementById('Button_Selector_SupAdm_2');
+          var btn3 = document.getElementById('Button_Selector_SupAdm_3');
+          var btn4 = document.getElementById('Button_Selector_SupAdm_4');
+          if (btn1 && btn2 && btn3 && btn4) {
+            btn1.style.borderBottom = '4px solid white';
+            btn2.style.borderBottom = '4px solid rgba(0,0,0,0)';
+            btn3.style.borderBottom = '4px solid rgba(0,0,0,0)';
+            btn4.style.borderBottom = '4px solid rgba(0,0,0,0)';
+          }
+          this.Comunicaciones_Dinamicas_Row = res;
+          if (Loader_Comun) {
+            Loader_Comun.style.display = 'none';
+          }
+        });
+        break;
+        case 2:
+          this.dataService.Get_Reclamos_Iniciados().subscribe(res=> {
+          var btn1 = document.getElementById('Button_Selector_SupAdm_1');
+          var btn2 = document.getElementById('Button_Selector_SupAdm_2');
+          var btn3 = document.getElementById('Button_Selector_SupAdm_3');
+          var btn4 = document.getElementById('Button_Selector_SupAdm_4');
+          if (btn1 && btn2 && btn3 && btn4) {
+            btn1.style.borderBottom = '4px solid rgba(0,0,0,0)';
+            btn2.style.borderBottom = '4px solid white';
+            btn3.style.borderBottom = '4px solid rgba(0,0,0,0)';
+            btn4.style.borderBottom = '4px solid rgba(0,0,0,0)';
+          }
+          this.Comunicaciones_Dinamicas_Row = res;
+          if (Loader_Comun) {
+            Loader_Comun.style.display = 'none';
+          }
+          });
+        break;
+        case 3:
+          this.dataService.Get_Reclamos_Demorados().subscribe(res=> {
+            var btn1 = document.getElementById('Button_Selector_SupAdm_1');
+            var btn2 = document.getElementById('Button_Selector_SupAdm_2');
+            var btn3 = document.getElementById('Button_Selector_SupAdm_3');
+            var btn4 = document.getElementById('Button_Selector_SupAdm_4');
+            if (btn1 && btn2 && btn3 && btn4) {
+              btn1.style.borderBottom = '4px solid rgba(0,0,0,0)';
+              btn2.style.borderBottom = '4px solid rgba(0,0,0,0)';
+              btn3.style.borderBottom = '4px solid white';
+              btn4.style.borderBottom = '4px solid rgba(0,0,0,0)';
+            }
+          this.Comunicaciones_Dinamicas_Row = res;
+          if (Loader_Comun) {
+            Loader_Comun.style.display = 'none';
+          }
+          });
+        break;
+        case 4:
+          this.dataService.Get_Reclamos_Resueltos().subscribe(res=> {
+            var btn1 = document.getElementById('Button_Selector_SupAdm_1');
+            var btn2 = document.getElementById('Button_Selector_SupAdm_2');
+            var btn3 = document.getElementById('Button_Selector_SupAdm_3');
+            var btn4 = document.getElementById('Button_Selector_SupAdm_4');
+            if (btn1 && btn2 && btn3 && btn4) {
+              btn1.style.borderBottom = '4px solid rgba(0,0,0,0)';
+              btn2.style.borderBottom = '4px solid rgba(0,0,0,0)';
+              btn3.style.borderBottom = '4px solid rgba(0,0,0,0)';
+              btn4.style.borderBottom = '4px solid white';
+            }
+          this.Comunicaciones_Dinamicas_Row = res;
+          if (Loader_Comun) {
+            Loader_Comun.style.display = 'none';
+          }
+          });
+        break;
+      default:
+        break;
+    }
+  }
+
   AreasDisplay(): void {
     this.Registros_1 = [];
     this.Registros_2 = [];

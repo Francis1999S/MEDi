@@ -26,6 +26,7 @@ import { EmpezarComponent } from './components/empezar/empezar.component';
 import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
 import { ModificarComponent } from './components/modificar/modificar.component';
+import { VersionComponent } from './components/version/version.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ModificarComponent } from './components/modificar/modificar.component';
     EmpezarComponent,
     ConfirmarComponent,
     SeguimientoComponent,
-    ModificarComponent
+    ModificarComponent,
+    VersionComponent
   ],
   imports: [
     BrowserModule,

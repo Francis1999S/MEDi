@@ -7,6 +7,7 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import * as L from 'leaflet';
 import { endWith } from 'rxjs';
+import { CustomService } from '../../custom.service';
 
 @Component({
   selector: 'app-admin-home',
@@ -14,6 +15,11 @@ import { endWith } from 'rxjs';
   styleUrl: './admin-home.component.css'
 })
 export class AdminHomeComponent implements OnInit {
+
+  //////////TOTAL DE RESUELTOS CONTADOR///////////////
+  Resueltos_Counter: number = 0;
+  Loader_Counter_Resueltos: boolean = true;
+
   ///////HELP ACTIVATED//////////////////
   Help_Activated: boolean = false
 
@@ -96,7 +102,7 @@ Clave_Poder_2: any;
 
   //////////////////////Variables de Buttons Filter aside and Header box////////////////////
   
-  constructor(private router: Router, private dataService: DataService, public fb: FormBuilder) {
+  constructor(private router: Router, private dataService: DataService, public fb: FormBuilder, public custom: CustomService) {
     this.Cambio_Color = this.fb.group({
       ID: [''],
       color: [''],
@@ -166,6 +172,7 @@ Clave_Poder_2: any;
 
   ////////////////Obtención de Registros Correspondientes al Área de Recepción///////////////////////7
   ngOnInit(): void {
+    
     this.LogIn3 = this.dataService.LogIn_3;
     this.Estadisticas_Loader_Detroy();
     this.Get_Area();
@@ -182,7 +189,12 @@ Clave_Poder_2: any;
       if (Loader) {
         Loader.style.display = 'none';
       }
-    })
+      
+    });
+    setTimeout(() => {
+      this.Resueltos_Counter = this.dataService.Resueltos;
+      this.Loader_Counter_Resueltos = false;
+    }, 3000);
   }
   Get_Areas_Row(): void {
     this.Destinacion.patchValue({ ID: this.numero_Rec});
@@ -1160,6 +1172,7 @@ Clave_Poder_2: any;
     const Estado = this.Estado.value;
     this.dataService.Cambio_Estado(Estado).subscribe(data => {
       this.Mensaje_Confirmar_Resuelta = '¡La Comunicación ha sido Confirmada como Resuelta Exitosamente!';
+      this.Resueltos_Counter += 1;
       setTimeout(() => {
         this.Open_Close_Resuelto_Win();
         this.Open_Close_Resuelto_Win_1();

@@ -57,9 +57,16 @@
 
 <section class="Super_Container" id="Background_N{{Background_N}}">
     <aside class="Panel_Admin">
-        <span class="version_span">ver 1.0.0 2024</span>
+        <span (click)="this.custom.NavigateToVersion()" class="version_span">{{this.custom.Versionado_Global_App}}</span>
         <img class="usuario_logo" src="../../../MEDi/assets/icons/User_icon.png">
-        <p>Mostrando Panel de Recepción de "{{Area_Data[0].nombre_area}}"</p>
+        <p style="margin: 0; padding: 0; width: 90%;">Mostrando Panel de Recepción de "{{Area_Data[0].nombre_area}}"</p>
+  
+   
+            <span *ngIf="!Loader_Counter_Resueltos" style="font-weight: bold; margin: 0; padding: 5px; background-color: #FF3CAC;
+            background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+             border-radius: 5px; box-shadow: 0 0 5px white;">¡Se han resuelto {{Resueltos_Counter}} comunicaciones!</span>
+            <img style="margin: 0; width: 50px;" *ngIf="Loader_Counter_Resueltos" src="../../../MEDi/assets/icons/loader_2.gif" alt="Loading...">
+  
         <fieldset class="Cambio_Color_Panel">
             <legend>Personalización</legend>
             <img class="Cambio_Screen_Color_Button" (click)="cambiar_color('1')"
@@ -75,6 +82,7 @@
             <img class="Cambio_Screen_Color_Button" (click)="cambiar_color('6')"
                 src="../../../MEDi/assets/icons/Screen_Color_6.png">
         </fieldset>
+
         <fieldset class="Filtros_Comunicados">
             <legend>Filtrar por Carácter del Comunicado</legend>
             <button class="Buttons3 buttons_3_add_styles" id="Btn_1_Filter_Admin_Home"
@@ -228,7 +236,7 @@
                     <img *ngIf="Estado_Rec === 'Pendiente'" class="Btns_Controls" (click)="Get_Areas_Row()"
                         src="../../../MEDi/assets/icons/Send_Icon.png">
                     <img class="Btns_Controls" (click)="generarPDF()" src="../../../MEDi/assets/icons/PDF_Download.png">
-                    <img *ngIf="Estado_Rec !== 'Resuelto'" class="Btns_Controls" (click)="Open_Close_Resuelto_Win_1()"
+                    <img *ngIf="Estado_Rec == 'Iniciado' || Estado_Rec == 'Demorado'" class="Btns_Controls" (click)="Open_Close_Resuelto_Win_1()"
                         src="../../../MEDi/assets/icons/Resuelto_Icon.png">
                 </div>
                 <h2 class="Titulo_Visual">{{caracter_Rec}}: {{titulo_Rec}}</h2>

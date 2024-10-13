@@ -24,6 +24,75 @@ if (isset($_GET["Get_All_Reclamos"])) {
     exit();
 }
 
+if (isset($_GET["Get_Reclamos_Pendientes"])) {
+    // Consulta SQL que obtiene los registros pendientes y el nombre del área correspondiente
+    $sqlUsuarios = mysqli_query($conexionBD, "
+        SELECT c.*, d.nombre_area 
+        FROM comunicacion c
+        JOIN destinaciones d ON c.destinacion = d.clave_poder
+        WHERE c.estado = 'Pendiente'
+        ORDER BY id DESC;
+    ");
+    
+    // Obtenemos todos los resultados en formato asociativo
+    $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
+    
+    // Convertimos el resultado en formato JSON y lo mostramos
+    echo json_encode($usuarios);
+    exit();
+}
+if (isset($_GET["Get_Reclamos_Iniciados"])) {
+    // Consulta SQL que obtiene los registros pendientes y el nombre del área correspondiente
+    $sqlUsuarios = mysqli_query($conexionBD, "
+        SELECT c.*, d.nombre_area 
+        FROM comunicacion c
+        JOIN destinaciones d ON c.destinacion = d.clave_poder
+        WHERE c.estado = 'Iniciado'
+        ORDER BY id DESC;
+    ");
+    
+    // Obtenemos todos los resultados en formato asociativo
+    $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
+    
+    // Convertimos el resultado en formato JSON y lo mostramos
+    echo json_encode($usuarios);
+    exit();
+}
+if (isset($_GET["Get_Reclamos_Demorados"])) {
+    // Consulta SQL que obtiene los registros pendientes y el nombre del área correspondiente
+    $sqlUsuarios = mysqli_query($conexionBD, "
+        SELECT c.*, d.nombre_area 
+        FROM comunicacion c
+        JOIN destinaciones d ON c.destinacion = d.clave_poder
+        WHERE c.estado = 'Demorado'
+        ORDER BY id DESC;
+    ");
+    
+    // Obtenemos todos los resultados en formato asociativo
+    $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
+    
+    // Convertimos el resultado en formato JSON y lo mostramos
+    echo json_encode($usuarios);
+    exit();
+}
+if (isset($_GET["Get_Reclamos_Resueltos"])) {
+    // Consulta SQL que obtiene los registros pendientes y el nombre del área correspondiente
+    $sqlUsuarios = mysqli_query($conexionBD, "
+        SELECT c.*, d.nombre_area 
+        FROM comunicacion c
+        JOIN destinaciones d ON c.destinacion = d.clave_poder
+        WHERE c.estado = 'Resuelto'
+        ORDER BY id DESC;
+    ");
+    
+    // Obtenemos todos los resultados en formato asociativo
+    $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
+    
+    // Convertimos el resultado en formato JSON y lo mostramos
+    echo json_encode($usuarios);
+    exit();
+}
+
 
 if (isset($_GET["Suma_Promedios_Areas"])) {
     // Consulta para obtener el promedio de contador_dias agrupados por destinacion donde estado es 'Resuelto'
