@@ -15,7 +15,7 @@ export class ConfirmarComponent {
   flag_error: boolean = false;
   Ventana_Emergente: boolean = false;
   Estado: any;
-  Mensaje_Error: string = 'No se ha encontrado ningúna comunicación.';
+  Mensaje_Error: string = 'No se ha encontrado ninguna comunicación.';
   constructor(private route: ActivatedRoute, private dataService: DataService, public fb: FormBuilder){
     this.Confirmacion = this.fb.group({
       cod_conf: [''],

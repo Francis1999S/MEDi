@@ -295,7 +295,7 @@ for (let l = 0; l < this.Registros_4.length; l++) {
           alignment: 'left'
         },
         {
-          text: 'Hora: ' + this.formatTime + '\n',
+          text: 'Hora: ' + this.formatTime + '\n\n',
           style: 'small4',
              alignment: 'left'
         },

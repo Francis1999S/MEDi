@@ -21,7 +21,7 @@ export class AdminHomeComponent implements OnInit {
   Loader_Counter_Resueltos: boolean = true;
 
   ///////HELP ACTIVATED//////////////////
-  Help_Activated: boolean = false
+  Help_Activated: boolean = false;
 
   ///////////////////UBICACIÓN ACTIVADA//////////////////
   Ubicacion_Existe: boolean = true;
