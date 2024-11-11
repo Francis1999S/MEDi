@@ -27,6 +27,9 @@ import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
 import { ModificarComponent } from './components/modificar/modificar.component';
 import { VersionComponent } from './components/version/version.component';
+import { ComunicacionesAdminComponent } from './components/comunicaciones-admin/comunicaciones-admin.component';
+import { ResumenAdminComponent } from './components/resumen-admin/resumen-admin.component';
+import { AreasAdminComponent } from './components/areas-admin/areas-admin.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { VersionComponent } from './components/version/version.component';
     ConfirmarComponent,
     SeguimientoComponent,
     ModificarComponent,
-    VersionComponent
+    VersionComponent,
+    ComunicacionesAdminComponent,
+    ResumenAdminComponent,
+    AreasAdminComponent
   ],
   imports: [
     BrowserModule,

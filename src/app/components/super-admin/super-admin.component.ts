@@ -51,8 +51,8 @@ export class SuperAdminComponent implements OnInit {
         if (Loader) {
           Loader.style.display = 'none';
         }
-      })
-    })
+      });
+    });
     
     this.dataService.GetGlobalStatistics().subscribe(data => {
       this.dataService.Pendientes = data[0].total_pendientes;
@@ -90,7 +90,6 @@ export class SuperAdminComponent implements OnInit {
     }
     switch (key) {
       case 1:
-        
         this.dataService.Get_Reclamos_Pendientes().subscribe(res=> {
           var btn1 = document.getElementById('Button_Selector_SupAdm_1');
           var btn2 = document.getElementById('Button_Selector_SupAdm_2');
@@ -212,7 +211,6 @@ export class SuperAdminComponent implements OnInit {
         Loader.remove();
       }
     }, 2900);
-
   }
   Entry_Area(clave: string): void {
       this.dataService.Clave_Poder = clave;
@@ -229,12 +227,10 @@ export class SuperAdminComponent implements OnInit {
     // Formato YYYY-MM-DD
     return date.toISOString().split('T')[0];
   }
-  
   formatTime_2(date: Date): string {
     // Formato HH:mm:ss
     return date.toTimeString().split(' ')[0];
   }
-
   Resumen_Mensual():void {
     const now = new Date();
     this.formatDate = this.formatDate_1(now);
@@ -252,9 +248,9 @@ export class SuperAdminComponent implements OnInit {
     }
     this.dataService.GetAllAreas().subscribe(res => {
       this.Registros_4 = res;
-for (let l = 0; l < this.Registros_4.length; l++) {
-  this.Registros_4[l].promedio = '';
-}
+      for (let l = 0; l < this.Registros_4.length; l++) {
+        this.Registros_4[l].promedio = '';
+      }
       this.dataService.Get_Suma_Promedios_Areas().subscribe(data=> {
         for (let g = 0; g < data.length; g++) {
           for (let j = 0; j < this.Registros_4.length; j++) {

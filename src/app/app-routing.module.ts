@@ -18,12 +18,15 @@ import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
 import { ModificarComponent } from './components/modificar/modificar.component';
 import { VersionComponent } from './components/version/version.component';
+import { ResumenAdminComponent } from './components/resumen-admin/resumen-admin.component';
+import { AreasAdminComponent } from './components/areas-admin/areas-admin.component';
+import { ComunicacionesAdminComponent } from './components/comunicaciones-admin/comunicaciones-admin.component';
 
 const routes: Routes = [
   {path: 'Como-Empezar', component: EmpezarComponent},
   { path: 'Confirmar-Comunicacion/:codigo', component: ConfirmarComponent},
     { path: 'Home', component: HomeComponent },
-    {path: 'Version', component: VersionComponent},
+    { path: 'Version', component: VersionComponent},
     { path: 'Ayuda', component: AyudaComponent},
     { path: 'Contacto', component: ContactoComponent},
     { path: 'LogIn', component: LoginComponent},
@@ -31,9 +34,13 @@ const routes: Routes = [
     { path: 'Estadisticas', component: EstadisticaComponent},
     { path: 'Bandeja-Entrada', component: BandejaEntradaComponent, canActivate: [loginGuard_2]},
     { path: 'Admin-Home', component: AdminHomeComponent, canActivate: [loginGuard_2]},
-    { path: 'Super-Admin', component: SuperAdminComponent, canActivate: [loginGuard_3],
+    { path: 'Super-Admin', component: SuperAdminComponent,
       children: [
         { path: 'Crear-Destinacion', component: CrearDestinacionComponent, canActivate: [loginGuard_3]},
+        { path: 'Modificar-Destinacion', component: ModificarComponent, canActivate: [loginGuard_3]},
+        { path: 'Resumen', component: ResumenAdminComponent},
+        { path: 'Areas', component: AreasAdminComponent, canActivate: [loginGuard_3]},
+        { path: 'Comunicaciones', component: ComunicacionesAdminComponent},
       ],
     },
     { path: 'Crear-Destinacion', component: CrearDestinacionComponent, canActivate: [loginGuard_3]},

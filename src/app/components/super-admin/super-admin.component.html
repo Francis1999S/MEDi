@@ -98,17 +98,12 @@
                         <p class="p_n3">{{comun.nombre_area}}</p>
                     <p class="p_n4">{{comun.fecha | date: 'dd/MM/yyyy'}}</p>
                     </div>
-                   
                 </div>
             </div>
             </div>
         </div>
-   
-         
-      
     </section>
 </section> -->
-
 <section class="DashContainer GLOBAL_TRANSITION">
     <aside class="Side_Bar" id="PANEL_DASH">
         <div class="Buttons_Bar">
@@ -124,9 +119,13 @@
                     <span>Cerrar esta Sesión</span>
                 </button> -->
                 <div style="width: 90%; height: 1px; background-color: rgb(255, 120, 50); margin: 0 0 0 5%;"></div>
-                <button class="Dash_Buttons">
+                <button class="Dash_Buttons" (click)="navigate.ToResumen()">
                     <img src="{{custom.src}}icons/RESUMEN.png" alt="Icon">
                     <span>Resumen</span>
+                </button>
+                <button class="Dash_Buttons" (click)="navigate.ToComunicacionesAdmin()">
+                    <img src="{{custom.src}}icons/COMUNICACION.png" alt="Icon">
+                    <span>Comunicaciones</span>
                 </button>
                 <button class="Dash_Buttons">
                     <img src="{{custom.src}}icons/AREA.png" alt="Icon">
@@ -136,7 +135,6 @@
                     <img src="{{custom.src}}icons/AREA_ADD.png" alt="Icon">
                     <span>Crear Nueva Área</span>
                 </button>
-               
             </div>
             <div class="Bottom_Box">
                 <div style="width: 90%; height: 1px; background-color: rgb(255, 120, 50); margin: 0 0 0 5%;"></div>
@@ -145,7 +143,6 @@
                     <img src="{{custom.src}}icons/open_panel.png" alt="Icon" *ngIf="!PanelShow">
                     <span *ngIf="PanelShow">Contraer Panel</span>
                 </button>
-    
             </div>
         </div>
     </aside>

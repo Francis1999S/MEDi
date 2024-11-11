@@ -14,4 +14,16 @@ export class NavigateService {
   ToCreateArea() {
     this.router.navigate(['/Super-Admin/Crear-Destinacion']);
   }
+  ToModifyArea() {
+    this.router.navigate(['/Super-Admin/Modificar-Destinacion']);
+  }
+  ToResumen() {
+    this.router.navigate(['/Super-Admin/Resumen']);
+  }
+  ToAreas() {
+    this.router.navigate(['/Super-Admin/Areas']);
+  }
+  ToComunicacionesAdmin() {
+    this.router.navigate(['/Super-Admin/Comunicaciones']);
+  }
 }

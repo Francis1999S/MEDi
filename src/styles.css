@@ -278,3 +278,30 @@ box-shadow: 0 0 5px black;
     overflow: hidden;
     transition: 1s ease-in-out;
 }
+
+.GLOBAL_CLASSIC_BUTTON {
+        transition: 0.5s;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        font-family: Nunito;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 15px 0 15px;
+        margin: 0;
+        width: auto;
+        height: 60px;
+        background-color: rgb(255, 120, 50);
+        font-size: 100%;
+        font-weight: 500;
+        color: white;
+        img {
+            margin: 0 15px 0 0;
+            height: 40px;
+        }
+      }
+.GLOBAL_CLASSIC_BUTTON:hover {
+    transition: 0.5s;
+    background-color: rgb(53, 193, 204);
+  }
