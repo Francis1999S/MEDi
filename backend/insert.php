@@ -1,13 +1,13 @@
 <?php
 // Acceso restringido al backend-
-  $allowed_origin = "https://tinogasta.gob.ar";
-  header("Access-Control-Allow-Origin: $allowed_origin");
+//  $allowed_origin = "https://tinogasta.gob.ar";
+//  header("Access-Control-Allow-Origin: $allowed_origin");
 // Acceso sin restricción al backend-
-//    header("Access-Control-Allow-Origin: *");
-//    header("Access-Control-Allow-Headers: access");
-//    header("Access-Control-Allow-Methods: GET,POST");
-//    header("Content-Type: application/json; charset=UTF-8");
-//    header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: access");
+    header("Access-Control-Allow-Methods: GET,POST");
+    header("Content-Type: application/json; charset=UTF-8");
+    header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // Conecta a la base de datos  con usuario, contraseña y nombre de la BD
 $servidor = "localhost"; $usuario = "j8000542_reclam"; $contrasenia = "01voMIgima"; $nombreBaseDatos = "j8000542_reclam";

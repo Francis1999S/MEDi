@@ -7,6 +7,7 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import * as L from 'leaflet';
 import { CustomService } from '../../custom.service';
+import { NavigateService } from '../../navigate.service';
 
 @Component({
   selector: 'app-super-admin',
@@ -14,6 +15,8 @@ import { CustomService } from '../../custom.service';
   styleUrl: './super-admin.component.css'
 })
 export class SuperAdminComponent implements OnInit {
+
+  PanelShow: boolean = true;
 
   Comunicaciones_Dinamicas_Row: any;
 
@@ -32,7 +35,7 @@ export class SuperAdminComponent implements OnInit {
   formatTime: string = '';
   Contenido_PDF: string = '';
   Promedios: any[] = [];
-  constructor(private router: Router, private dataService: DataService, public custom: CustomService){}
+  constructor(private router: Router, private dataService: DataService, public custom: CustomService, public navigate: NavigateService){}
   ngOnInit(): void {
     this.Estadisticas_Loader_Detroy();
     var Loader = document.getElementById('Loader_Data_2');
@@ -77,9 +80,6 @@ export class SuperAdminComponent implements OnInit {
     this.dataService.LogIn_1 = false;
     this.dataService.LogIn_2 = false;
     this.dataService.LogIn_3 = false;
-  }
-  NavigateToCreateArea() {
-    this.router.navigate(['/Crear-Destinacion']);
   }
 
   Obtener_Comunicaciones(key: number): void {
@@ -223,7 +223,7 @@ export class SuperAdminComponent implements OnInit {
   }
   Modificar_Area(clave_poder: string): void {
     this.dataService.Clave_Poder_Modificacion = clave_poder;
-    this.router.navigate(['/Modificar-Destinacion']);
+    this.navigate.ToCreateArea();
   }
   formatDate_1(date: Date): string {
     // Formato YYYY-MM-DD
@@ -347,5 +347,16 @@ for (let l = 0; l < this.Registros_4.length; l++) {
       }
     };
     pdfMake.createPdf(documentDefinition).download('Resumen-de-Estados-MEDi-'+this.formatDate +'.pdf');
+  }
+
+  Toggle_Panel(): void {
+    var panel = document.getElementById('PANEL_DASH');
+    if (this.PanelShow) {
+      this.PanelShow = false
+      panel!.style.width = '80px'
+    } else {
+      this.PanelShow = true
+      panel!.style.width = '300px'
+    }
   }
 }

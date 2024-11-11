@@ -31,7 +31,11 @@ const routes: Routes = [
     { path: 'Estadisticas', component: EstadisticaComponent},
     { path: 'Bandeja-Entrada', component: BandejaEntradaComponent, canActivate: [loginGuard_2]},
     { path: 'Admin-Home', component: AdminHomeComponent, canActivate: [loginGuard_2]},
-    { path: 'Super-Admin', component: SuperAdminComponent, canActivate: [loginGuard_3]},
+    { path: 'Super-Admin', component: SuperAdminComponent, canActivate: [loginGuard_3],
+      children: [
+        { path: 'Crear-Destinacion', component: CrearDestinacionComponent, canActivate: [loginGuard_3]},
+      ],
+    },
     { path: 'Crear-Destinacion', component: CrearDestinacionComponent, canActivate: [loginGuard_3]},
     { path: 'Modificar-Destinacion', component: ModificarComponent, canActivate: [loginGuard_3]},
     { path: 'Seguimiento', component: SeguimientoComponent},
