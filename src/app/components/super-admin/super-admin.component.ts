@@ -37,6 +37,7 @@ export class SuperAdminComponent implements OnInit {
   Promedios: any[] = [];
   constructor(private router: Router, private dataService: DataService, public custom: CustomService, public navigate: NavigateService){}
   ngOnInit(): void {
+    this.custom.NAV_MENU_CELLPHONE = false;
     this.Estadisticas_Loader_Detroy();
     var Loader = document.getElementById('Loader_Data_2');
     var Header = document.getElementById('Header_Desktop');
@@ -55,12 +56,19 @@ export class SuperAdminComponent implements OnInit {
     });
     
     this.dataService.GetGlobalStatistics().subscribe(data => {
-      this.dataService.Pendientes = data[0].total_pendientes;
-      this.dataService.Iniciados = data[0].total_iniciados;
-      this.dataService.Demorados = data[0].total_demorados;
-      this.dataService.Resueltos = data[0].total_resueltos;
-      this.Total_Resuelas = data[0].total_resueltos;
+            // 0: Demorado -- 1: Iniciado -- 2: Pendiente -- 3: Resuelto
+            console.log(data);
+            console.log(data[0].total);
+            console.log(data[1].total);
+            console.log(data[2].total);
+            console.log(data[3].total);
+            this.dataService.Demorados = data[0].total;
+            this.dataService.Iniciados = data[1].total;
+      this.dataService.Pendientes = data[2].total;
+      this.dataService.Resueltos = data[3].total;
+      this.Total_Resuelas = data[3].total;
     });
+
     this.dataService.Get_Reclamos_Pendientes().subscribe(res=> {
       var btn1 = document.getElementById('Button_Selector_SupAdm_1');
       var btn2 = document.getElementById('Button_Selector_SupAdm_2');
@@ -75,6 +83,7 @@ export class SuperAdminComponent implements OnInit {
       this.Comunicaciones_Dinamicas_Row = res;
     });
   }
+  
   NavigateToHome() {
     this.router.navigate(['/Home']);
     this.dataService.LogIn_1 = false;

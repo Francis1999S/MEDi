@@ -78,3 +78,33 @@ scrollbar-width: thin;
     }
 }
 
+.Loader {
+    animation-name: LOADER_INTRO;
+    animation-duration: 0.5s;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+    img {
+        width: 100px;
+    }
+}
+
+@keyframes LOADER_INTRO {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

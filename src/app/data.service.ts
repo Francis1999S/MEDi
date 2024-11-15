@@ -63,6 +63,9 @@ export class DataService {
     GetAllReclamos(): Observable<any> {
       return this.http.get(this.apiUrl + "insert.php?Get_All_Reclamos=1");
     }
+    GetAllReclamos2(): Observable<any> {
+      return this.http.get(this.apiUrl + "insert.php?Get_All_Reclamos_2=1");
+    }
     GetAreaReclamos(data: Clave_Poder): Observable<any> {
       return this.http.post(this.apiUrl + "insert.php?Get_Area_Reclamos=1", data);
     }

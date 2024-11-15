@@ -1,24 +1,25 @@
-<section class="Section">
+<section class="Section GLOBAL_TRANSITION">
     <h1 style="margin: 40px 0 0 0; font-size: 120%;">Resumen Actualizado por Área</h1>
     <div style="display: flex; justify-content: start; align-items: center; width: 80%; margin: 0;">
-        <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 10px 0 15px 0;" (click)="generarPDF()"> <img src="{{custom.src}}icons/PDF_Download.png" alt=""> Resumen PDF</button>
+        <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 10px 0 15px 0;" (click)="generarPDF()"> <img src="{{custom.src}}icons/PDF_Download.png" alt="">Resumen PDF</button>
     </div>
     <div class="Table_Comunicaciones">
+
         <div class="Scroll_Container">
             <div class="Comun_Row" *ngFor="let area of Areas_Array">
                 <img src="{{custom.src}}icons/AREA.png">
                 <div class="Info_Row">
                     <h1 class="Title_row">{{area.nombre_area}}</h1>
                     <div class="Row_Numbers">
-                        <span>Iniciados: {{area.iniciados}}</span>
-                        <span>Pendientes: {{area.pendientes}}</span>
-                        <span>Demorados: {{area.demorados}}</span>
-                        <span>Resueltos: {{area.resueltos}}</span>
+                        <span style="border-bottom: 6px solid rgb(0, 204, 255);">Iniciados: {{area.iniciados}}</span>
+                        <span style="border-bottom: 6px solid rgb(255, 132, 0);">Pendientes: {{area.pendientes}}</span>
+                        <span style="border-bottom: 6px solid rgb(255, 0, 0);">Demorados: {{area.demorados}}</span>
+                        <span style="border-bottom: 6px solid rgb(24, 179, 0);">Resueltos: {{area.resueltos}}</span>
                     </div>
                     <p>Tiempo de respuesta promedio: <strong>{{area.promedio}}</strong></p>
                 </div>
             </div>
         </div>
-      
+        
     </div>
 </section>

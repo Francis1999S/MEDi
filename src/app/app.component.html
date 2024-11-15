@@ -4,10 +4,14 @@
     <p>Muy pronto estará disponible...</p>
     <img src="../MEDi/assets/icons/Gif_Fixing.gif">
 </div>
+<div class="Loader" *ngIf="custom.G_LOADER">
+    <img src="{{custom.src}}icons/loader.gif">
+</div>
+
 <section id="Container_Scroll_Router_Outlet">
     <router-outlet id="Router_Outlet">
     
     </router-outlet>
 </section>
-<app-headerphones id="Header_Phone"></app-headerphones>
+<app-headerphones id="Header_Phone" *ngIf="custom.NAV_MENU_CELLPHONE"></app-headerphones>
 

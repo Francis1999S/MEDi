@@ -24,6 +24,22 @@ if (isset($_GET["Get_All_Reclamos"])) {
     exit();
 }
 
+if (isset($_GET["Get_All_Reclamos_2"])) {
+   $sqlUsuarios = mysqli_query($conexionBD, "
+   SELECT c.*, d.nombre_area 
+   FROM comunicacion c
+   JOIN destinaciones d ON c.destinacion = d.clave_poder
+   ORDER BY id DESC;
+");
+
+// Obtenemos todos los resultados en formato asociativo
+$usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
+
+// Convertimos el resultado en formato JSON y lo mostramos
+echo json_encode($usuarios);
+exit();
+}
+
 if (isset($_GET["Get_Reclamos_Pendientes"])) {
     // Consulta SQL que obtiene los registros pendientes y el nombre del área correspondiente
     $sqlUsuarios = mysqli_query($conexionBD, "
@@ -194,11 +210,23 @@ if (isset($_GET["Get_Usuarios"])) {
 }
 
 if (isset($_GET["Get_Areas"])) {
-    $sqlUsuarios = mysqli_query($conexionBD, "SELECT * FROM `destinaciones`;");
+    $sqlUsuarios = mysqli_query($conexionBD, "
+        SELECT d.*, 
+            COALESCE(SUM(CASE WHEN c.estado = 'Pendiente' THEN 1 ELSE 0 END), 0) AS total_pendientes,
+            COALESCE(SUM(CASE WHEN c.estado = 'Iniciado' THEN 1 ELSE 0 END), 0) AS total_iniciados,
+            COALESCE(SUM(CASE WHEN c.estado = 'Demorado' THEN 1 ELSE 0 END), 0) AS total_demorados,
+            COALESCE(SUM(CASE WHEN c.estado = 'Resuelto' THEN 1 ELSE 0 END), 0) AS total_resueltos
+        FROM destinaciones AS d
+        LEFT JOIN comunicacion AS c ON d.clave_poder = c.destinacion
+        GROUP BY d.clave_poder
+    ");
+    
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
     echo json_encode($usuarios);
     exit();
 }
+
+
 if (isset($_GET["Get_Areas_Select"])) {
     $data = json_decode(file_get_contents("php://input"));
     $clave_poder=$data->clave_poder;
@@ -208,12 +236,27 @@ if (isset($_GET["Get_Areas_Select"])) {
     echo json_encode($usuarios);
     exit();
 }
-if(isset($_GET["get_estadistica"])){
-    $sqlUsuarios = mysqli_query($conexionBD, "SELECT SUM(pendientes) AS total_pendientes, SUM(iniciados) AS total_iniciados, SUM(demorados) AS total_demorados, SUM(resueltos) AS total_resueltos FROM destinaciones");
+
+if (isset($_GET["get_estadistica"])) {
+    $sqlUsuarios = mysqli_query($conexionBD, "
+        SELECT estados.estado, COUNT(comunicacion.estado) AS total
+        FROM (SELECT 'Pendiente' AS estado
+              UNION ALL
+              SELECT 'Iniciado'
+              UNION ALL
+              SELECT 'Demorado'
+              UNION ALL
+              SELECT 'Resuelto') AS estados
+        LEFT JOIN comunicacion ON comunicacion.estado = estados.estado
+        GROUP BY estados.estado
+    ");
+    
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
     echo json_encode($usuarios);
     exit();
 }
+
+
 if(isset($_GET["Buscar_Con_Seguimiento"])){
     $data = json_decode(file_get_contents("php://input"));
     $seguimiento = mysqli_real_escape_string($conexionBD, $data->seguimiento);

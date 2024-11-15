@@ -407,7 +407,6 @@ Clave_Poder_2: any;
       Btn_5.style.outline = '0px solid white';
       Btn_6.style.outline = '0px solid white';
     }
-
     var Container = document.getElementById('Registro_Fila_Reclamo');
     if (Container) {
       Container.scrollTop = 0;
@@ -422,7 +421,7 @@ Clave_Poder_2: any;
       if (Loader) {
         Loader.style.display = 'none';
       }
-    })
+    });
   }
   Get_Antiguos(): void {
     this.Filtros_Aplicados_Mensaje = 'Antiguos';

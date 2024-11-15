@@ -6,6 +6,10 @@ import { Router } from '@angular/router';
 })
 export class CustomService {
 
+  G_LOADER: boolean = false;
+
+  NAV_MENU_CELLPHONE: boolean = true;
+
   src: string = '../../../MEDi/assets/';
 
   Versionado_Global_App: string = 'ver 1.0.1 2024';

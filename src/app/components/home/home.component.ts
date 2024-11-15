@@ -6,6 +6,7 @@ import * as L from 'leaflet';
 import { Router } from '@angular/router';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { CustomService } from '../../custom.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -67,7 +68,7 @@ CODIGO_FILES: string = '';
   Reclamo: any;
   Clave_Poder: any;
   Seguimiento: any;
-  constructor(private http: HttpClient, private dataService: DataService, public fb: FormBuilder, private router: Router) {
+  constructor(private http: HttpClient, private dataService: DataService, public fb: FormBuilder, private router: Router, public custom: CustomService) {
   this.Clave_Poder = this.fb.group({
     clave_poder: ['']
   });
@@ -106,6 +107,7 @@ CODIGO_FILES: string = '';
   });
 }
   ngOnInit(): void {
+    this.custom.NAV_MENU_CELLPHONE = true;
     this.dataService.GetAllAreas().subscribe(Response => {
       this.Areas_row = Response;
     })

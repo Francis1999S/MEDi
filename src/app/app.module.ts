@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +30,10 @@ import { VersionComponent } from './components/version/version.component';
 import { ComunicacionesAdminComponent } from './components/comunicaciones-admin/comunicaciones-admin.component';
 import { ResumenAdminComponent } from './components/resumen-admin/resumen-admin.component';
 import { AreasAdminComponent } from './components/areas-admin/areas-admin.component';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
@@ -66,7 +70,7 @@ import { AreasAdminComponent } from './components/areas-admin/areas-admin.compon
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, { provide: LOCALE_ID, useValue: 'es-ES' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

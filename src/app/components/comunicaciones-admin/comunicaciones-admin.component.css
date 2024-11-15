@@ -4,8 +4,237 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     background-color: white;
+}
+.title {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 10%;
+    font-size: 120%;
+    color: rgb(40,40,40);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Container {
+    margin: 0 0 0 5%;
+    padding: 0;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.Control_Comunicaciones {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(255, 120, 50);
+    color: white;
+    select {
+        transition: .5s;
+        font-family: Nunito;
+        outline: 2px solid rgba(70, 70, 70, 0);
+        width: 25%;
+        padding: 5px 0 5px 1%;
+        border: 0.2px solid rgb(200, 200, 200);
+        border-radius: 5px;
+        font-size: 130%;
+        color: rgb(70, 70, 70);
+    }
+    select:hover {
+        transition: .5s;
+        border: 0.2px solid rgb(50, 50, 50);
+    }
+    h1 {
+        font-family: Nunito;
+        font-size: 130%;
+    }
+}
+.Titulos_Comunicaciones {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(40,40,40);
+    p {
+        height: 100%;
+        color: white;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .p_1 {
+        border-right: 1px solid white;
+        width: 5%;
+    }
+    .p_2 {
+        border-right: 1px solid white;
+        width: 55%;
+    }
+    .p_3 {
+        border-right: 1px solid white;
+        width: 25%;
+    }
+    .p_4 {
+        width: 15%;
+    }
+}
+.Container_Scroll {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 80%;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(255, 120, 50) white;
+    .Container_Rows{
+        cursor: pointer;
+        transition: .3s;
+        margin: 10px 0 0 0;
+        padding: 0;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: rgb(255, 120, 50);
+        p {
+            height: 100%;
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            text-overflow: ellipsis;
+            text-wrap: nowrap;
+            align-content: center;
+            overflow: hidden;
+        }
+        .p_1 {
+            border-right: 1px solid white;
+            width: 5%;
+        }
+        .p_2 {
+            border-right: 1px solid white;
+            width: 55%;
+        }
+        .p_3 {
+            border-right: 1px solid white;
+            width: 25%;
+        }
+        .p_4 {
+            width: 15%;
+        }
+    }
+    .Container_Rows:hover {
+        transition: .3s;
+        background-color: rgb(53, 193, 204);
+    }
+}
+
+.Back_Comunication {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+}
+
+.Card_Comunication {
+    position: relative;
+    width: 80%;
+    height: 90%;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    .ID_SPAN {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: white;
+        font-weight: bold;
+        font-size: 120%;
+    }
+    .Title_Box {
+        margin: 0 0 20px 0;
+        padding: 0 1% 0 1%;
+        width: 98%;
+        height: 10%;
+        background-color: rgb(255, 120, 50);
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        h1 {
+            color: white;
+            font-size: 130%;
+        }
+    }
+    p {
+        width: 96%;
+        margin: 0;
+        padding: 0;
+        color: rgb(40,40,40);
+    }
+}
+.Container_Scroll_2 {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 90%;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(255, 120, 50) white;
+}
+.Container_Details {
+    margin: 0;
+    padding: 0 0 50px 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+.Close_Button {
+    width: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: .3s;
+    cursor: pointer;
+}
+.Close_Button:hover {
+    transition: .3s;
+    filter: brightness(130%);
 }

@@ -14,7 +14,7 @@ export class EstadisticaComponent implements OnInit {
   ngOnInit(){
     this.dataService.GetGlobalStatistics().subscribe(data => {
       this.Estadisticas = data;
-      this.N_resueltos = this.Estadisticas[0].total_resueltos;
+      this.N_resueltos = this.Estadisticas[3].total;
       this.graphs();
     })
   }
@@ -31,7 +31,7 @@ new Chart(this.ctx, {
     labels: ['Pendientes','Iniciados','Demorados'],
     datasets: [{
       label: 'Gráfico de Prueba',
-      data: [this.Estadisticas[0].total_pendientes, this.Estadisticas[0].total_iniciados, this.Estadisticas[0].total_demorados],
+      data: [this.Estadisticas[2].total, this.Estadisticas[1].total, this.Estadisticas[0].total],
       backgroundColor: [
         'rgba(255, 245, 53, 0.2)',
         'rgba(90, 100, 211, 0.2)',

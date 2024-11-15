@@ -22,7 +22,9 @@ export class ResumenAdminComponent implements OnInit {
   constructor(public custom: CustomService, public navigate: NavigateService, private DS: DataService){}
 
   ngOnInit(): void {
+    this.custom.G_LOADER = true;
     this.DS.GetAllAreas().subscribe(res => {
+      console.log(res);
       this,this.Areas_Array = res;
       for (let l = 0; l < this.Areas_Array.length; l++) {
         this.Areas_Array[l].promedio = '';
@@ -36,7 +38,6 @@ export class ResumenAdminComponent implements OnInit {
               } else {
                 this.Areas_Array[j].promedio = res2[g].promedio_contador_dias + ' días';
               }
-              
             }
           }
         }
@@ -48,11 +49,17 @@ export class ResumenAdminComponent implements OnInit {
         for (let i = 0; i < this.Areas_Array.length; i++) {
           this.Contenido_PDF += this.Areas_Array[i].nombre_area + ':\n__________________________________________________________________________________________________________________\n'+'              Pendientes: ' + this.Areas_Array[i].pendientes + '              Iniciados: ' + this.Areas_Array[i].iniciados + '              Demorados: ' + this.Areas_Array[i].demorados + '              Resueltos: ' + this.Areas_Array[i].resueltos  + '\n\nTiempo Promedio de Resolución: ' + this.Areas_Array[i].promedio + '\n\n\n\n';
         }
+        this.custom.G_LOADER = false;
       });
     
     }, error => {
+      this.custom.G_LOADER = false;
       alert('Error en el Servidor. Inténtelo de nuevo más tarde.');
     })
+  }
+
+  EntrarArea() {
+    
   }
 
   formatDate_1(date: Date): string {
