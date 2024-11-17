@@ -68,11 +68,11 @@ for (let g = 0; g < res2.length; g++) {
 }
 
         for (let n = 0; n < this.Areas_Array.length; n++) {
-          if (this.Areas_Array[n].pendientes == 0 && this.Areas_Array[n].iniciados == 0 && this.Areas_Array[n].demorados == 0 && this.Areas_Array[n].resueltos == 0) {
+          if (this.Areas_Array[n].total_pendientes == 0 && this.Areas_Array[n].total_iniciados == 0 && this.Areas_Array[n].total_demorados == 0 && this.Areas_Array[n].total_resueltos == 0) {
             this.Areas_Array[n].promedio_p = '--';
             this.Areas_Array[n].promedio = '--';
             this.Areas_Array[n].promedio_g = '--';
-          } else if (this.Areas_Array[n].pendientes > 0 && this.Areas_Array[n].iniciados == 0 && this.Areas_Array[n].demorados == 0 && this.Areas_Array[n].resueltos == 0) {
+          } else if (this.Areas_Array[n].total_pendientes > 0 && this.Areas_Array[n].total_iniciados == 0 && this.Areas_Array[n].total_demorados == 0 && this.Areas_Array[n].total_resueltos == 0) {
             this.Areas_Array[n].promedio = '--';
             this.Areas_Array[n].promedio_g = '--';
           }
