@@ -1224,6 +1224,7 @@ Clave_Poder_2: any;
         this.Get_Recientes();
         this.GoBack();
         this.Remove_Element();
+        this.Get_Area();
         if (Buttons) {
           Buttons.style.display = 'flex';
         }

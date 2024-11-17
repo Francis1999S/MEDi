@@ -58,15 +58,19 @@ if (empty($email)) {
         $mail->Body = '<div style="padding: 30px 0 0 0; background: white;">
         <img src="https://tinogasta.gob.ar/MEDi/assets/img/centro_de_reclamo_logon1.png" alt="Logo">
         <h1 style="color: #ff7832; font-weight: bold; font-size: 130%;">'.$titulo.'</h1><br>
-        <p style="color: #ff7832;">'.$mensaje.'</p><br><br>
+        <p style="color: #ff7832;">'.$mensaje.'</p><br>
 
-           <a href="https://tinogasta.gob.ar/MEDi/#/Seguimiento/'.$seguimiento.'" style="
+        <p style="color: #ff7832;">Haz el seguimiento ahora con tu codigo: '.$seguimiento.'</p><br><br>
+
+           <a href="https://Tinogasta.gob.ar/MEDi/#/Seguimiento/'.$seguimiento.'" style="
    background-color: rgb(255,120,50);
    color: white;
    text-decoration: none;
    font-weight: bold;
    padding: 15px;
-   ">Ver Más Detalles ➚</a>
+   ">Abrir Seguimiento ➚</a> <br> <br>
+
+    <p style="color: #ff7832;">O dirigete a -> medi.tinogasta.gob.ar</p>
         </div>';
     
         $mail->send();
