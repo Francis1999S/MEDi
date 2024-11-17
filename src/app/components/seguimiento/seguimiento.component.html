@@ -1,16 +1,16 @@
 <app-header id="Header_Desktop"></app-header>
 <section>
     <h1>Seguimientos</h1>
-    <form [formGroup]="Seguimiento" id="Formulario_Seguimiento_Comunicacion">
+    <form [formGroup]="Seguimiento" id="Formulario_Seguimiento_Comunicacion" *ngIf="FORM_ACTIVE">
         <p>Por favor, a continuación ingresá el código de seguimiento de tu Comunicación.</p>
         <input id="Input_Codigo_Seguimiento" type="text" formControlName="seguimiento" required placeholder="Ej. 1025-REC-942102">
         <p style="color: red;">{{Error_Mensaje}}</p>
         <button id="Button_Buscar_Seguimiento" class="Button_Buscar" (click)="Buscar()">Buscar</button>
         <img id="Loader_Seguimiento" style="animation-name: Intro_Component; animation-duration: .5s; height: 65px; display: none;" src="../../../MEDi/assets/icons/loader.gif">
     </form>
-    <div id="Info_Seguimiento_Comunicacion">
+    <div id="Info_Seguimiento_Comunicacion" *ngIf="COMUNICACION_DETAILS">
         <p>Información Actual de la Comunicación</p>
-        <div class="Sub_Box_Info_Seguimiento">
+        <div class="Sub_Box_Info_Seguimiento" *ngIf="Comunicacion.length > 0">
             <p style="font-weight: bold; color: rgb(255, 120, 50);">Número: {{Comunicacion[0].id}}</p>
             <p><strong>Carácter:</strong> {{Comunicacion[0].caracter}}</p>
             <p><strong>Asunto:</strong> {{Comunicacion[0].titulo}}</p>
@@ -20,8 +20,9 @@
             <p><strong>Fecha límite:</strong> {{Fecha_Vencimiento}}</p><br>
             <p><strong>Resolución:</strong> {{Resolucion}}</p>
             <p *ngIf="!(Comunicacion[0].fecha_r === '0000-00-00')"><strong>Fecha de Resolución:</strong> {{Comunicacion[0].fecha_r | date: 'dd/MM/yyyy'}}</p>
-            <div id="Mensaje_Resultado_Conformidad_Form_Seguimiento"  class="Marcar_Conformidad_Box">
+            <div class="Marcar_Conformidad_Box" *ngIf="VALORACION_ACTIVE">
                 <p>¡Muchas gracias por dejar su Valoración!</p>
+                <span style="color: white; margin-top: 20px;" *ngIf="!(feedback == '')">Su mensaje: <strong style="font-style: italic; font-weight: 100;">{{feedback}}</strong></span>
             </div>
             <div id="Form_Conformidad_Seguimiento" style="width: 95%;">
                 <form class="Marcar_Conformidad_Box_2" *ngIf="Comunicacion[0].estado === 'Resuelto' && Comunicacion[0].conforme === 'Aún sin valoración'" [formGroup]="Conformidad">

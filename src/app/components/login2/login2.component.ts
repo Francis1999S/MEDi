@@ -79,7 +79,7 @@ export class Login2Component {
     this.router.navigate(['/Admin-Home']);
   }
   Poq0hZAF20U5FQKtgpoLBJG1MTvfbatrY69KCtDbOb20F5tYMTqt9UPaFtu0iEJm() {
-    this.router.navigate(['/Super-Admin']);
+    this.router.navigate(['/Super-Admin/Resumen']);
   }
   navigateToHome() {
     this.router.navigate(['/Home']);

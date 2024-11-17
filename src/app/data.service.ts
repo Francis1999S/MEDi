@@ -157,11 +157,15 @@ export class DataService {
     }
     //------------------GET METODOS ESTADISTICA (END)-------------------
 
-    //------------------METODO NOTIFICACION (START)-------------------
+    //------------------METODO NOTIFICACIONES (START)-------------------
     Send_Mail(data: Reclamo): Observable<any> {
       return this.http.post(this.apiUrl + "mail.php", data);
     }
-    //------------------METODO NOTIFICACION (END)-------------------
+
+    Send_Mail_A_Ciudadano(data: any): Observable<any> {
+      return this.http.post(this.apiUrl + "mail_respuesta.php", data);
+    }
+    //------------------METODO NOTIFICACIONES (END)-------------------
 
        //------------------METODO DE CONTACTO EMAIL (START)-------------------
        Send_Mail_Contacto(data: Contacto): Observable<any> {

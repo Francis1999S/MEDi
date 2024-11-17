@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../../data.service';
 import { FormBuilder } from '@angular/forms';
+import { CustomService } from '../../custom.service';
 
 @Component({
   selector: 'app-crear-destinacion',
@@ -21,12 +22,18 @@ export class CrearDestinacionComponent implements OnInit {
   ////////Array de Usuarios Existentes/////////////
 Array_All_Users: string[] = [];
 
+/////////Array de Areas Existentes///////////////
+Array_All_Areas: any[] = [];
+
+Nombre_area_2: string = '';
+
   ///////////Manejo de Errores por Mensaje/////////////
 
   constructor(
     private dataService: DataService,
     public fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    public custom: CustomService
   ) {
     this.nueva_area = this.fb.group({
       nombre_area: [''],
@@ -54,7 +61,12 @@ Array_All_Users: string[] = [];
       for (let i = 0; i < data.length; i++) {
         this.Array_All_Users.push(data[i].user);
       }
-    })
+    });
+    this.dataService.GetAllAreas().subscribe(data=> {
+      for (let i = 0; i < data.length; i++) {
+          this.Array_All_Areas.push(data[i].nombre_area);
+      }
+    });
   }
   Nombre_area: string = '';
   Descripcion: string = '';
@@ -67,7 +79,7 @@ Array_All_Users: string[] = [];
     var Section_2 = document.getElementById('Create_Area_Container_2');
     var Section_3 = document.getElementById('Create_Area_Container_3');
     var Error_Display_1 = document.getElementById('Error_Display_Animation_1');
-    var Error_Display_2 = document.getElementById('Error_Display_Animation_2');
+    var Error_Display_2 = document.getElementById('Error_Display_Animation_2_UNICO');
     var Error_Display_3 = document.getElementById('Error_Display_Animation_3');
     switch (interfaz) {
       case 1:
@@ -106,9 +118,9 @@ Array_All_Users: string[] = [];
         break;
     }
     if (Error_Display_1 && Error_Display_2 && Error_Display_3) {
-      Error_Display_1.style.display = 'none';
-      Error_Display_2.style.display = 'none';
-      Error_Display_3.style.display = 'none';
+      Error_Display_1.style.opacity = '0';
+      Error_Display_2.style.opacity = '0';
+      Error_Display_3.style.opacity = '0';
     }
     this.error1 = '';
     this.error2 = '';
@@ -119,19 +131,30 @@ Array_All_Users: string[] = [];
   }
   Verificar_y_cambiar_interfaz(section: number): void {
     var Error_Display_1 = document.getElementById('Error_Display_Animation_1');
-    var Error_Display_2 = document.getElementById('Error_Display_Animation_2');
+    var Error_Display_2 = document.getElementById('Error_Display_Animation_2_UNICO');
     var Error_Display_3 = document.getElementById('Error_Display_Animation_3');
     switch (section) {
       case 1:
+        this.Nombre_area_2 = this.nueva_area.get('nombre_area').value;
+        var AREA_EXISTE = false;
+        for (let h = 0; h < this.Array_All_Areas.length; h++) {
+          if (this.Nombre_area_2 == this.Array_All_Areas[h]) {
+            AREA_EXISTE = true;
+          }
+        }
         if (
           this.nueva_area.get('nombre_area').value.length > 5 &&
-          this.nueva_area.get('descripcion').value.length > 5
+          this.nueva_area.get('descripcion').value.length > 5 &&
+          !AREA_EXISTE
         ) {
           this.Cambio_Interfaz(2);
         } else {
           this.error1 = 'Campos Inválidos';
+          if (AREA_EXISTE) {
+            this.error1 = 'Ya existe un área con ese nombre';
+          }
           if (Error_Display_1) {
-            Error_Display_1.style.display = 'flex';
+            Error_Display_1.style.opacity = '1';
           }
         }
         break;
@@ -139,7 +162,7 @@ Array_All_Users: string[] = [];
         if (this.nueva_area.get('codigo_verif_2').value.length < 8) {
           this.error2 = '¡Código de Verificación Inválido!'
           if (Error_Display_2) {
-            Error_Display_2.style.display = 'flex';
+            Error_Display_2.style.opacity = '1';
           }
         } else {
         if (this.nueva_area.get('codigo_verif_2').value === this.Codigo_Verificacion_Email) {
@@ -148,7 +171,7 @@ Array_All_Users: string[] = [];
         } else {
           this.error2 = '¡El Código de Verificación es Incorrecto!'
           if (Error_Display_2) {
-            Error_Display_2.style.display = 'flex';
+            Error_Display_2.style.opacity = '1';
           }
         }
       }
@@ -156,7 +179,7 @@ Array_All_Users: string[] = [];
           this.error2 = '¡Ingresa tu Email y Envía el Código!'
           console.log('Email Vacio');
           if (Error_Display_2) {
-            Error_Display_2.style.display = 'flex';
+            Error_Display_2.style.opacity = '1';
           }
         }
         break;
@@ -176,37 +199,37 @@ Array_All_Users: string[] = [];
         } else {
           var Error_Display_3 = document.getElementById('Error_Display_Animation_3');
           if (Error_Display_3) {
-            Error_Display_3.style.display = 'flex';
+            Error_Display_3.style.opacity = '1';
           }
           this.error3 = 'Error: Su contraseña no coincide';
           if (this.nueva_area.get('pass').value.indexOf(' ') !== -1) {
             this.error3 = 'Error: Su contraseña no puede contener espacios';
             if (Error_Display_3) {
-              Error_Display_3.style.display = 'flex';
+              Error_Display_3.style.opacity = '1';
             }
           }
           if (this.nueva_area.get('user').value.indexOf(' ') !== -1) {
             this.error3 = 'Error: Su usuario no puede contener espacios';
             if (Error_Display_3) {
-              Error_Display_3.style.display = 'flex';
+              Error_Display_3.style.opacity = '1';
             }
           }
           if (this.nueva_area.get('user').value.length < 5) {
             this.error3 = 'Error: Longitud de usuario inválida';
             if (Error_Display_3) {
-              Error_Display_3.style.display = 'flex';
+              Error_Display_3.style.opacity = '1';
             }
           }
           if (this.nueva_area.get('pass').value.length < 8) {
             this.error3 = 'Error: Longitud de contraseña inválida';
             if (Error_Display_3) {
-              Error_Display_3.style.display = 'flex';
+              Error_Display_3.style.opacity = '1';
             }
           }
           if (flag_user_exist) {
             this.error3 = 'Error: El usuario ya existe';
             if (Error_Display_3) {
-              Error_Display_3.style.display = 'flex';
+              Error_Display_3.style.opacity = '1';
             }
           }
         }
@@ -216,7 +239,7 @@ Array_All_Users: string[] = [];
     }
   }
   NavigateToBack() {
-    this.router.navigate(['/Super-Admin']);
+    this.router.navigate(['/Super-Admin/Resumen']);
   }
   Enviar_Email_Verificacion(): void {
     this.dataService.Verificacion_de_Mail(this.nueva_area.value).subscribe(data => {

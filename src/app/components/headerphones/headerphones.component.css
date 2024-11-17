@@ -47,7 +47,7 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,0) 46%, rgba(255,255,255,1) 100%);
+background: linear-gradient(0deg, rgba(255,255,255,0.5) 46%, rgba(255,255,255,1) 100%);
 }
 .Header_Menu {
     margin: 0;

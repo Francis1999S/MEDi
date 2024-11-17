@@ -16,7 +16,6 @@ export class EstadisticaAdminComponent {
 
   ngAfterViewInit(){
     var Loader = document.getElementById('Loader_Estadisticas_Admin_Home');
-    setTimeout(() => {
       if (Loader) {
         Loader.style.display = 'none';
       }
@@ -69,6 +68,6 @@ new Chart(this.ctx, {
     }
   }
 })
-}, 3000);
+
 }
 }

@@ -13,12 +13,15 @@ export class ComunicacionesAdminComponent implements OnInit {
 
   Array_Comunicaciones: any;
   Array_Filtrado: any;
+  Array_Filtrado_Areas: any;
 
   V_COMUNICACION: boolean = false;
 
   Dash_Form: any;
 
-  Titulo_Filtro: string = 'Mostrando Todos';
+  Titulo_Filtro: string = 'Área: Mostrando Todo';
+  Titulo_Filtro_2: string = 'Estado: Todos';
+  Titulo_Filtro_3: string = 'Orden: Más Recientes';
 
   Index: number = 0;
 
@@ -26,14 +29,26 @@ export class ComunicacionesAdminComponent implements OnInit {
 
   MAP_INJECTED: boolean = false;
 
+  Array_Areas_Select: any;
+  AREA_INDEX: number = 0;
+
+
+
   constructor(private DS: DataService, public custom: CustomService, public fb: FormBuilder){
     this.Dash_Form = this.fb.group({
-      key: ['']
+      key: [''],
+      key2: [''],
+      key3: ['']
     })
   }
 
   ngOnInit(): void {
     this.custom.G_LOADER = true;
+    this.DS.GetAllAreas().subscribe(res=> {
+      this.Array_Areas_Select = res;
+    }, error => {
+      alert('Error en el Servidor. Inténtelo de nuevo más tarde.');
+    });
     this.DS.GetGlobalStatistics().subscribe(res=> {
       // 0: Demorado -- 1: Iniciado -- 2: Pendiente -- 3: Resuelto
       console.log(res);
@@ -44,6 +59,7 @@ export class ComunicacionesAdminComponent implements OnInit {
       this.DS.GetAllReclamos2().subscribe(res2=> {
         this.Array_Comunicaciones = res2;
         this.Array_Filtrado = res2;
+        this.Array_Filtrado_Areas = res2;
         this.custom.G_LOADER = false;
       }, error => {
         alert('Error en el Servidor. Inténtelo de nuevo más tarde.');
@@ -59,27 +75,26 @@ export class ComunicacionesAdminComponent implements OnInit {
   Filtrar_Comunicaciones(): void {
     setTimeout(() => {
       var key = this.Dash_Form.get('key').value;
-      console.log('Key: ',key)
       switch (key) {
         case '1':
-          this.Titulo_Filtro = 'Mostrando Pendientes';
-          this.Array_Filtrado = this.Array_Comunicaciones.filter(comun => comun.estado == 'Pendiente');
+          this.Titulo_Filtro_2 = 'Estado: Pendientes';
+          this.Array_Filtrado = this.Array_Filtrado_Areas.filter(comun => comun.estado == 'Pendiente');
           break;
           case '2':
-                 this.Titulo_Filtro = 'Mostrando Iniciados';
-            this.Array_Filtrado = this.Array_Comunicaciones.filter(comun => comun.estado == 'Iniciado');
+                 this.Titulo_Filtro_2 = 'Estado: Iniciados';
+            this.Array_Filtrado = this.Array_Filtrado_Areas.filter(comun => comun.estado == 'Iniciado');
           break;
           case '3':
-                 this.Titulo_Filtro = 'Mostrando Demorados';
-            this.Array_Filtrado = this.Array_Comunicaciones.filter(comun => comun.estado == 'Demorado');
+                 this.Titulo_Filtro_2 = 'Estado: Demorados';
+            this.Array_Filtrado = this.Array_Filtrado_Areas.filter(comun => comun.estado == 'Demorado');
           break;
           case '4':
-                 this.Titulo_Filtro = 'Mostrando Resueltos';
-            this.Array_Filtrado = this.Array_Comunicaciones.filter(comun => comun.estado == 'Resuelto');
+                 this.Titulo_Filtro_2 = 'Estado: Resueltos';
+            this.Array_Filtrado = this.Array_Filtrado_Areas.filter(comun => comun.estado == 'Resuelto');
           break;
           case '5':
-                 this.Titulo_Filtro = 'Mostrando Todos';
-            this.Array_Filtrado = this.Array_Comunicaciones;
+                 this.Titulo_Filtro_2 = 'Estado: Todos';
+            this.Array_Filtrado = this.Array_Filtrado_Areas;
           break;
         default:
           break;
@@ -87,9 +102,39 @@ export class ComunicacionesAdminComponent implements OnInit {
     }, 100);
   }
 
+  Filtrar_Comunicaciones2(): void {
+    setTimeout(() => {
+      var key = this.Dash_Form.get('key2').value;
+      if (key < 0) {
+        this.Titulo_Filtro = 'Área: Mostrando Todo';
+        this.Titulo_Filtro_2 = 'Estado: Todos';
+        this.Dash_Form.patchValue({key: '5'});
+        this.Array_Filtrado = this.Array_Comunicaciones;
+        this.Array_Filtrado_Areas = this.Array_Comunicaciones;
+      } else {
+        this.Titulo_Filtro = 'Área: ' + this.Array_Areas_Select[key].nombre_area;
+        this.Array_Filtrado = this.Array_Comunicaciones.filter(comun => comun.destinacion == this.Array_Areas_Select[key].clave_poder);
+        this.Array_Filtrado_Areas = this.Array_Comunicaciones.filter(comun => comun.destinacion == this.Array_Areas_Select[key].clave_poder);
+      }
+    }, 100); 
+  }
+
+  Filtrar_Comunicaciones3(): void {
+    setTimeout(() => {
+      var key = this.Dash_Form.get('key3').value;
+      if (key == 0) {
+        this.Titulo_Filtro_3 = 'Orden: Más Recientes';
+        this.Array_Filtrado.sort((a, b) => b.id - a.id);
+      } else {
+        this.Titulo_Filtro_3 = 'Orden: Más Antiguos';
+        this.Array_Filtrado.sort((a, b) => a.id - b.id);
+      }
+
+    }, 100);
+  }
+
   VisualizarComunicacion(index: number): void {
     this.Index = index;
-    console.log(this.Array_Filtrado[this.Index]);
     if (this.V_COMUNICACION) {
       this.V_COMUNICACION = false;
       this.Remove_Element();
@@ -158,5 +203,9 @@ export class ComunicacionesAdminComponent implements OnInit {
       Element.remove();
     }
     this.MAP_INJECTED = false;
+  }
+
+  RedirectTo(url: string): void {
+    window.open(url, '_blank');
   }
 }

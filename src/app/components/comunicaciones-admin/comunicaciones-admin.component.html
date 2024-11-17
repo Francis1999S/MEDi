@@ -7,18 +7,22 @@
             </div>
             <div class="Container_Scroll_2">
                 <div class="Container_Details">
-                    <p style="margin: 0 0 20px 0;">ID: {{Array_Filtrado[Index].id}} - Estado: <strong style="text-decoration: underline;">{{Array_Filtrado[Index].estado}}</strong><strong style="opacity: 0;">_</strong><strong style="font-weight: 100;" *ngIf="Array_Filtrado[Index].estado == 'Iniciado' || Array_Filtrado[Index].estado == 'Demorado'">con vencimiento el {{Array_Filtrado[Index].fecha_v | date: 'dd/MM/yyyy'}}</strong></p>
+                    <p style="margin: 0 0 20px 0;">ID: {{Array_Filtrado[Index].id}} - Estado: 
+                        <strong style="background-color: rgb(40,40,40); color: orange; padding: 1px 3px 1px 3px; border-radius: 5px;" *ngIf="Array_Filtrado[Index].estado == 'Pendiente'">{{Array_Filtrado[Index].estado}}</strong>
+                        <strong style="background-color: rgb(40,40,40); color: rgb(0, 208, 255); padding: 1px 3px 1px 3px; border-radius: 5px;" *ngIf="Array_Filtrado[Index].estado == 'Iniciado'">{{Array_Filtrado[Index].estado}}</strong>
+                        <strong style="background-color: rgb(40,40,40); color: rgb(255, 0, 0); padding: 1px 3px 1px 3px; border-radius: 5px;" *ngIf="Array_Filtrado[Index].estado == 'Demorado'">{{Array_Filtrado[Index].estado}}</strong>
+                        <strong style="background-color: rgb(40,40,40); color: rgb(34, 255, 0); padding: 1px 3px 1px 3px; border-radius: 5px;" *ngIf="Array_Filtrado[Index].estado == 'Resuelto'">{{Array_Filtrado[Index].estado}}</strong>
+                        <strong style="opacity: 0;">_</strong><strong style="font-weight: 100;" *ngIf="Array_Filtrado[Index].estado == 'Iniciado' || Array_Filtrado[Index].estado == 'Demorado'">con vencimiento el {{Array_Filtrado[Index].fecha_v | date: 'dd/MM/yyyy'}}</strong></p>
                     <p style="margin: 0 0 10px 0; color: rgb(190, 0, 0);" *ngIf="Array_Filtrado[Index].estado == 'Demorado'">✦ Vencimientos: <strong>{{Array_Filtrado[Index].vencimientos}}</strong></p>
                     <p style="margin: 0 0 10px 0;">Comunicación creada el {{Array_Filtrado[Index].fecha | date:'EEEE, d \'de\' MMMM \'de\' yyyy'}} a las {{Array_Filtrado[Index].hora}} Hs <br>
                         por <strong *ngIf="!(Array_Filtrado[Index].nombre.length == 0)">{{Array_Filtrado[Index].nombre | titlecase}}</strong> <strong *ngIf="Array_Filtrado[Index].nombre.length == 0">Anónimo</strong></p>
-                    
                         <p style="margin: 0 0 10px 0;">✦ Caracter de <strong>{{Array_Filtrado[Index].caracter}}</strong></p>
                     <p>✦ Dirigido a <strong>{{Array_Filtrado[Index].nombre_area}}</strong></p>
                     <p style="margin: 30px 0 0 0;"><strong style="border-bottom: 2px solid rgb(255, 120, 50);">Contenido:</strong> <br>
                     {{this.Array_Filtrado[Index].descripcion}}</p>
-                    <p style="margin: 30px 0 0 0;" *ngIf="!(Array_Filtrado[Index].comentario == '--')"><strong style="border-bottom: 2px solid rgb(255, 120, 50);">Resolución:</strong> <br>
+                    <p style="margin: 30px 0 0 0;" *ngIf="!(Array_Filtrado[Index].comentario == '--')"><strong style="border-bottom: 2px solid rgb(255, 120, 50);">Resolución ( {{Array_Filtrado[Index].fecha_r | date: 'dd/MM/yyyy'}} ):</strong> <br>
                     {{Array_Filtrado[Index].comentario}}</p>
-                    <p style="margin: 30px 0 0 0;" *ngIf="Array_Filtrado[Index].comentario == '--'"><strong style="border-bottom: 2px solid rgb(255, 120, 50);">Aún sin resolver...</strong></p>
+    
                     <p style="margin: 30px 0 0 0;" *ngIf="Array_Filtrado[Index].ubicacion_1.length > 0"><strong style="border-bottom: 2px solid rgb(255, 120, 50);">Ubicación:</strong> <br>
                     Ubicado en {{Array_Filtrado[Index].ubicacion_1}}</p>
                     <p style="margin: 30px 0 0 0;" *ngIf="Array_Filtrado[Index].ubicacion_1.length == 0"><strong style="border-bottom: 2px solid rgb(255, 120, 50);">No se ha especificado una ubicación...</strong></p>
@@ -28,7 +32,13 @@
                     <div id="MAP_4214241412" *ngIf="Array_Filtrado[Index].ubicacion_2.length > 0" style="width: 90%; margin: 20px 0 0 0; padding: 0; height: 0px; display: flex; justify-content: center; align-items: center; border-radius: 10px; overflow: hidden; transition: .5s ease-in-out; background-color: rgb(40,40,40);">
                         
                     </div>
-                    <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 20px 0 0 0;" (click)="OpenMap()" *ngIf="Array_Filtrado[Index].ubicacion_2.length > 0">Mostrar u Ocultar Mapa</button>
+                    <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 20px 0 0 0;" (click)="OpenMap()" *ngIf="Array_Filtrado[Index].ubicacion_2.length > 0">Mostrar u Ocultar Mapa ▨</button>
+
+                    <p style="margin: 30px 0 0 0;" *ngIf="!(Array_Filtrado[Index].file_1 == '*NINGUNO*')"><strong style="border-bottom: 2px solid rgb(255, 120, 50);">Archivo Adjunto:</strong></p>
+                    <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 20px 0 0 0;" (click)="RedirectTo(Array_Filtrado[Index].file_1)" *ngIf="!(Array_Filtrado[Index].file_1 == '*NINGUNO*')">Abrir Archivo ➚</button>
+                    <p style="margin: 30px 0 0 0;" *ngIf="Array_Filtrado[Index].file_1 == '*NINGUNO*'"><strong style="border-bottom: 2px solid rgb(255, 120, 50);">No se ha adjuntado ningún archivo...</strong></p>
+
+                    <p style="margin: 30px 0 0 0;" *ngIf="Array_Filtrado[Index].estado == 'Resuelto'"><strong style="border-bottom: 2px solid rgb(255, 120, 50);">Conformidad del Ciudadano:</strong> <br><strong style="font-style: italic;">Valoración:</strong> {{Array_Filtrado[Index].conforme}} <br> <strong style="font-style: italic;">Mensaje dejado por el ciudadano:</strong> {{Array_Filtrado[Index].feedback}}</p>
 
                     <p style="margin: 30px 0 0 0;" *ngIf="Array_Filtrado[Index].nombre.length > 0"><strong style="border-bottom: 2px solid rgb(255, 120, 50);">Datos del Ciudadano/a:</strong> <br>
                         ✦ Ciudadano/a: <strong>{{Array_Filtrado[Index].nombre | titlecase}}</strong> <br>
@@ -42,18 +52,28 @@
          
         </div>
     </div>
-    <h1 class="title">Total de Comunicaciones</h1>
+    <h1 style="margin: 40px 0 0 0; font-size: 130%; color: rgb(40,40,40); font-family: Nunito; font-weight: bold;">Comunicaciones</h1>
     <div class="Container">
         <form class="Control_Comunicaciones" [formGroup]="Dash_Form">
             <select (change)="Filtrar_Comunicaciones()" title="Filtrar Comunicaciones" formControlName="key" >
-                <option value="" disabled selected>Filtrar</option>
+                <option value="" disabled selected>Filtrar por Estado</option>
                 <option value="1">Pendientes</option>
                 <option value="2">Iniciados</option>
                 <option value="3">Demorados</option>
                 <option value="4">Resueltos</option>
                 <option value="5">Todos</option>
             </select>
-            <h1>{{Titulo_Filtro}} ({{Array_Filtrado.length}})</h1>
+            <select (change)="Filtrar_Comunicaciones2()" title="Filtrar Comunicaciones" formControlName="key2" >
+                <option value="" disabled selected>Filtrar por Área</option>
+                <option value="-1">Todas</option>
+                <option value="{{i}}" *ngFor="let area of Array_Areas_Select, let i = index">{{area.nombre_area}}</option>
+            </select>
+            <select (change)="Filtrar_Comunicaciones3()" title="Filtrar Comunicaciones" formControlName="key3" >
+                <option value="" disabled selected>Ordenar por</option>
+                <option value="0">Más Recientes</option>
+                <option value="1">Más Antiguos</option>
+            </select>
+            <h1><img class="Icon" src="{{custom.src}}icons/Filter_Icon.png"> {{Titulo_Filtro}} <br><img class="Icon" src="{{custom.src}}icons/Filter_Icon.png"> {{Titulo_Filtro_2}}  ({{Array_Filtrado.length}} Reg.) <br><img class="Icon" src="{{custom.src}}icons/Arrow_Down_Icon.png"> {{Titulo_Filtro_3}}</h1>
         </form>
         <div class="Titulos_Comunicaciones">
             <p class="p_1">ID</p>
@@ -64,9 +84,14 @@
         <div class="Container_Scroll">
             <div class="Container_Rows" *ngFor="let comun of Array_Filtrado, let i = index" title="N° {{comun.id}} - Fecha: {{comun.fecha | date: 'dd/MM/yyyy'}} - Asunto: {{comun.titulo}} - Descripción: {{comun.descripcion}} - Enviado a {{comun.nombre_area}}" (click)="VisualizarComunicacion(i)">
                 <p class="p_1">{{comun.id}}</p>
-                <p class="p_2">{{comun.titulo}}</p>
+                <p class="p_2">{{comun.titulo}}
+                    <span class="Estado_SPAN" style="color: orange;" title="Estado {{comun.estado}}" *ngIf="comun.estado == 'Pendiente'">P</span>
+                    <span class="Estado_SPAN" style="color: rgb(0, 208, 255);" title="Estado {{comun.estado}}" *ngIf="comun.estado == 'Iniciado'">I</span>
+                    <span class="Estado_SPAN" style="color: rgb(255, 0, 0);" title="Estado {{comun.estado}}" *ngIf="comun.estado == 'Demorado'">D</span>
+                    <span class="Estado_SPAN" style="color: rgb(34, 255, 0);" title="Estado {{comun.estado}}" *ngIf="comun.estado == 'Resuelto'">R</span>
+                </p>
                 <p class="p_3">{{comun.nombre_area}}</p>
-                <p class="p_4">{{comun.fecha | date: 'dd/MM/yyyy'}}</p>
+                <p class="p_4">{{comun.fecha | date: 'dd/MM/yyyy'}} <br> {{comun.hora}} Hs</p>
             </div>
         </div>
     </div>

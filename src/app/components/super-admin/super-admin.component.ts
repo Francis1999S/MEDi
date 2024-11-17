@@ -35,6 +35,9 @@ export class SuperAdminComponent implements OnInit {
   formatTime: string = '';
   Contenido_PDF: string = '';
   Promedios: any[] = [];
+
+  MENU_ADMIN_ACTIVE: boolean = false;
+
   constructor(private router: Router, private dataService: DataService, public custom: CustomService, public navigate: NavigateService){}
   ngOnInit(): void {
     this.custom.NAV_MENU_CELLPHONE = false;
@@ -358,10 +361,22 @@ export class SuperAdminComponent implements OnInit {
     var panel = document.getElementById('PANEL_DASH');
     if (this.PanelShow) {
       this.PanelShow = false
-      panel!.style.width = '80px'
+      panel!.style.width = '70px'
     } else {
       this.PanelShow = true
       panel!.style.width = '300px'
     }
+  }
+
+  Toggle_Menu_Cellphones(): void {
+    if (this.MENU_ADMIN_ACTIVE) {
+      this.MENU_ADMIN_ACTIVE = false;
+    } else {
+      this.MENU_ADMIN_ACTIVE = true;
+    }
+  }
+
+  Close_Menu_Cellphones(): void {
+      this.MENU_ADMIN_ACTIVE = false;
   }
 }

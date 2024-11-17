@@ -1,5 +1,5 @@
 <section id="Create_Area_Container_1">
-    <img class="Imagen_Areas" src="../../../MEDi/assets/icons/Areas.png">
+    <img class="Imagen_Areas" src="{{custom.src}}icons/Areas.png">
     <form [formGroup]="nueva_area">
         <fieldset class="Fieldset_creating">
             <legend>Creando Nueva Área [1/4]</legend>
@@ -11,15 +11,15 @@
                 <label for="Input_Descripcion_Area">Breve descripción</label>
                 <input formControlName="descripcion" type="text" id="Input_Descripcion_Area" maxlength="120">
             </div>
-            <p id="Error_Display_Animation_1">{{this.error1}}</p>
-            <button class="Buttons" (click)="Verificar_y_cambiar_interfaz(1)">Continuar ⇨</button>
+            <p id="Error_Display_Animation_1">¡ {{this.error1}} !</p>
+            <button class="GLOBAL_CLASSIC_BUTTON" (click)="Verificar_y_cambiar_interfaz(1)">Continuar ⇨</button>
         </fieldset>
     </form>
-    <button class="Buttons2" (click)="NavigateToBack()">Cancelar</button>
+    <button class="GLOBAL_CLASSIC_BUTTON CANCEL_BTN_POSITION" (click)="NavigateToBack()">Cancelar</button>
 </section>
 <!--/////////////////////////////////////////////////////////////////////////////////////////-->
 <section id="Create_Area_Container_1_2">
-    <img class="Imagen_Areas" src="../../../MEDi/assets/icons/Areas.png">
+    <img class="Imagen_Areas" src="{{custom.src}}icons/Areas.png">
 <form [formGroup]="nueva_area">
     <fieldset class="Fieldset_creating">
         <legend>Verificación de E-mail [2/4]</legend>
@@ -27,22 +27,22 @@
             <label for="Input_EMAIL_Area">Verifica un Correo Electrónico de Recepción</label>
             <input formControlName="email" type="email" id="Input_EMAIL_Area" maxlength="120" (change)="Cambio_En_Email()">
         </div>
-        <button *ngIf="this.nueva_area.get('email').value.length > 4 && this.Codigo_Enviado == false" class="Buttons" (click)="Enviar_Email_Verificacion()">Enviar Código</button>
-        <p id="Correo_Enviado_Exito" style="display: none; color: white; margin-top: -20px;">¡Código Enviado con Éxito!</p>
+        <button *ngIf="this.nueva_area.get('email').value.length > 4 && this.Codigo_Enviado == false" class="GLOBAL_CLASSIC_BUTTON" (click)="Enviar_Email_Verificacion()">Enviar Código</button>
+        <p id="Correo_Enviado_Exito" style="display: none; color: rgb(40,40,40); margin-top: -20px;">¡Código Enviado con Éxito!</p>
         <div>
             <label for="verificacion_mail">Ingresa el Código de Verificación Enviado al E-mail</label>
             <input type="text" formControlName="codigo_verif_2" id="verificacion_mail" maxlength="8">
         </div>
-        <p id="Error_Display_Animation_2">{{this.error2}}</p>
-        <button class="Buttons" (click)="Cambio_Interfaz(1)">⇦ Volver</button>
-        <button class="Buttons" (click)="Verificar_y_cambiar_interfaz(2)">Continuar ⇨</button>
+        <p id="Error_Display_Animation_2_UNICO">{{this.error2}}</p>
+        <button class="GLOBAL_CLASSIC_BUTTON" (click)="Cambio_Interfaz(1)">⇦ Volver</button>
+        <button class="GLOBAL_CLASSIC_BUTTON" (click)="Verificar_y_cambiar_interfaz(2)">Continuar ⇨</button>
     </fieldset>
 </form>
-<button class="Buttons2" (click)="NavigateToBack()">Cancelar</button>
+<button class="GLOBAL_CLASSIC_BUTTON CANCEL_BTN_POSITION" (click)="NavigateToBack()">Cancelar</button>
 </section>
 <!--/////////////////////////////////////////////////////////////////////////////////////////-->
 <section id="Create_Area_Container_2">
-    <img class="Imagen_Areas" src="../../../MEDi/assets/icons/Areas.png">
+    <img class="Imagen_Areas" src="{{custom.src}}icons/Areas.png">
     <form [formGroup]="nueva_area">
         <fieldset class="Fieldset_creating">
             <legend>Creando Usuario [3/4]</legend>
@@ -51,7 +51,7 @@
                 <input formControlName="user" type="text" id="Input_New_Usuario" maxlength="20">
             </div>
             <div>
-                <p style="color: white;">*Su contraseña debe ser de al menos 8 dígitos.</p>
+                <p style="color: rgb(40,40,40);">*Su contraseña debe ser de al menos 8 dígitos.</p>
                 <label for="Input_New_Password">Nueva Contraseña</label>
                 <input formControlName="pass" type="text" id="Input_New_Password" maxlength="16">
             </div>
@@ -60,23 +60,23 @@
                 <input formControlName="pass2"type="text" id="Input_New_Password_2" maxlength="16">
             </div>
             <p id="Error_Display_Animation_3">{{this.error3}}</p>
-            <button class="Buttons" (click)="Cambio_Interfaz(2)">⇦ Volver</button>
-            <button class="Buttons" (click)="Verificar_y_cambiar_interfaz(3)">Continuar ⇨</button>
+            <button class="GLOBAL_CLASSIC_BUTTON" (click)="Cambio_Interfaz(2)">⇦ Volver</button>
+            <button class="GLOBAL_CLASSIC_BUTTON" (click)="Verificar_y_cambiar_interfaz(3)">Continuar ⇨</button>
         </fieldset>
     </form>
-    <button class="Buttons2" (click)="NavigateToBack()">Cancelar</button>
+    <button class="GLOBAL_CLASSIC_BUTTON CANCEL_BTN_POSITION" (click)="NavigateToBack()">Cancelar</button>
 </section>
 <!--/////////////////////////////////////////////////////////////////////////////////////////-->
 <section id="Create_Area_Container_3">
     <div id="Container_Results_Creating_Area">
         <div class="Info_Container_Results">
             <h1>{{Resultado_Creacion}}</h1>
-            <img id="Loader_Creation" src="../../../MEDi/assets/icons/loader_creator.gif">
-            <img id="Exito_Logo" src="../../../MEDi/assets/icons/Ok.png">
-            <button class="Buttons" id="Btn_volver_super_admin" (click)="vOs80FGFjHJkgTVa93iDb7Yu1TW0Q3kwrVRzfgtSK()">Volver</button>
+            <img id="Loader_Creation" src="{{custom.src}}icons/loader_creator_orange.gif">
+            <img id="Exito_Logo" src="{{custom.src}}icons/Ok.png">
+            <button class="GLOBAL_CLASSIC_BUTTON" id="Btn_volver_super_admin" (click)="vOs80FGFjHJkgTVa93iDb7Yu1TW0Q3kwrVRzfgtSK()">Volver</button>
         </div>
     </div>
-    <img class="Imagen_Areas" src="../../../MEDi/assets/icons/Areas.png">
+    <img class="Imagen_Areas" src="{{custom.src}}icons/Areas.png">
         <fieldset class="Final_Info_Confirmation">
             <legend>Confirmar Datos [4/4]</legend>
             <div class="Container_Info_Confirm">
@@ -86,8 +86,8 @@
                 <p><strong style="text-decoration: underline;">Contraseña:</strong> {{Password}}</p>
                 <p><strong style="text-decoration: underline;">Rol de Usuario:</strong> Recepcionar y Administrar las comunicaciones destinadas a {{Nombre_area}}</p>
             </div>
-            <button class="Buttons" (click)="Cambio_Interfaz(3)">⇦ Volver</button>
-            <button class="Buttons3" id="Confirmar_Crear_Area_Btn" (click)="ConfirmarData()">Confirmar y Crear</button>
+            <button class="GLOBAL_CLASSIC_BUTTON" (click)="Cambio_Interfaz(3)">⇦ Volver</button>
+            <button class="GLOBAL_CLASSIC_BUTTON" id="Confirmar_Crear_Area_Btn" (click)="ConfirmarData()">Confirmar y Crear</button>
         </fieldset>
-    <button class="Buttons2" (click)="NavigateToBack()">Cancelar</button>
+    <button class="GLOBAL_CLASSIC_BUTTON CANCEL_BTN_POSITION" (click)="NavigateToBack()">Cancelar</button>
 </section>

@@ -111,11 +111,16 @@ if (isset($_GET["Get_Reclamos_Resueltos"])) {
 
 
 if (isset($_GET["Suma_Promedios_Areas"])) {
-    // Consulta para obtener el promedio de contador_dias agrupados por destinacion donde estado es 'Resuelto'
-    $sqlPromedio = $conexionBD->query("SELECT destinacion, ROUND(AVG(contador_dias), 2) as promedio_contador_dias 
-                                       FROM comunicacion 
-                                       WHERE estado = 'Resuelto' 
-                                       GROUP BY destinacion");
+    // Consulta para obtener los promedios agrupados por destinación
+    $sqlPromedio = $conexionBD->query("
+        SELECT 
+            destinacion, 
+            ROUND(AVG(CASE WHEN estado = 'Resuelto' THEN contador_dias END), 2) AS promedio_contador_dias_resuelto,
+            ROUND(AVG(CASE WHEN estado IN ('Pendiente', 'Iniciado') THEN contador_dias_p END), 2) AS promedio_contador_dias_p,
+            ROUND(AVG(contador_dias), 2) AS promedio_general
+        FROM comunicacion 
+        GROUP BY destinacion
+    ");
 
     // Verificar si hay registros
     if ($sqlPromedio) {
@@ -125,7 +130,9 @@ if (isset($_GET["Suma_Promedios_Areas"])) {
         while ($fila = $sqlPromedio->fetch_assoc()) {
             $resultados[] = [
                 "destinacion" => $fila['destinacion'],
-                "promedio_contador_dias" => $fila['promedio_contador_dias']
+                "promedio_contador_dias_resuelto" => $fila['promedio_contador_dias_resuelto'],
+                "promedio_contador_dias_p" => $fila['promedio_contador_dias_p'],
+                "promedio_general" => $fila['promedio_general']
             ];
         }
 
@@ -135,6 +142,7 @@ if (isset($_GET["Suma_Promedios_Areas"])) {
     }
     exit();
 }
+
 
 
 if (isset($_GET["Get_Area_Reclamos"])) {
@@ -211,27 +219,47 @@ if (isset($_GET["Get_Usuarios"])) {
 
 if (isset($_GET["Get_Areas"])) {
     $sqlUsuarios = mysqli_query($conexionBD, "
-        SELECT d.*, 
-            COALESCE(SUM(CASE WHEN c.estado = 'Pendiente' THEN 1 ELSE 0 END), 0) AS total_pendientes,
-            COALESCE(SUM(CASE WHEN c.estado = 'Iniciado' THEN 1 ELSE 0 END), 0) AS total_iniciados,
-            COALESCE(SUM(CASE WHEN c.estado = 'Demorado' THEN 1 ELSE 0 END), 0) AS total_demorados,
-            COALESCE(SUM(CASE WHEN c.estado = 'Resuelto' THEN 1 ELSE 0 END), 0) AS total_resueltos
+        SELECT 
+            d.*, 
+            u.*, 
+            c.destinacion,
+            SUM(CASE WHEN c.estado = 'Pendiente' THEN 1 ELSE 0 END) AS total_pendientes,
+            SUM(CASE WHEN c.estado = 'Iniciado' THEN 1 ELSE 0 END) AS total_iniciados,
+            SUM(CASE WHEN c.estado = 'Demorado' THEN 1 ELSE 0 END) AS total_demorados,
+            SUM(CASE WHEN c.estado = 'Resuelto' THEN 1 ELSE 0 END) AS total_resueltos
         FROM destinaciones AS d
+        LEFT JOIN usuario AS u ON d.clave_poder = u.clave_poder
         LEFT JOIN comunicacion AS c ON d.clave_poder = c.destinacion
-        GROUP BY d.clave_poder
+        GROUP BY d.clave_poder, c.destinacion
     ");
     
+    // Obtener los resultados
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
+    
+    // Enviar como JSON
     echo json_encode($usuarios);
     exit();
 }
 
 
+
 if (isset($_GET["Get_Areas_Select"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $clave_poder=$data->clave_poder;
+    $clave_poder = $data->clave_poder;
+    $sqlUsuarios = mysqli_query($conexionBD, "
+        SELECT 
+            d.*, 
+            SUM(CASE WHEN c.estado = 'Pendiente' THEN 1 ELSE 0 END) AS total_pendientes,
+            SUM(CASE WHEN c.estado = 'Iniciado' THEN 1 ELSE 0 END) AS total_iniciados,
+            SUM(CASE WHEN c.estado = 'Demorado' THEN 1 ELSE 0 END) AS total_demorados,
+            SUM(CASE WHEN c.estado = 'Resuelto' THEN 1 ELSE 0 END) AS total_resueltos
+        FROM destinaciones AS d
+        LEFT JOIN comunicacion AS c ON d.clave_poder = c.destinacion
+        WHERE d.clave_poder = '$clave_poder'
+        GROUP BY d.clave_poder
+        LIMIT 1;
+    ");
 
-    $sqlUsuarios = mysqli_query($conexionBD, "SELECT * FROM `destinaciones` WHERE clave_poder = '$clave_poder' LIMIT 1;");
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
     echo json_encode($usuarios);
     exit();

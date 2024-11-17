@@ -122,15 +122,11 @@
                 <div style="width: 90%; height: 1px; background-color: rgb(255, 120, 50); margin: 0 0 0 5%;"></div>
                 <button class="Dash_Buttons" (click)="navigate.ToResumen()">
                     <img src="{{custom.src}}icons/RESUMEN.png" alt="Icon">
-                    <span>Resumen</span>
+                    <span>Áreas y Resumen</span>
                 </button>
                 <button class="Dash_Buttons" (click)="navigate.ToComunicacionesAdmin()">
                     <img src="{{custom.src}}icons/COMUNICACION.png" alt="Icon">
                     <span>Comunicaciones</span>
-                </button>
-                <button class="Dash_Buttons">
-                    <img src="{{custom.src}}icons/AREA.png" alt="Icon">
-                    <span>Ver Áreas Actuales</span>
                 </button>
                 <button class="Dash_Buttons" (click)="navigate.ToCreateArea()">
                     <img src="{{custom.src}}icons/AREA_ADD.png" alt="Icon">
@@ -147,5 +143,28 @@
             </div>
         </div>
     </aside>
+    <section id="Menu_Cellphones_SUPER_ADMIN" *ngIf="MENU_ADMIN_ACTIVE">
+        <div class="Header_Menu">
+            <img src="../../../MEDi/assets/img/centro_de_reclamo_logon1.png">
+        </div>
+        <div class="BOX_BUTTONS_MENU">
+            <button class="Dash_Buttons" style="width: 80%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6)" (click)="navigate.ToResumen();Close_Menu_Cellphones()">
+                <img src="{{custom.src}}icons/RESUMEN.png" alt="Icon">
+                <span>Áreas y Resumen</span>
+            </button>
+            <button class="Dash_Buttons" style="width: 80%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6)" (click)="navigate.ToComunicacionesAdmin();Close_Menu_Cellphones()">
+                <img src="{{custom.src}}icons/COMUNICACION.png" alt="Icon">
+                <span>Comunicaciones</span>
+            </button>
+            <button class="Dash_Buttons" style="width: 80%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6)" (click)="navigate.ToCreateArea();Close_Menu_Cellphones()">
+                <img src="{{custom.src}}icons/AREA_ADD.png" alt="Icon">
+                <span>Crear Nueva Área</span>
+            </button>
+        </div>
+    </section>
+    <div class="Menu_Cellphones">
+        <img src="{{custom.src}}img/centro de reclamo logo 2.png" (click)="navigate.ToHome();Close_Menu_Cellphones()">
+        <img src="{{custom.src}}icons/Menu.png" (click)="Toggle_Menu_Cellphones()">
+    </div>
         <router-outlet class="Router_Outlet"/>
     </section>

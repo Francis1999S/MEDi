@@ -24,7 +24,7 @@ export class HeaderComponent {
     this.router.navigate(['/Estadisticas']);
   }
   navigateTosSeguimiento() {
-    this.router.navigate(['/Seguimiento']);
+    this.router.navigate(['/Seguimiento/0']);
   }
 }
 

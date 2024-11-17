@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../../data.service';
 import { FormBuilder } from '@angular/forms';
+import { CustomService } from '../../custom.service';
 
 @Component({
   selector: 'app-modificar',
@@ -27,7 +28,8 @@ export class ModificarComponent implements OnInit {
   constructor(
     private dataService: DataService,
     public fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    public custom: CustomService
   ) {
     this.Modificar = this.fb.group({
       nombre_area: [''],
@@ -42,21 +44,21 @@ export class ModificarComponent implements OnInit {
     this.Modificar.patchValue({ clave_poder: this.dataService.Clave_Poder_Modificacion })
     this.Codigo_Verificacion_Email = this.generarCodigo(8);
     this.Modificar.patchValue({ codigo_verif: this.Codigo_Verificacion_Email});
-    this.Cambio_Interfaz(1);
     this.dataService.GetAllAreasSelect(this.Modificar.value).subscribe(data => {
     this.Area_a_Modificar = data;
     this.Modificar.patchValue({ nombre_area: data[0].nombre_area});
     this.Nombre_area_2 = data[0].nombre_area;
     this.Modificar.patchValue({ descripcion: data[0].descripcion});
     this.Modificar.patchValue({ email: data[0].email});
-    })
-    this.dataService.GetAllAreas().subscribe(data=> {
-      for (let i = 0; i < data.length; i++) {
-        this.Array_All_Areas.push(data[i].nombre_area);
+    this.dataService.GetAllAreas().subscribe(data2=> {
+      for (let i = 0; i < data2.length; i++) {
+          if (!(this.Nombre_area_2 == data2[i].nombre_area)) {
+            this.Array_All_Areas.push(data2[i].nombre_area);
+          }
       }
-      var index: number = this.Array_All_Areas.indexOf(this.Nombre_area_2);
-  this.Array_All_Areas.splice(index, 1);
-    })
+      this.Cambio_Interfaz(1);
+    });
+    });
   }
   Cambio_Interfaz(interfaz: number): void {
     var Section_1 = document.getElementById('Modificar_Area_Container_1');
@@ -91,8 +93,8 @@ export class ModificarComponent implements OnInit {
         break;
     }
     if (Error_Display_1 && Error_Display_2) {
-      Error_Display_1.style.display = 'none';
-      Error_Display_2.style.display = 'none';
+      Error_Display_1.style.opacity = '0';
+      Error_Display_2.style.opacity = '0';
     }
     this.error1 = '';
     this.error2 = '';
@@ -104,7 +106,7 @@ export class ModificarComponent implements OnInit {
       case 1:
         var flag_area_exist = false;
         for (let i = 0; i < this.Array_All_Areas.length; i++) {
-          if (this.Modificar.get('nombre_area').value === this.Array_All_Areas[i]) {
+          if (this.Modificar.get('nombre_area').value == this.Array_All_Areas[i]) {
             flag_area_exist = true;
           }
         }
@@ -118,19 +120,19 @@ export class ModificarComponent implements OnInit {
           if (this.Modificar.get('nombre_area').value.length < 6) {
             this.error1 = 'Error: Longitud de nombre inválida';
             if (Error_Display_1) {
-              Error_Display_1.style.display = 'flex';
+              Error_Display_1.style.opacity = '1';
             }
           }
           if (this.Modificar.get('descripcion').value.length < 6) {
             this.error1 = 'Error: Longitud de descripción inválida';
             if (Error_Display_1) {
-              Error_Display_1.style.display = 'flex';
+              Error_Display_1.style.opacity = '1';
             }
           }
           if (flag_area_exist) {
-            this.error1 = 'Error: Ya existe un área con el mismo nombre.';
+            this.error1 = 'Error: Ya existe un área con ese nombre.';
             if (Error_Display_1) {
-              Error_Display_1.style.display = 'flex';
+              Error_Display_1.style.opacity = '1';
             }
           }
         }
@@ -139,7 +141,7 @@ export class ModificarComponent implements OnInit {
         if (this.Modificar.get('codigo_verif_2').value.length < 8) {
           this.error2 = '¡Código de Verificación Inválido!';
           if (Error_Display_2) {
-            Error_Display_2.style.display = 'flex';
+            Error_Display_2.style.opacity = '1';
           }
         } else {
         if (this.Modificar.get('codigo_verif_2').value === this.Codigo_Verificacion_Email) {
@@ -150,7 +152,7 @@ export class ModificarComponent implements OnInit {
         } else {
           this.error2 = '¡El Código de Verificación es Incorrecto!'
           if (Error_Display_2) {
-            Error_Display_2.style.display = 'flex';
+            Error_Display_2.style.opacity = '1';
           }
         }
       }
@@ -158,7 +160,7 @@ export class ModificarComponent implements OnInit {
           this.error2 = '¡Ingresa tu Email y Envía el Código!'
           console.log('Email Vacio');
           if (Error_Display_2) {
-            Error_Display_2.style.display = 'flex';
+            Error_Display_2.style.opacity = '1';
           }
         }
         break;
@@ -170,7 +172,7 @@ export class ModificarComponent implements OnInit {
     this.Codigo_Enviado = false;
   }
   NavigateToBack() {
-    this.router.navigate(['/Super-Admin']);
+    this.router.navigate(['/Super-Admin/Resumen']);
   }
   Enviar_Email_Verificacion(): void {
     this.dataService.Verificacion_de_Mail(this.Modificar.value).subscribe(data => {

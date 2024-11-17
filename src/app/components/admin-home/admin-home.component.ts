@@ -75,6 +75,7 @@ Nombre_Rec: string = '';
 Telefono_Rec: string = '';
 Email_Rec: string = '';
 Email_d_Rec: string = '';
+Email_Notif: string = '';
 Domicilio_Rec: string = '';
 Anonimo_Rec: string = '';
 
@@ -85,6 +86,9 @@ Feedback_Rec: string = '';
 /////////////Datos Resolución///////////////
 Fecha_r_Rec: string = '';
 Comentario_Rec: string = '';
+
+///////////Codigo de Seguimiento//////////
+Seguimiento_Rec: string = '';
 
   //////////Datos Dinámicos Visualizador Reclamo ///////////////
   Reclamos: any[] = [];
@@ -101,6 +105,15 @@ Clave_Poder_2: any;
   flag_Resuelto_1: boolean = false;
 
   //////////////////////Variables de Buttons Filter aside and Header box////////////////////
+
+
+
+  ////////////////OBJETO DE NOTIFICACION DE CAMBIO DE ESTADO POR EMAIL///////////////
+  NOTIFI_EMAIL: any;
+
+
+  /////////////////ESTADISTICA ACTIVE BOOL////////////////////////////
+  ESTADISTICA_ACTIVE: boolean = false;
   
   constructor(private router: Router, private dataService: DataService, public fb: FormBuilder, public custom: CustomService) {
     this.Cambio_Color = this.fb.group({
@@ -156,6 +169,12 @@ Clave_Poder_2: any;
       conforme: [''],
       feedback: [''],
     });
+    this.NOTIFI_EMAIL = this.fb.group({
+      email: [''],
+      seguimiento: [''],
+      mensaje: [''],
+      titulo: ['']
+    });
   }
 
   Activate_Help_Window(): void {
@@ -172,9 +191,8 @@ Clave_Poder_2: any;
 
   ////////////////Obtención de Registros Correspondientes al Área de Recepción///////////////////////7
   ngOnInit(): void {
-    
+    this.custom.NAV_MENU_CELLPHONE = true;
     this.LogIn3 = this.dataService.LogIn_3;
-    this.Estadisticas_Loader_Detroy();
     this.Get_Area();
     this.Clave_Poder.patchValue({ clave_poder: this.dataService.Clave_Poder });
     this.Estado.patchValue({ clave_poder: this.dataService.Clave_Poder});
@@ -189,12 +207,7 @@ Clave_Poder_2: any;
       if (Loader) {
         Loader.style.display = 'none';
       }
-      
     });
-    setTimeout(() => {
-      this.Resueltos_Counter = this.dataService.Resueltos;
-      this.Loader_Counter_Resueltos = false;
-    }, 3000);
   }
   Get_Areas_Row(): void {
     this.Destinacion.patchValue({ ID: this.numero_Rec});
@@ -268,6 +281,7 @@ Clave_Poder_2: any;
           this.Get_Recientes();
           this.GoBack();
           this.Remove_Element();
+          this.Get_Area();
           if (Btn && Select && Btn_Cancel) {
             Btn.style.display = 'flex';
             Select.style.display = 'flex';
@@ -324,9 +338,22 @@ Clave_Poder_2: any;
     }
     this.Mensaje_Confirmar_Inicio_2 = 'Una vez iniciado, no podrá reenviarse ni cancelarse y se establecerá un vencimiento inamovible.';
     this.Mensaje_Confirmar_Inicio = '¿Realmente quieres Iniciar el Plazo de Resolución de esta Comunicación?';
+
+    if (this.Email_Notif.length > 0) {
+      this.NOTIFI_EMAIL.patchValue({
+        email: this.Email_Notif,
+        seguimiento: this.Seguimiento_Rec,
+        titulo: 'Tu comunicacion ha sido INICIADA',
+        mensaje: 'Te notificamos que hemos revisado tu comunicado y hemos comenzado con las gestiones necesarias para la solucion.'
+      });
+      this.dataService.Send_Mail_A_Ciudadano(this.NOTIFI_EMAIL.value).subscribe(res => {
+      });
+    }
+
     this.Get_Recientes();
     this.GoBack();
     this.Remove_Element();
+    this.Get_Area();
   }, 3000);
       })
     })
@@ -740,15 +767,20 @@ Clave_Poder_2: any;
 
   ////////////////////////Obtención de Información del Área de Recepción////////////////////////7
   Get_Area(): void {
+    this.ESTADISTICA_ACTIVE = false;
     this.Clave_Poder.patchValue({ clave_poder: this.dataService.Clave_Poder });
     this.dataService.GetAllAreasSelect(this.Clave_Poder.value).subscribe(Response => {
       this.Area_Data = Response;
       this.Background_N = this.Area_Data[0].color;
       this.Cambio_Color.patchValue({ ID: this.Area_Data[0].id});
-      this.dataService.Pendientes = this.Area_Data[0].pendientes;
-      this.dataService.Iniciados = this.Area_Data[0].iniciados;
-      this.dataService.Demorados = this.Area_Data[0].demorados;
-      this.dataService.Resueltos = this.Area_Data[0].resueltos;
+      this.dataService.Pendientes = this.Area_Data[0].total_pendientes;
+      this.dataService.Iniciados = this.Area_Data[0].total_iniciados;
+      this.dataService.Demorados = this.Area_Data[0].total_demorados;
+      this.dataService.Resueltos = this.Area_Data[0].total_resueltos;
+      this.Resueltos_Counter = this.Area_Data[0].total_resueltos;
+      this.Estadisticas_Loader_Detroy();
+      this.ESTADISTICA_ACTIVE = true;
+      this.Loader_Counter_Resueltos = false;
     })
   }
   Get_Area_Mail(): void {
@@ -798,7 +830,8 @@ Clave_Poder_2: any;
     Conformidad: string,
     Feedback: string,
     Comentario: string,
-    Fecha_R: string
+    Fecha_R: string,
+    Seguimiento_R: string
   ): void {
     var Ventana = document.getElementById('Scroll_Box_Container_Open_Reclamo');
     var Fila = document.getElementById('Registro_Fila_Reclamo');
@@ -806,6 +839,7 @@ Clave_Poder_2: any;
       Ventana.style.display = 'flex';
       Fila.style.display = 'none';
     }
+    this.Seguimiento_Rec = Seguimiento_R;
     this.numero_Rec = Numero;
     this.caracter_Rec = Caracter;
     this.titulo_Rec = Asunto;
@@ -833,6 +867,7 @@ Clave_Poder_2: any;
     this.Nombre_Rec = Nombre;
     this.Telefono_Rec = Telefono;
     this.Email_Rec = Email;
+    this.Email_Notif = Email;
     this.Domicilio_Rec = Domicilio;
     this.Estado_Rec = Estado;
     this.Cod_conf_Rec = Cod_conf;
@@ -1172,6 +1207,16 @@ Clave_Poder_2: any;
     this.dataService.Cambio_Estado(Estado).subscribe(data => {
       this.Mensaje_Confirmar_Resuelta = '¡La Comunicación ha sido Confirmada como Resuelta Exitosamente!';
       this.Resueltos_Counter += 1;
+      if (this.Email_Notif.length > 0) {
+        this.NOTIFI_EMAIL.patchValue({
+          email: this.Email_Notif,
+          seguimiento: this.Seguimiento_Rec,
+          titulo: 'Tu comunicacion ha sido RESUELTA',
+          mensaje: 'Te notificamos que hemos dado por finalizada tu comunicacion y ha sido archivada como Resuelta.'
+        });
+        this.dataService.Send_Mail_A_Ciudadano(this.NOTIFI_EMAIL.value).subscribe(res => {
+        });
+      }
       setTimeout(() => {
         this.Open_Close_Resuelto_Win();
         this.Open_Close_Resuelto_Win_1();
@@ -1188,11 +1233,9 @@ Clave_Poder_2: any;
 
   Estadisticas_Loader_Detroy(): void {
     var Loader = document.getElementById('Estadisticas_Loader');
-    setTimeout(() => {
       if (Loader) {
         Loader.remove();
       }
-    }, 3000);
   }
   GoBack_Super_Admin(): void {
     if (this.dataService.LogIn_3){
@@ -1203,7 +1246,7 @@ Clave_Poder_2: any;
 
   }
   Poq0hZAF20U5FQKtgpoLBJG1MTvfbatrY69KCtDbOb20F5tYMTqt9UPaFtu0iEJm() {
-    this.router.navigate(['/Super-Admin']);
+    this.router.navigate(['/Super-Admin/Resumen']);
   }
   cambiar_color(color: string): void {
     this.Background_N = color;

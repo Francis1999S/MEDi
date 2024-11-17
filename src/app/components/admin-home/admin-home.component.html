@@ -1,5 +1,5 @@
 <section id="Loader_Data_2">
-    <img src="../../../MEDi/assets/icons/loader_2.gif">
+    <img src="{{custom.src}}icons/loader_2.gif">
 </section>
 <div id="Success_ReSend">
     <form [formGroup]="Destinacion" enctype="multipart/form-data">
@@ -8,7 +8,7 @@
             <option *ngFor="let area of Areas_row" value="{{area.clave_poder}}">{{area.nombre_area}}</option>
         </select>
         <img class="Btns_Controls" id="Btn_Resend_C" (click)="Reenviar_C()"
-            src="../../../MEDi/assets/icons/Send_Icon.png">
+            src="{{custom.src}}icons/Send_Icon.png">
         <p id="Cancelar_Btn_Reenviar_C" style="color: white; text-decoration: underline; cursor: pointer;"
             (click)="Cancelar_Reenviar_c()">Cancelar</p>
     </form>
@@ -58,53 +58,53 @@
 <section class="Super_Container" id="Background_N{{Background_N}}">
     <aside class="Panel_Admin">
         <span (click)="this.custom.NavigateToVersion()" class="version_span">{{this.custom.Versionado_Global_App}}</span>
-        <img class="usuario_logo" src="../../../MEDi/assets/icons/User_icon.png">
+        <img class="usuario_logo" src="{{custom.src}}icons/User_icon.png">
         <p style="margin: 0; padding: 0; width: 90%;">Mostrando Panel de Recepción de "{{Area_Data[0].nombre_area}}"</p>
   
    
             <span *ngIf="!Loader_Counter_Resueltos" style="font-weight: bold; margin: 0; padding: 5px; background-color: #FF3CAC;
             background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
              border-radius: 5px; box-shadow: 0 0 5px white;">¡Se han resuelto {{Resueltos_Counter}} comunicaciones!</span>
-            <img style="margin: 0; width: 50px;" *ngIf="Loader_Counter_Resueltos" src="../../../MEDi/assets/icons/loader_2.gif" alt="Loading...">
+            <img style="margin: 0; width: 50px;" *ngIf="Loader_Counter_Resueltos" src="{{custom.src}}icons/loader_2.gif" alt="Loading...">
   
         <fieldset class="Cambio_Color_Panel">
             <legend>Personalización</legend>
             <img class="Cambio_Screen_Color_Button" (click)="cambiar_color('1')"
-                src="../../../MEDi/assets/icons/Screen_Color_1.png">
+                src="{{custom.src}}icons/Screen_Color_1.png">
             <img class="Cambio_Screen_Color_Button" (click)="cambiar_color('2')"
-                src="../../../MEDi/assets/icons/Screen_Color_2.png">
+                src="{{custom.src}}icons/Screen_Color_2.png">
             <img class="Cambio_Screen_Color_Button" (click)="cambiar_color('3')"
-                src="../../../MEDi/assets/icons/Screen_Color_3.png">
+                src="{{custom.src}}icons/Screen_Color_3.png">
             <img class="Cambio_Screen_Color_Button" (click)="cambiar_color('4')"
-                src="../../../MEDi/assets/icons/Screen_Color_4.png">
+                src="{{custom.src}}icons/Screen_Color_4.png">
             <img class="Cambio_Screen_Color_Button" (click)="cambiar_color('5')"
-                src="../../../MEDi/assets/icons/Screen_Color_5.png">
+                src="{{custom.src}}icons/Screen_Color_5.png">
             <img class="Cambio_Screen_Color_Button" (click)="cambiar_color('6')"
-                src="../../../MEDi/assets/icons/Screen_Color_6.png">
+                src="{{custom.src}}icons/Screen_Color_6.png">
         </fieldset>
 
         <fieldset class="Filtros_Comunicados">
             <legend>Filtrar por Carácter del Comunicado</legend>
             <button class="Buttons3 buttons_3_add_styles" id="Btn_1_Filter_Admin_Home"
                 (click)="Sugerencia_Filter();GoBack();Remove_Element()">Sugerencias / Reclamos <img
-                    src="../../../MEDi/assets/icons/Filter_Icon.png"></button>
+                    src="{{custom.src}}icons/Filter_Icon.png"></button>
             <button class="Buttons3 buttons_3_add_styles" id="Btn_2_Filter_Admin_Home"
                 (click)="Denuncia_Filter();GoBack();Remove_Element()">Denuncias<img
-                    src="../../../MEDi/assets/icons/Filter_Icon.png"></button>
+                    src="{{custom.src}}icons/Filter_Icon.png"></button>
             <!---  <button class="Buttons3 buttons_3_add_styles" id="Btn_3_Filter_Admin_Home" (click)="Consulta_Filter();GoBack();Remove_Element()">Consultas<img src="../../../MEDi/assets/icons/Filter_Icon.png"></button> -->
             <button class="Buttons3 buttons_3_add_styles" id="Btn_4_Filter_Admin_Home"
                 (click)="Solicitud_Filter();GoBack();Remove_Element()">Solicitudes / Consultas<img
-                    src="../../../MEDi/assets/icons/Filter_Icon.png"></button>
+                    src="{{custom.src}}icons/Filter_Icon.png"></button>
             <!-- <button class="Buttons3 buttons_3_add_styles" id="Btn_5_Filter_Admin_Home" (click)="Reclamo_Filter();GoBack();Remove_Element()">Reclamos<img src="../../../MEDi/assets/icons/Filter_Icon.png"></button> -->
             <button class="Buttons3 buttons_3_add_styles" id="Btn_6_Filter_Admin_Home"
                 (click)="Todos_Filter();GoBack();Remove_Element()">Todos<img
-                    src="../../../MEDi/assets/icons/Filter_Icon.png"></button>
+                    src="{{custom.src}}icons/Filter_Icon.png"></button>
         </fieldset>
         <button class="Modified_Button" (click)="Activate_Help_Window()">Ayuda<img
-            src="../../../MEDi/assets/icons/info2.png"></button>
+            src="{{custom.src}}icons/info2.png"></button>
 
         <button class="Buttons buttons_3_add_styles" (click)="NavigateToHome()" *ngIf="this.LogIn3 == false">SALIR<img
-                src="../../../MEDi/assets/icons/Door_Icon.png"></button>
+                src="{{custom.src}}icons/Door_Icon.png"></button>
         <button class="Buttons buttons_3_add_styles" (click)="GoBack_Super_Admin()" *ngIf="this.LogIn3 == true">⇦
             REGRESAR</button>
     </aside>
@@ -113,15 +113,15 @@
             <div
                 style="display: flex; justify-content: start; align-items: center; margin: 0; width: 100%; height: 50%;">
                 <button class="Buttons buttons_add_styles" (click)="Get_Recientes();GoBack();Remove_Element()">
-                    Actualizar<img src="../../../MEDi/assets/icons/Reload.png">
+                    Actualizar<img src="{{custom.src}}icons/Reload.png">
                 </button>
                 <button class="Buttons buttons_add_styles" id="Btn_1_Header_Admin_Home"
                     (click)="Get_Recientes();GoBack();Remove_Element()">
-                    Recientes<img class="Filter_Icon_Button" src="../../../MEDi/assets/icons/Arrow_Down_Icon.png">
+                    Recientes<img class="Filter_Icon_Button" src="{{custom.src}}icons/Arrow_Down_Icon.png">
                 </button>
                 <button class="Buttons buttons_add_styles" id="Btn_2_Header_Admin_Home"
                     (click)="Get_Antiguos();GoBack();Remove_Element()">
-                    Antiguos<img src="../../../MEDi/assets/icons/Arrow_Down_Icon.png">
+                    Antiguos<img src="{{custom.src}}icons/Arrow_Down_Icon.png">
                 </button>
             </div>
             <div
@@ -129,19 +129,19 @@
 
                 <button class="Buttons buttons_add_styles" id="Btn_6_Header_Admin_Home"
                     (click)="Get_Pendientes();GoBack();Remove_Element()">
-                    Pendientes<img src="../../../MEDi/assets/icons/Filter_Icon.png">
+                    Pendientes<img src="{{custom.src}}icons/Filter_Icon.png">
                 </button>
                 <button class="Buttons buttons_add_styles" id="Btn_3_Header_Admin_Home"
                     (click)="Get_Iniciados();GoBack();Remove_Element()">
-                    Iniciados<img src="../../../MEDi/assets/icons/Filter_Icon.png">
+                    Iniciados<img src="{{custom.src}}icons/Filter_Icon.png">
                 </button>
                 <button class="Buttons buttons_add_styles" id="Btn_4_Header_Admin_Home"
                     (click)="Get_Demorados();GoBack();Remove_Element()">
-                    Demorados<img src="../../../MEDi/assets/icons/Filter_Icon.png">
+                    Demorados<img src="{{custom.src}}icons/Filter_Icon.png">
                 </button>
                 <button class="Buttons buttons_add_styles" id="Btn_5_Header_Admin_Home"
                     (click)="Get_Resueltos();GoBack();Remove_Element()">
-                    Resueltos<img src="../../../MEDi/assets/icons/Filter_Icon.png">
+                    Resueltos<img src="{{custom.src}}icons/Filter_Icon.png">
                 </button>
             </div>
             <p class="Filtros_Aplicados_Show">Filtros Aplicados: <br> <strong
@@ -152,7 +152,7 @@
         <div class="Bandeja_Entrada">
             <div id="Registro_Fila_Reclamo" class="Scroll_Box_Container">
                 <div id="Loader_Bandeja_Entrada">
-                    <img src="../../../MEDi/assets/icons/loader_2.gif">
+                    <img src="{{custom.src}}icons/loader_2.gif">
                 </div>
                 <div class="Register_Unit_2">
                     <div class="Box_1">
@@ -197,7 +197,8 @@
     Reclamo.conforme,
     Reclamo.feedback,
     Reclamo.comentario,
-    Reclamo.fecha_r
+    Reclamo.fecha_r,
+    Reclamo.seguimiento
                 ); Map_Inject_2()">
                     <div class="Box_1">
                         N° {{Reclamo.id}}
@@ -221,7 +222,7 @@
 
                 </div>
                 <div *ngIf="Reclamos_Filtrados.length === 0" class="No_Registros_Mensaje">
-                    <h1>Sin Registros <img src="../../../MEDi/assets/icons/Empty_icon.png"></h1>
+                    <h1>Sin Registros <img src="{{custom.src}}icons/Empty_icon.png"></h1>
                 </div>
                 <div *ngIf="Reclamos_Filtrados.length === 0" style="margin: 0; width: 100%;
                         height: 50vh;">
@@ -230,14 +231,14 @@
             <div id="Scroll_Box_Container_Open_Reclamo">
                 <div class="Controles_Visualizador_Reclamo">
                     <img class="Btns_Controls" (click)="GoBack();Remove_Element()"
-                        src="../../../MEDi/assets/icons/GoBack.png">
+                        src="{{custom.src}}icons/GoBack.png">
                     <img *ngIf="Estado_Rec === 'Pendiente'" class="Btns_Controls"
-                        src="../../../MEDi/assets/icons/Start_Icon.png" (click)="Open_Iniciar_Plazo_Window()">
+                        src="{{custom.src}}icons/Start_Icon.png" (click)="Open_Iniciar_Plazo_Window()">
                     <img *ngIf="Estado_Rec === 'Pendiente'" class="Btns_Controls" (click)="Get_Areas_Row()"
-                        src="../../../MEDi/assets/icons/Send_Icon.png">
-                    <img class="Btns_Controls" (click)="generarPDF()" src="../../../MEDi/assets/icons/PDF_Download.png">
+                        src="{{custom.src}}icons/Send_Icon.png">
+                    <img class="Btns_Controls" (click)="generarPDF()" src="{{custom.src}}icons/PDF_Download.png">
                     <img *ngIf="Estado_Rec == 'Iniciado' || Estado_Rec == 'Demorado'" class="Btns_Controls" (click)="Open_Close_Resuelto_Win_1()"
-                        src="../../../MEDi/assets/icons/Resuelto_Icon.png">
+                        src="{{custom.src}}icons/Resuelto_Icon.png">
                 </div>
                 <h2 class="Titulo_Visual">{{caracter_Rec}}: {{titulo_Rec}}</h2>
                 <h2 class="Numero_Visual">Identificador: {{numero_Rec}}</h2>
@@ -281,14 +282,14 @@
         <div class="Micro_Container">
             <div class="En_proceso" id="Process_Container_Map">
                 <div class="SIN_UBICACION" *ngIf="!Ubicacion_Existe">
-                    <img src="../../../MEDi/assets/icons/no_location.png">
+                    <img src="{{custom.src}}icons/no_location.png">
                 </div>
 
             </div>
             <div class="Estadistica_Basica">
-                <app-estadistica-admin class="Estadisticas_Basicas_c">
+                <app-estadistica-admin class="Estadisticas_Basicas_c" *ngIf="ESTADISTICA_ACTIVE">
                 </app-estadistica-admin>
-                <img id="Estadisticas_Loader" src="../../../MEDi/assets/icons/Estadisticas_Loader.gif">
+                <img id="Estadisticas_Loader" src="{{custom.src}}icons/Estadisticas_Loader.gif">
             </div>
         </div>
     </section>

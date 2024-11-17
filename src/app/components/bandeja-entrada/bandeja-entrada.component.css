@@ -1,11 +1,92 @@
 section {
-    padding: 0;
+    animation-name: Intro_Component;
+    animation-duration: 0.5s;
     margin: 0;
+    padding: 0 0 60px 0;
     width: 100%;
-    height: 100vh;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(40,40,40);
-    color: white;
+    flex-direction: column;
+    background-color: white;
+    h1 {
+        animation-name: Intro_Text;
+        animation-duration: .5s;
+        margin: 50px 0 0 0;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+        color: rgb(40,40,40);
+        font-family: Nunito;
+        font-weight: bold;
     }
+    p {
+        margin: 0;
+        color: rgb(80,80,80);
+        font-family: Nunito;
+    }
+}
+
+@media (min-width: 1001px) {
+    section {
+        width: 100%;
+        h1 {
+            font-size: 2.2vw;
+        }
+        h2 {
+            font-size: 1.7vw;
+        }
+        h4 {
+            font-size: 2vw;
+        }
+        p {
+            font-size: 1.2vw;
+        }
+        li {
+            font-size: 1.2vw;
+        }
+    }
+}
+@media (max-width: 1000px) {
+    section {
+        width: 100%;
+        h1 {
+            font-size: 140%;
+        }
+        h2 {
+            font-size: 100%;
+        }
+        h4 {
+            font-size: 100%;
+        }
+        p {
+            font-size: 100%;
+        }
+        li {
+            font-size: 100%;
+        }
+    }
+}
+
+@keyframes Intro_Component {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes Intro_Text {
+    from {
+        transform: translate(0, 100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}

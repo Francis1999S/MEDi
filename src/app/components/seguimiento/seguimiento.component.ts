@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
 import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-seguimiento',
   templateUrl: './seguimiento.component.html',
   styleUrl: './seguimiento.component.css'
 })
-export class SeguimientoComponent {
+export class SeguimientoComponent implements OnInit {
   Comunicacion: any;
   Seguimiento: any;
   Conformidad: any;
@@ -18,8 +19,21 @@ export class SeguimientoComponent {
   Marcado_Conforme: boolean = false;
   Opcion_Marcada: boolean = false;
 
+  feedback: string = '';
+
   Mensaje_Post_Valoracion: boolean = false;
-  constructor(private dataSerivce: DataService, public fb: FormBuilder) {
+
+  VALORACION_ACTIVE: boolean = false;
+
+  FORM_ACTIVE: boolean = true;
+
+  COMUNICACION_DETAILS: boolean = false;
+
+  codigoSeguimiento: string;
+  
+  flag_error: boolean = false;
+
+  constructor(private dataSerivce: DataService, public fb: FormBuilder, private route: ActivatedRoute) {
     this.Seguimiento = this.fb.group({
       seguimiento: [''],
     });
@@ -29,16 +43,28 @@ export class SeguimientoComponent {
       feedback: ['']
     });
   }
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      // Obtén el parámetro 'codigo' y conviértelo a número
+      const codigo = params.get('codigo');
+      if (codigo) {
+        this.codigoSeguimiento = codigo; 
+        if (!(this.codigoSeguimiento == '0')) {
+          this.Seguimiento.patchValue({seguimiento: this.codigoSeguimiento});
+          this.Buscar();
+        }
+      } else {
+        // Manejo de error o asignación de valor por defecto
+        this.codigoSeguimiento = 'Nulo';
+        this.flag_error = true;
+      }
+    });
+  }
   Buscar_Otro():void {
     this.Error_Mensaje = '';
-    var Form = document.getElementById('Formulario_Seguimiento_Comunicacion');
-    var Seguimiento = document.getElementById('Info_Seguimiento_Comunicacion');
-    var Mensaje_Gracias = document.getElementById('Mensaje_Resultado_Conformidad_Form_Seguimiento');
-    if (Form && Seguimiento && Mensaje_Gracias) {
-      Mensaje_Gracias.style.display = 'none';
-      Seguimiento.style.display = 'none';
-      Form.style.display = 'flex';
-    }
+    this.COMUNICACION_DETAILS = false;
+    this.FORM_ACTIVE = true;
+    this.VALORACION_ACTIVE = false;
   }
   Marcar_Conformidad(flag: boolean): void {
     this.Opcion_Marcada = true;
@@ -59,12 +85,9 @@ export class SeguimientoComponent {
     }
   }
   Enviar_Conformidad(): void {
-    var Mensaje = document.getElementById('Mensaje_Resultado_Conformidad_Form_Seguimiento');
     var Form = document.getElementById('Form_Conformidad_Seguimiento');
     if (!(this.Comunicacion[0].conforme === 'Aún sin valoración') && this.Comunicacion[0].estado === 'Resuelto') {
       this.Mensaje_Post_Valoracion = true;
-      
-
     }
     this.Conformidad.patchValue({ ID: this.Comunicacion[0].id});
     if (this.Marcado_Conforme) {
@@ -73,20 +96,18 @@ export class SeguimientoComponent {
       this.Conformidad.patchValue({ conforme: 'Inconforme'});
     }
     this.dataSerivce.Marcar_Conformidad(this.Conformidad.value).subscribe(data=> {
-if (Mensaje && Form) {
-  Mensaje.style.display = 'flex';
+      this.feedback = this.Conformidad.get('feedback').value;
+if (Form) {
   Form.style.display = 'none';
-  
 }
+this.VALORACION_ACTIVE = true;
     })
   }
   Buscar(): void {
     var Button = document.getElementById('Button_Buscar_Seguimiento');
     var Loader = document.getElementById('Loader_Seguimiento');
     var Inpupt = document.getElementById('Input_Codigo_Seguimiento');
-    var Seguimiento_Info = document.getElementById('Info_Seguimiento_Comunicacion');
-    var Seguimiento_Form = document.getElementById('Formulario_Seguimiento_Comunicacion');
-    if (this.Seguimiento.valid) {
+    if (this.Seguimiento.valid && this.Seguimiento.get('seguimiento').value.length == 15) {
     if (Inpupt && Loader && Button) {
       Inpupt.style.outline = '3px solid rgba(255, 0, 0, 0)';
       Loader.style.display = 'flex';
@@ -95,24 +116,22 @@ if (Mensaje && Form) {
       this.dataSerivce.Buscar_Con_Seguimiento(this.Seguimiento.value).subscribe( data => {
         this.Comunicacion = data;
         if (data.length === 0) {
-          if (Loader && Button && Seguimiento_Info && Seguimiento_Form) {
+          if (Loader && Button) {
             Loader.style.display = 'none';
             Button.style.display = 'flex';
           }
           this.Error_Mensaje = 'Comunicación Inexistente';
         } else {
-          if (Loader && Button && Seguimiento_Info && Seguimiento_Form) {
+          this.feedback = data[0].feedback;
+          if (Loader && Button) {
             Loader.style.display = 'none';
             Button.style.display = 'flex';
-            Seguimiento_Form.style.display = 'none';
-            Seguimiento_Info.style.display = 'flex';
           }
+          this.COMUNICACION_DETAILS = true;
+          this.FORM_ACTIVE = false;
           if (!(this.Comunicacion[0].conforme === 'Aún sin valoración') && this.Comunicacion[0].estado === 'Resuelto') {
             this.Mensaje_Post_Valoracion = true;
-            var Mensaje = document.getElementById('Mensaje_Resultado_Conformidad_Form_Seguimiento');
-            if (Mensaje) {
-              Mensaje.style.display = 'flex';
-            }
+            this.VALORACION_ACTIVE = true;
           }
           if (this.Comunicacion[0].fecha === this.Comunicacion[0].fecha_v) {
             this.Fecha_Vencimiento = 'Aún no ha sido definida';

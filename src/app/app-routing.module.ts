@@ -34,18 +34,18 @@ const routes: Routes = [
     { path: 'Estadisticas', component: EstadisticaComponent},
     { path: 'Bandeja-Entrada', component: BandejaEntradaComponent, canActivate: [loginGuard_2]},
     { path: 'Admin-Home', component: AdminHomeComponent, canActivate: [loginGuard_2]},
-    { path: 'Super-Admin', component: SuperAdminComponent,
+    { path: 'Super-Admin', component: SuperAdminComponent, canActivate: [loginGuard_2],
       children: [
         { path: 'Crear-Destinacion', component: CrearDestinacionComponent, canActivate: [loginGuard_3]},
         { path: 'Modificar-Destinacion', component: ModificarComponent, canActivate: [loginGuard_3]},
-        { path: 'Resumen', component: ResumenAdminComponent},
+        { path: 'Resumen', component: ResumenAdminComponent, canActivate: [loginGuard_3]},
         { path: 'Areas', component: AreasAdminComponent, canActivate: [loginGuard_3]},
-        { path: 'Comunicaciones', component: ComunicacionesAdminComponent},
+        { path: 'Comunicaciones', component: ComunicacionesAdminComponent, canActivate: [loginGuard_3]},
       ],
     },
     { path: 'Crear-Destinacion', component: CrearDestinacionComponent, canActivate: [loginGuard_3]},
     { path: 'Modificar-Destinacion', component: ModificarComponent, canActivate: [loginGuard_3]},
-    { path: 'Seguimiento', component: SeguimientoComponent},
+    { path: 'Seguimiento/:codigo', component: SeguimientoComponent},
     { path: '', redirectTo: '/Home', pathMatch: 'full' },
 ];
 

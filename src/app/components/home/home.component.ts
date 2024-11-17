@@ -61,6 +61,7 @@ CODIGO_FILES: string = '';
     {titulo: 'Acción Inválida', info: 'Debes completar todos los campos marcados como obligatorios (*) antes de enviar.'},
     {titulo: 'Acción Inválida', info: 'Primero debes marcar una ubicación en el mapa haciendo click o tocando sobre él.'},
     {titulo: 'Subir Archivo', info: 'Puedes subir alguna fotografía/Imagen o documento PDF que necesites adjuntar a tu comunicación.'},
+    {titulo: 'Correo de Notificación', info: 'Opcionalmente puedes dejar tu correo electrónico para que te avisemos cada vez que tu comunicación cambie de estado o sea resuelta.'}
   ];
   Areas_row: any;
   number_datos_module: string = '1';
@@ -110,7 +111,7 @@ CODIGO_FILES: string = '';
     this.custom.NAV_MENU_CELLPHONE = true;
     this.dataService.GetAllAreas().subscribe(Response => {
       this.Areas_row = Response;
-    })
+    });
     this.Map_Inject_1();
   }
 

@@ -54,12 +54,31 @@ if (isset($_GET["iniciar_verificar"])) {
             }
         }
 
-        // Actualizar la columna contador_dias para todos los registros con estado 'Iniciado' o 'Demorado'
-        $updateContadorDias = $conexionBD->prepare("UPDATE comunicacion SET contador_dias = contador_dias + 1 WHERE estado IN ('Iniciado', 'Demorado')");
-        $updateContadorDias->execute();
+// Actualizar la columna contador_dias para todos los registros con estado 'Iniciado' o 'Demorado'
+$updateContadorDias = $conexionBD->prepare("
+    UPDATE comunicacion 
+    SET contador_dias = TIMESTAMPDIFF(HOUR, CONCAT(fecha, ' ', hora), NOW()) / 24 
+    WHERE estado IN ('Iniciado', 'Demorado')
+");
+$updateContadorDias->execute();
+
+// Actualizar la columna contador_dias_p para todos los registros con estado 'Pendiente'
+$updateContadorDias2 = $conexionBD->prepare("
+    UPDATE comunicacion 
+    SET contador_dias_p = TIMESTAMPDIFF(HOUR, CONCAT(fecha, ' ', hora), NOW()) / 24 
+    WHERE estado IN ('Pendiente')
+");
+$updateContadorDias2->execute();
+
+
         
         if ($updateContadorDias->errno) {
             echo json_encode(["success" => 0, "message" => "Error al actualizar la columna contador_dias: " . $updateContadorDias->error]);
+            exit();
+        }
+
+        if ($updateContadorDias2->errno) {
+            echo json_encode(["success" => 0, "message" => "Error al actualizar la columna contador_dias_p: " . $updateContadorDias->error]);
             exit();
         }
 

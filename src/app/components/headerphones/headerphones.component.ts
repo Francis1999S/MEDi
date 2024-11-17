@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CustomService } from '../../custom.service';
 
 @Component({
   selector: 'app-headerphones',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderphonesComponent {
   flag_menu: boolean = false;
-  constructor(private router: Router) { }
+  constructor(private router: Router, public custom: CustomService) { }
   navigateToHome() {
     this.router.navigate(['/Home']);
     var Menu = document.getElementById('Menu_Cellphones');
@@ -37,7 +38,7 @@ export class HeaderphonesComponent {
     this.openMenu();
   }
   navigateTosSeguimiento() {
-    this.router.navigate(['/Seguimiento']);
+    this.router.navigate(['/Seguimiento/0']);
     this.openMenu();
   }
   navigateToEstadisticas() {

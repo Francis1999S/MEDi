@@ -53,7 +53,7 @@ section {
     #Info_Seguimiento_Comunicacion {
         animation-name: Intro_Component;
         animation-duration: 0.5s;
-        display: none;
+        display: flex;
     }
     #Formulario_Seguimiento_Comunicacion {
         animation-name: Intro_Component;
@@ -174,7 +174,7 @@ section {
     }
 }
 .Marcar_Conformidad_Box {
-    display: none;
+    display: flex;
 }
 .Marcar_Conformidad_Box_2 {
     display: flex;
@@ -246,7 +246,7 @@ textarea {
     border: none;
     outline: none;
     width: 90%;
-    background-color: rgb(200,200,200);
+    background-color: rgb(230,230,230);
     color: rgb(50,50,50);
     height: 180px;
     border-radius: 5px;
