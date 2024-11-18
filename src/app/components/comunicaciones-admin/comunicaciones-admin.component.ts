@@ -32,6 +32,12 @@ export class ComunicacionesAdminComponent implements OnInit {
   Array_Areas_Select: any;
   AREA_INDEX: number = 0;
 
+  FILTER_KEY_1: number = 5;
+  FILTER_KEY_2: number = -1;
+  FILTER_KEY_3: number = 0;
+
+  FILTRO_RAPIDO: boolean = false;
+
 
 
   constructor(private DS: DataService, public custom: CustomService, public fb: FormBuilder){
@@ -73,8 +79,9 @@ export class ComunicacionesAdminComponent implements OnInit {
   }
 
   Filtrar_Comunicaciones(): void {
-    setTimeout(() => {
-      var key = this.Dash_Form.get('key').value;
+    if (this.FILTRO_RAPIDO) {
+      this.FILTRO_RAPIDO = false;
+      var key = this.FILTER_KEY_1.toString();
       switch (key) {
         case '1':
           this.Titulo_Filtro_2 = 'Estado: Pendientes';
@@ -99,38 +106,88 @@ export class ComunicacionesAdminComponent implements OnInit {
         default:
           break;
       }
-    }, 100);
+    } else {
+      setTimeout(() => {
+        var key = this.Dash_Form.get('key').value;
+        this.FILTER_KEY_1 = key;
+        switch (key) {
+          case '1':
+            this.Titulo_Filtro_2 = 'Estado: Pendientes';
+            this.Array_Filtrado = this.Array_Filtrado_Areas.filter(comun => comun.estado == 'Pendiente');
+            break;
+            case '2':
+                   this.Titulo_Filtro_2 = 'Estado: Iniciados';
+              this.Array_Filtrado = this.Array_Filtrado_Areas.filter(comun => comun.estado == 'Iniciado');
+            break;
+            case '3':
+                   this.Titulo_Filtro_2 = 'Estado: Demorados';
+              this.Array_Filtrado = this.Array_Filtrado_Areas.filter(comun => comun.estado == 'Demorado');
+            break;
+            case '4':
+                   this.Titulo_Filtro_2 = 'Estado: Resueltos';
+              this.Array_Filtrado = this.Array_Filtrado_Areas.filter(comun => comun.estado == 'Resuelto');
+            break;
+            case '5':
+                   this.Titulo_Filtro_2 = 'Estado: Todos';
+              this.Array_Filtrado = this.Array_Filtrado_Areas;
+            break;
+          default:
+            break;
+        }
+      }, 100);
+    }
+
   }
 
   Filtrar_Comunicaciones2(): void {
     setTimeout(() => {
       var key = this.Dash_Form.get('key2').value;
+      this.FILTER_KEY_2 = key;
       if (key < 0) {
         this.Titulo_Filtro = 'Área: Mostrando Todo';
-        this.Titulo_Filtro_2 = 'Estado: Todos';
-        this.Dash_Form.patchValue({key: '5'});
+        this.FILTRO_RAPIDO = true;
         this.Array_Filtrado = this.Array_Comunicaciones;
         this.Array_Filtrado_Areas = this.Array_Comunicaciones;
+        this.Dash_Form.patchValue({key: this.FILTER_KEY_1, key3: this.FILTER_KEY_3});
+        this.Filtrar_Comunicaciones();
+        this.Filtrar_Comunicaciones3();
       } else {
+        this.FILTRO_RAPIDO = true;
         this.Titulo_Filtro = 'Área: ' + this.Array_Areas_Select[key].nombre_area;
         this.Array_Filtrado = this.Array_Comunicaciones.filter(comun => comun.destinacion == this.Array_Areas_Select[key].clave_poder);
         this.Array_Filtrado_Areas = this.Array_Comunicaciones.filter(comun => comun.destinacion == this.Array_Areas_Select[key].clave_poder);
+        this.Dash_Form.patchValue({key: this.FILTER_KEY_1, key3: this.FILTER_KEY_3});
+        console.log(this.FILTER_KEY_1, this.FILTER_KEY_3);
+        this.Filtrar_Comunicaciones();
+        this.Filtrar_Comunicaciones3();
       }
     }, 100); 
   }
 
   Filtrar_Comunicaciones3(): void {
-    setTimeout(() => {
-      var key = this.Dash_Form.get('key3').value;
-      if (key == 0) {
-        this.Titulo_Filtro_3 = 'Orden: Más Recientes';
-        this.Array_Filtrado.sort((a, b) => b.id - a.id);
-      } else {
-        this.Titulo_Filtro_3 = 'Orden: Más Antiguos';
-        this.Array_Filtrado.sort((a, b) => a.id - b.id);
-      }
+    if (this.FILTRO_RAPIDO) {
+      this.FILTRO_RAPIDO = false;
+        if (this.FILTER_KEY_1 == 0) {
+          this.Titulo_Filtro_3 = 'Orden: Más Recientes';
+          this.Array_Filtrado.sort((a, b) => b.id - a.id);
+        } else {
+          this.Titulo_Filtro_3 = 'Orden: Más Antiguos';
+          this.Array_Filtrado.sort((a, b) => a.id - b.id);
+        }
+    } else {
+      setTimeout(() => {
+        var key = this.Dash_Form.get('key3').value;
+        this.FILTER_KEY_3 = key;
+        if (key == 0) {
+          this.Titulo_Filtro_3 = 'Orden: Más Recientes';
+          this.Array_Filtrado.sort((a, b) => b.id - a.id);
+        } else {
+          this.Titulo_Filtro_3 = 'Orden: Más Antiguos';
+          this.Array_Filtrado.sort((a, b) => a.id - b.id);
+        }
+      }, 100);
+    }
 
-    }, 100);
   }
 
   VisualizarComunicacion(index: number): void {
