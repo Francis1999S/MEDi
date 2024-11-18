@@ -98,7 +98,9 @@
     padding: 0;
     width: 98%;
     height: 130px;
-    background-color: rgb(255, 120, 50);
+    background: rgb(255,149,95);
+    background: linear-gradient(270deg, rgba(255,149,95,1) 0%, rgba(255,120,50,1) 100%);
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: space-between;
     align-items: center;

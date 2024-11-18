@@ -109,7 +109,8 @@
     <aside class="Side_Bar" id="PANEL_DASH">
         <div class="Buttons_Bar">
             <div class="Top_Box">
-                <img class="Logo_MEDI" src="{{custom.src}}img/centro_de_reclamo_logon1.png" alt="Logo">
+                <img class="Logo_MEDI_2" src="{{custom.src}}img/Centro_Reclamos_Logon_Small.png" alt="Logo" *ngIf="!PanelShow">
+                <img class="Logo_MEDI" src="{{custom.src}}img/centro_de_reclamo_logon1.png" alt="Logo" *ngIf="PanelShow">
                 <div style="width: 90%; height: 1px; background-color: rgb(255, 120, 50); margin: 0 0 0 5%;"></div>
                 <button class="Dash_Buttons" (click)="navigate.ToHome()">
                     <img src="{{custom.src}}icons/Door_Icon.png" alt="Icon">

@@ -774,7 +774,7 @@ position: absolute;
     left: 0;
     width: 300px;
     height: 100%;
-    background-color: rgb(255,255,255);
+    background-color: rgb(255, 212, 191);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     z-index: 5;
@@ -795,10 +795,18 @@ position: absolute;
             display: block;
             overflow-y: scroll;
             scrollbar-width: thin;
-            scrollbar-color: rgb(255, 120, 50) white;
+            scrollbar-color: rgb(255, 120, 50) rgb(255, 212, 191);
             .Logo_MEDI {
+                animation-name: Intro_Logon;
+                animation-duration: 2s;
                 padding: 20px 0 20px 2.1%;
                 width: 95%;
+            }
+            .Logo_MEDI_2 {
+                animation-name: Intro_Logon;
+                animation-duration: 2s;
+                padding: 23px 0 24px 10px;
+                width: 50px;
             }
         }
         .Bottom_Box {
@@ -847,4 +855,15 @@ position: absolute;
     transition: .1s;
     scale: 0.9;
     filter: brightness(50%);
+}
+
+@keyframes Intro_Logon {
+    from {
+        opacity: 0;
+        scale: 0.9;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
 }

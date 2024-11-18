@@ -45,7 +45,7 @@
         }
     }
     .Titulos_Comunicaciones {
-        height: 10%;
+        height: 5%;
         p {
             font-size: 100%;
         }
@@ -93,7 +93,7 @@
         margin: 0 5px 0 0;
     }
     .Container_Scroll {
-        height: 80%;
+        height: 85%;
     }
     .Card_Comunication {
         width: 80%;

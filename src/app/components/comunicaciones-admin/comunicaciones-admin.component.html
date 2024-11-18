@@ -52,9 +52,14 @@
          
         </div>
     </div>
-    <h1 style="margin: 40px 0 0 0; font-size: 130%; color: rgb(40,40,40); font-family: Nunito; font-weight: bold;">Comunicaciones</h1>
+    <h1 style="margin: 40px 0 0 0; font-size: 190%; color: rgb(40,40,40); font-family: Nunito; font-weight: bold;">Comunicaciones</h1>
     <div class="Container">
         <form class="Control_Comunicaciones" [formGroup]="Dash_Form">
+            <select (change)="Filtrar_Comunicaciones2()" title="Filtrar Comunicaciones" formControlName="key2" >
+                <option value="" disabled selected>Filtrar por Área</option>
+                <option value="-1">Todas</option>
+                <option value="{{i}}" *ngFor="let area of Array_Areas_Select, let i = index">{{area.nombre_area}}</option>
+            </select>
             <select (change)="Filtrar_Comunicaciones()" title="Filtrar Comunicaciones" formControlName="key" >
                 <option value="" disabled selected>Filtrar por Estado</option>
                 <option value="1">Pendientes</option>
@@ -62,11 +67,6 @@
                 <option value="3">Demorados</option>
                 <option value="4">Resueltos</option>
                 <option value="5">Todos</option>
-            </select>
-            <select (change)="Filtrar_Comunicaciones2()" title="Filtrar Comunicaciones" formControlName="key2" >
-                <option value="" disabled selected>Filtrar por Área</option>
-                <option value="-1">Todas</option>
-                <option value="{{i}}" *ngFor="let area of Array_Areas_Select, let i = index">{{area.nombre_area}}</option>
             </select>
             <select (change)="Filtrar_Comunicaciones3()" title="Filtrar Comunicaciones" formControlName="key3" >
                 <option value="" disabled selected>Ordenar por</option>
