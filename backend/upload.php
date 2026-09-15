@@ -4,11 +4,11 @@
 //   header("Access-Control-Allow-Origin: $allowed_origin");
 
 // Acceso sin restricción al backend-
-   header("Access-Control-Allow-Origin: *");
-   header("Access-Control-Allow-Headers: access");
-   header("Access-Control-Allow-Methods: GET,POST");
-   header("Content-Type: application/json; charset=UTF-8");
-   header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: access");
+header("Access-Control-Allow-Methods: GET,POST");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // Directorio donde se guardarán los archivos
 $directorio_destino1 = "Files/";
@@ -24,7 +24,7 @@ if (isset($_FILES['file1'])) {
 
     // Obtener el nombre del archivo
     $nombre_archivo1 = basename($archivo1['name']);
-    
+
     $ruta_archivo1 = $directorio_destino1 . $nombre_archivo1;
 
     // Mover el archivo al directorio de destino

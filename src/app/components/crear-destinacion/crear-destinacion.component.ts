@@ -20,12 +20,12 @@ export class CrearDestinacionComponent implements OnInit {
   Codigo_Enviado: boolean = false;
 
   ////////Array de Usuarios Existentes/////////////
-Array_All_Users: string[] = [];
+  Array_All_Users: string[] = [];
 
-/////////Array de Areas Existentes///////////////
-Array_All_Areas: any[] = [];
+  /////////Array de Areas Existentes///////////////
+  Array_All_Areas: any[] = [];
 
-Nombre_area_2: string = '';
+  Nombre_area_2: string = '';
 
   ///////////Manejo de Errores por Mensaje/////////////
 
@@ -44,6 +44,7 @@ Nombre_area_2: string = '';
       clave_poder: [''],
       rol: [''],
       nombre: [''],
+      operador: [''],
       iniciados: [''],
       demorados: [''],
       resueltos: [''],
@@ -55,16 +56,16 @@ Nombre_area_2: string = '';
   }
   ngOnInit(): void {
     this.Codigo_Verificacion_Email = this.generarCodigo(8);
-    this.nueva_area.patchValue({ codigo_verif: this.Codigo_Verificacion_Email});
+    this.nueva_area.patchValue({ codigo_verif: this.Codigo_Verificacion_Email });
     this.Cambio_Interfaz(1);
-    this.dataService.GetAllUsers().subscribe(data=> {
+    this.dataService.GetAllUsers().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
         this.Array_All_Users.push(data[i].user);
       }
     });
-    this.dataService.GetAllAreas().subscribe(data=> {
+    this.dataService.GetAllAreas().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
-          this.Array_All_Areas.push(data[i].nombre_area);
+        this.Array_All_Areas.push(data[i].nombre_area);
       }
     });
   }
@@ -72,6 +73,8 @@ Nombre_area_2: string = '';
   Descripcion: string = '';
   User: string = '';
   Password: string = '';
+  Nombre_responsable: string = '';
+  Nombre_operador: string = '';
 
   Cambio_Interfaz(interfaz: number): void {
     var Section_1 = document.getElementById('Create_Area_Container_1');
@@ -165,16 +168,16 @@ Nombre_area_2: string = '';
             Error_Display_2.style.opacity = '1';
           }
         } else {
-        if (this.nueva_area.get('codigo_verif_2').value === this.Codigo_Verificacion_Email) {
-          this.Cambio_Interfaz(3);
+          if (this.nueva_area.get('codigo_verif_2').value === this.Codigo_Verificacion_Email) {
+            this.Cambio_Interfaz(3);
 
-        } else {
-          this.error2 = '¡El Código de Verificación es Incorrecto!'
-          if (Error_Display_2) {
-            Error_Display_2.style.opacity = '1';
+          } else {
+            this.error2 = '¡El Código de Verificación es Incorrecto!'
+            if (Error_Display_2) {
+              Error_Display_2.style.opacity = '1';
+            }
           }
         }
-      }
         if (this.nueva_area.get('email').value.length < 5) {
           this.error2 = '¡Ingresa tu Email y Envía el Código!'
           console.log('Email Vacio');
@@ -190,9 +193,11 @@ Nombre_area_2: string = '';
             flag_user_exist = true;
           }
         }
-        if (flag_user_exist === false && this.nueva_area.get('pass').value.length > 7 && this.nueva_area.get('pass').value === this.nueva_area.get('pass2').value && !(this.nueva_area.get('pass').value.indexOf(' ') !== -1) && !(this.nueva_area.get('user').value.length < 5) && !(this.nueva_area.get('user').value.indexOf(' ') !== -1)) {
+        if (flag_user_exist === false && this.nueva_area.get('pass').value.length > 7 && this.nueva_area.get('pass').value === this.nueva_area.get('pass2').value && !(this.nueva_area.get('pass').value.indexOf(' ') !== -1) && !(this.nueva_area.get('user').value.length < 5) && !(this.nueva_area.get('user').value.indexOf(' ') !== -1) && this.nueva_area.get('nombre').value.length > 5 && this.nueva_area.get('operador').value.length > 5) {
           this.Nombre_area = this.nueva_area.get('nombre_area').value;
           this.Descripcion = this.nueva_area.get('descripcion').value;
+          this.Nombre_responsable = this.nueva_area.get('nombre').value;
+          this.Nombre_operador = this.nueva_area.get('operador').value;
           this.User = this.nueva_area.get('user').value;
           this.Password = this.nueva_area.get('pass').value;
           this.Cambio_Interfaz(4);
@@ -222,6 +227,18 @@ Nombre_area_2: string = '';
           }
           if (this.nueva_area.get('pass').value.length < 8) {
             this.error3 = 'Error: Longitud de contraseña inválida';
+            if (Error_Display_3) {
+              Error_Display_3.style.opacity = '1';
+            }
+          }
+          if (this.nueva_area.get('nombre').value.length < 6) {
+            this.error3 = 'Error: Longitud de nombre inválida';
+            if (Error_Display_3) {
+              Error_Display_3.style.opacity = '1';
+            }
+          }
+          if (this.nueva_area.get('operador').value.length < 6) {
+            this.error3 = 'Error: Longitud de operador inválida';
             if (Error_Display_3) {
               Error_Display_3.style.opacity = '1';
             }
@@ -256,7 +273,6 @@ Nombre_area_2: string = '';
     this.nueva_area.patchValue({ demorados: 0 });
     this.nueva_area.patchValue({ resueltos: 0 });
     this.nueva_area.patchValue({ eliminados: 0 });
-    this.nueva_area.patchValue({ nombre: 'Usuario Administrador' });
     this.nueva_area.patchValue({ rol: 'Recepcionar y Administrar las comunicaciones destinadas a ' + this.Nombre_area });
     const New_Code: string = this.generarCodigo(15);
     this.nueva_area.patchValue({ clave_poder: New_Code });

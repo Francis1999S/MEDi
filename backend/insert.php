@@ -3,14 +3,17 @@
 //  $allowed_origin = "https://tinogasta.gob.ar";
 //  header("Access-Control-Allow-Origin: $allowed_origin");
 // Acceso sin restricción al backend-
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Headers: access");
-    header("Access-Control-Allow-Methods: GET,POST");
-    header("Content-Type: application/json; charset=UTF-8");
-    header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: access");
+header("Access-Control-Allow-Methods: GET,POST");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // Conecta a la base de datos  con usuario, contraseña y nombre de la BD
-$servidor = "localhost"; $usuario = "j8000542_reclam"; $contrasenia = "01voMIgima"; $nombreBaseDatos = "j8000542_reclam";
+$servidor = "localhost";
+$usuario = "u638824328_medi";
+$contrasenia = "#4?q2GRToT";
+$nombreBaseDatos = "u638824328_medi";
 $conexionBD = new mysqli($servidor, $usuario, $contrasenia, $nombreBaseDatos);
 
 // Establecer la codificación de caracteres
@@ -25,19 +28,19 @@ if (isset($_GET["Get_All_Reclamos"])) {
 }
 
 if (isset($_GET["Get_All_Reclamos_2"])) {
-   $sqlUsuarios = mysqli_query($conexionBD, "
+    $sqlUsuarios = mysqli_query($conexionBD, "
    SELECT c.*, d.nombre_area 
    FROM comunicacion c
    JOIN destinaciones d ON c.destinacion = d.clave_poder
    ORDER BY id DESC;
 ");
 
-// Obtenemos todos los resultados en formato asociativo
-$usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
+    // Obtenemos todos los resultados en formato asociativo
+    $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
 
-// Convertimos el resultado en formato JSON y lo mostramos
-echo json_encode($usuarios);
-exit();
+    // Convertimos el resultado en formato JSON y lo mostramos
+    echo json_encode($usuarios);
+    exit();
 }
 
 if (isset($_GET["Get_Reclamos_Pendientes"])) {
@@ -49,10 +52,10 @@ if (isset($_GET["Get_Reclamos_Pendientes"])) {
         WHERE c.estado = 'Pendiente'
         ORDER BY id DESC;
     ");
-    
+
     // Obtenemos todos los resultados en formato asociativo
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
-    
+
     // Convertimos el resultado en formato JSON y lo mostramos
     echo json_encode($usuarios);
     exit();
@@ -66,10 +69,10 @@ if (isset($_GET["Get_Reclamos_Iniciados"])) {
         WHERE c.estado = 'Iniciado'
         ORDER BY id DESC;
     ");
-    
+
     // Obtenemos todos los resultados en formato asociativo
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
-    
+
     // Convertimos el resultado en formato JSON y lo mostramos
     echo json_encode($usuarios);
     exit();
@@ -83,10 +86,10 @@ if (isset($_GET["Get_Reclamos_Demorados"])) {
         WHERE c.estado = 'Demorado'
         ORDER BY id DESC;
     ");
-    
+
     // Obtenemos todos los resultados en formato asociativo
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
-    
+
     // Convertimos el resultado en formato JSON y lo mostramos
     echo json_encode($usuarios);
     exit();
@@ -100,10 +103,10 @@ if (isset($_GET["Get_Reclamos_Resueltos"])) {
         WHERE c.estado = 'Resuelto'
         ORDER BY id DESC;
     ");
-    
+
     // Obtenemos todos los resultados en formato asociativo
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
-    
+
     // Convertimos el resultado en formato JSON y lo mostramos
     echo json_encode($usuarios);
     exit();
@@ -125,7 +128,7 @@ if (isset($_GET["Suma_Promedios_Areas"])) {
     // Verificar si hay registros
     if ($sqlPromedio) {
         $resultados = [];
-        
+
         // Recorrer los resultados
         while ($fila = $sqlPromedio->fetch_assoc()) {
             $resultados[] = [
@@ -147,7 +150,7 @@ if (isset($_GET["Suma_Promedios_Areas"])) {
 
 if (isset($_GET["Get_Area_Reclamos"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $clave_poder=$data->clave_poder;
+    $clave_poder = $data->clave_poder;
 
     $sqlUsuarios = mysqli_query($conexionBD, "SELECT * FROM `comunicacion` WHERE destinacion = '$clave_poder' ORDER BY id DESC;");
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
@@ -156,7 +159,7 @@ if (isset($_GET["Get_Area_Reclamos"])) {
 }
 if (isset($_GET["Get_Antiguos"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $clave_poder=$data->clave_poder;
+    $clave_poder = $data->clave_poder;
 
     $sqlUsuarios = mysqli_query($conexionBD, "SELECT * FROM `comunicacion` WHERE destinacion = '$clave_poder';");
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
@@ -165,7 +168,7 @@ if (isset($_GET["Get_Antiguos"])) {
 }
 if (isset($_GET["Get_Pendientes"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $clave_poder=$data->clave_poder;
+    $clave_poder = $data->clave_poder;
 
     $sqlUsuarios = mysqli_query($conexionBD, "SELECT * FROM `comunicacion` WHERE estado = 'Pendiente' AND destinacion = '$clave_poder';");
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
@@ -174,7 +177,7 @@ if (isset($_GET["Get_Pendientes"])) {
 }
 if (isset($_GET["Get_Iniciados"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $clave_poder=$data->clave_poder;
+    $clave_poder = $data->clave_poder;
 
     $sqlUsuarios = mysqli_query($conexionBD, "SELECT * FROM `comunicacion` WHERE estado = 'Iniciado' AND destinacion = '$clave_poder';");
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
@@ -183,7 +186,7 @@ if (isset($_GET["Get_Iniciados"])) {
 }
 if (isset($_GET["Get_Demorados"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $clave_poder=$data->clave_poder;
+    $clave_poder = $data->clave_poder;
 
     $sqlUsuarios = mysqli_query($conexionBD, "SELECT * FROM `comunicacion` WHERE estado = 'Demorado' AND destinacion = '$clave_poder';");
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
@@ -192,7 +195,7 @@ if (isset($_GET["Get_Demorados"])) {
 }
 if (isset($_GET["Get_Resueltos"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $clave_poder=$data->clave_poder;
+    $clave_poder = $data->clave_poder;
 
     $sqlUsuarios = mysqli_query($conexionBD, "SELECT * FROM `comunicacion` WHERE estado = 'Resuelto' AND destinacion = '$clave_poder';");
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
@@ -202,16 +205,17 @@ if (isset($_GET["Get_Resueltos"])) {
 
 if (isset($_GET["Get_Usuarios"])) {
     // Consulta SQL con JOIN para obtener todos los usuarios y su nombre_area correspondiente
-    $sqlUsuarios = mysqli_query($conexionBD, 
+    $sqlUsuarios = mysqli_query(
+        $conexionBD,
         "SELECT usuario.*, destinaciones.nombre_area 
          FROM usuario 
          LEFT JOIN destinaciones 
          ON usuario.clave_poder = destinaciones.clave_poder;"
     );
-    
+
     // Obtener todos los resultados
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
-    
+
     // Convertir los datos a formato JSON y enviarlos como respuesta
     echo json_encode($usuarios);
     exit();
@@ -232,10 +236,10 @@ if (isset($_GET["Get_Areas"])) {
         LEFT JOIN comunicacion AS c ON d.clave_poder = c.destinacion
         GROUP BY d.clave_poder, c.destinacion
     ");
-    
+
     // Obtener los resultados
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
-    
+
     // Enviar como JSON
     echo json_encode($usuarios);
     exit();
@@ -278,29 +282,29 @@ if (isset($_GET["get_estadistica"])) {
         LEFT JOIN comunicacion ON comunicacion.estado = estados.estado
         GROUP BY estados.estado
     ");
-    
+
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
     echo json_encode($usuarios);
     exit();
 }
 
 
-if(isset($_GET["Buscar_Con_Seguimiento"])){
+if (isset($_GET["Buscar_Con_Seguimiento"])) {
     $data = json_decode(file_get_contents("php://input"));
     $seguimiento = mysqli_real_escape_string($conexionBD, $data->seguimiento);
 
-   // $seguimiento=$data->seguimiento;
+    // $seguimiento=$data->seguimiento;
 
     $sqlUsuarios = mysqli_query($conexionBD, "SELECT * FROM `comunicacion` WHERE seguimiento = '$seguimiento' LIMIT 1;");
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
     echo json_encode($usuarios);
     exit();
 }
-if(isset($_GET["delegar"])){
+if (isset($_GET["delegar"])) {
     $data = json_decode(file_get_contents("php://input"));
     // Obtener los datos del objeto JSON
-    $destinacion=$data->destinacion;
-    $ID=$data->ID;
+    $destinacion = $data->destinacion;
+    $ID = $data->ID;
     // Verificar si alguno de los campos está vacío
     if (empty($destinacion)) {
         // Devolver un mensaje de error si algún campo está vacío
@@ -318,13 +322,13 @@ if(isset($_GET["delegar"])){
     }
 }
 
-if(isset($_GET["seguimiento"])){
+if (isset($_GET["seguimiento"])) {
     $data = json_decode(file_get_contents("php://input"));
     $seguimiento = mysqli_real_escape_string($conexionBD, $data->seguimiento);
     $cod_conf = mysqli_real_escape_string($conexionBD, $data->cod_conf);
 
     // $seguimiento=$data->seguimiento;
-   //  $cod_conf=$data->cod_conf;
+    //  $cod_conf=$data->cod_conf;
     // Verificar si alguno de los campos está vacío
     if (empty($cod_conf)) {
         // Devolver un mensaje de error si algún campo está vacío
@@ -341,12 +345,14 @@ if(isset($_GET["seguimiento"])){
     }
 }
 
-if(isset($_GET["Modificar_Destinacion"])){
+if (isset($_GET["Modificar_Destinacion"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $clave_poder=$data->clave_poder;
-    $nombre_area=$data->nombre_area;
-    $descripcion=$data->descripcion;
-    $email=$data->email;
+    $clave_poder = $data->clave_poder;
+    $nombre_area = $data->nombre_area;
+    $descripcion = $data->descripcion;
+    $nombre_responsable = $data->nombre_responsable;
+    $operador = $data->nombre_operador;
+    $email = $data->email;
     // Verificar si alguno de los campos está vacío
     if (empty($clave_poder)) {
         // Devolver un mensaje de error si algún campo está vacío
@@ -355,7 +361,9 @@ if(isset($_GET["Modificar_Destinacion"])){
         // Si todos los campos tienen valores, realizar la inserción en la base de datos
         $insert_sql = "UPDATE `destinaciones` SET nombre_area = '$nombre_area', descripcion = '$descripcion', email = '$email' WHERE clave_poder = '$clave_poder'";
 
-        if ($conexionBD->query($insert_sql) === TRUE) {
+        $insert_sql_2 = "UPDATE usuario SET nombre = '$nombre_responsable', operador = '$operador' WHERE clave_poder = '$clave_poder'";
+
+        if ($conexionBD->query($insert_sql) === TRUE && $conexionBD->query($insert_sql_2) === TRUE) {
             echo json_encode(["success" => 1, "message" => "El Area se ha modificado exitosamente"]);
         } else {
             echo json_encode(["error" => "Error al modificar el area: " . $conexionBD->error]);
@@ -363,15 +371,15 @@ if(isset($_GET["Modificar_Destinacion"])){
     }
 }
 
-if(isset($_GET["Marcar_Conformidad"])){
+if (isset($_GET["Marcar_Conformidad"])) {
     $data = json_decode(file_get_contents("php://input"));
     $ID = mysqli_real_escape_string($conexionBD, $data->ID);
     $conforme = mysqli_real_escape_string($conexionBD, $data->conforme);
     $feedback = mysqli_real_escape_string($conexionBD, $data->feedback);
 
-   // $ID=$data->ID;
-   // $conforme=$data->conforme;
-   // $feedback=$data->feedback;
+    // $ID=$data->ID;
+    // $conforme=$data->conforme;
+    // $feedback=$data->feedback;
     // Verificar si alguno de los campos está vacío
     if (empty($conforme)) {
         // Devolver un mensaje de error si algún campo está vacío
@@ -388,9 +396,9 @@ if(isset($_GET["Marcar_Conformidad"])){
     }
 }
 //Inserta un nuevo registro
-if(isset($_GET["insertar"])){
-$fecha_actual = date('Y-m-d'); // Guarda la fecha en formato Año-Mes-Día
-$hora_actual = date('H:i:s'); // Guarda la hora en formato Horas:Minutos:Segundos
+if (isset($_GET["insertar"])) {
+    $fecha_actual = date('Y-m-d'); // Guarda la fecha en formato Año-Mes-Día
+    $hora_actual = date('H:i:s'); // Guarda la hora en formato Horas:Minutos:Segundos
 
     $data = json_decode(file_get_contents("php://input"));
     // Obtener los datos del objeto JSON
@@ -402,37 +410,37 @@ $hora_actual = date('H:i:s'); // Guarda la hora en formato Horas:Minutos:Segundo
     $ubicacion_2 = mysqli_real_escape_string($conexionBD, $data->ubicacion_2);
     $destinacion = mysqli_real_escape_string($conexionBD, $data->destinacion);
 
-        //////Personal Data//////
-        $nombre = mysqli_real_escape_string($conexionBD, $data->nombre);
-        $telefono = mysqli_real_escape_string($conexionBD, $data->telefono);
-        $email = mysqli_real_escape_string($conexionBD, $data->email);
-        $domicilio = mysqli_real_escape_string($conexionBD, $data->domicilio);
+    //////Personal Data//////
+    $nombre = mysqli_real_escape_string($conexionBD, $data->nombre);
+    $telefono = mysqli_real_escape_string($conexionBD, $data->telefono);
+    $email = mysqli_real_escape_string($conexionBD, $data->email);
+    $domicilio = mysqli_real_escape_string($conexionBD, $data->domicilio);
 
-       ////Form Data/////
-       $fecha = $fecha_actual;
-       $hora = $hora_actual;
-       $estado = mysqli_real_escape_string($conexionBD, $data->estado);
-       $plazo_resolucion = mysqli_real_escape_string($conexionBD, $data->plazo_resolucion);
-       $vencimientos = mysqli_real_escape_string($conexionBD, $data->vencimientos);
-       $anonimo = mysqli_real_escape_string($conexionBD, $data->anonimo);
-       $fecha_v = $fecha_actual;
-       $cod_conf = mysqli_real_escape_string($conexionBD, $data->cod_conf);
+    ////Form Data/////
+    $fecha = $fecha_actual;
+    $hora = $hora_actual;
+    $estado = mysqli_real_escape_string($conexionBD, $data->estado);
+    $plazo_resolucion = mysqli_real_escape_string($conexionBD, $data->plazo_resolucion);
+    $vencimientos = mysqli_real_escape_string($conexionBD, $data->vencimientos);
+    $anonimo = mysqli_real_escape_string($conexionBD, $data->anonimo);
+    $fecha_v = $fecha_actual;
+    $cod_conf = mysqli_real_escape_string($conexionBD, $data->cod_conf);
 
-   // $fecha=$data->fecha;
-   // $hora=$data->hora;
-   // $estado=$data->estado;
-   // $plazo_resolucion=$data->plazo_resolucion;
-   // $vencimientos=$data->vencimientos;
-   // $anonimo=$data->anonimo;
-   // $fecha_v=$data->fecha_v;
-   // $cod_conf=$data->cod_conf;
+    // $fecha=$data->fecha;
+    // $hora=$data->hora;
+    // $estado=$data->estado;
+    // $plazo_resolucion=$data->plazo_resolucion;
+    // $vencimientos=$data->vencimientos;
+    // $anonimo=$data->anonimo;
+    // $fecha_v=$data->fecha_v;
+    // $cod_conf=$data->cod_conf;
 
     /////FilesUploaded////
     $file_1 = mysqli_real_escape_string($conexionBD, $data->file_1);
     $seguimiento = mysqli_real_escape_string($conexionBD, $data->seguimiento);
 
-   // $file_1=$data->file_1;
-   // $seguimiento=$data->seguimiento;
+    // $file_1=$data->file_1;
+    // $seguimiento=$data->seguimiento;
     // Verificar si alguno de los campos está vacío
     if (empty($caracter) || empty($titulo) || empty($descripcion) || empty($destinacion)) {
         // Devolver un mensaje de error si algún campo está vacío
@@ -480,16 +488,16 @@ $hora_actual = date('H:i:s'); // Guarda la hora en formato Horas:Minutos:Segundo
         '$seguimiento')";
         if ($conexionBD->query($insert_sql) === TRUE) {
             $last_id = $conexionBD->insert_id;
-                echo json_encode(["success" => 1, "message" => "Comunicacion Insertada Correctamente", "id" => $last_id]);
+            echo json_encode(["success" => 1, "message" => "Comunicacion Insertada Correctamente", "id" => $last_id]);
         } else {
             echo json_encode(["error" => "Error al insertar nueva comunicacion: " . $conexionBD->error]);
         }
     }
 }
-if(isset($_GET["Iniciar_Plazo_Vencimiento"])){
+if (isset($_GET["Iniciar_Plazo_Vencimiento"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $ID=$data->ID;
-    $plazo_resolucion=$data->plazo_resolucion;
+    $ID = $data->ID;
+    $plazo_resolucion = $data->plazo_resolucion;
     // Verificar si alguno de los campos está vacío
     if (empty($ID)) {
         // Devolver un mensaje de error si algún campo está vacío
@@ -505,10 +513,10 @@ if(isset($_GET["Iniciar_Plazo_Vencimiento"])){
         }
     }
 }
-if(isset($_GET["cambio_color"])){
+if (isset($_GET["cambio_color"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $ID=$data->ID;
-    $color=$data->color;
+    $ID = $data->ID;
+    $color = $data->color;
     // Verificar si alguno de los campos está vacío
     if (empty($ID)) {
         // Devolver un mensaje de error si algún campo está vacío
@@ -525,9 +533,9 @@ if(isset($_GET["cambio_color"])){
     }
 }
 
-if(isset($_GET["resta_pendientes"])){
+if (isset($_GET["resta_pendientes"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $clave_poder=$data->clave_poder;
+    $clave_poder = $data->clave_poder;
     // Verificar si alguno de los campos está vacío
     if (empty($clave_poder)) {
         // Devolver un mensaje de error si algún campo está vacío
@@ -544,9 +552,9 @@ if(isset($_GET["resta_pendientes"])){
     }
 }
 
-if(isset($_GET["suma_pendientes"])){
+if (isset($_GET["suma_pendientes"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $destinacion=$data->destinacion;
+    $destinacion = $data->destinacion;
     // Verificar si alguno de los campos está vacío
     if (empty($destinacion)) {
         // Devolver un mensaje de error si algún campo está vacío
@@ -565,22 +573,22 @@ if(isset($_GET["suma_pendientes"])){
 
 if (isset($_GET["Proceso_Confirmacion"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $cod_conf=$data->cod_conf;
-    $estado=$data->estado;
+    $cod_conf = $data->cod_conf;
+    $estado = $data->estado;
     $sqlUsuarios = mysqli_query($conexionBD, "SELECT * FROM comunicacion WHERE cod_conf = '$cod_conf';");
     $usuarios = mysqli_fetch_all($sqlUsuarios, MYSQLI_ASSOC);
     echo json_encode($usuarios);
     exit();
 }
-if(isset($_GET["Cambio_Estado_Comunicacion"])){
+if (isset($_GET["Cambio_Estado_Comunicacion"])) {
     $data = json_decode(file_get_contents("php://input"));
-    $estado=$data->estado;
-    $col_dest_before=$data->col_dest_before;
-    $col_dest_now=$data->col_dest_now;
-    $clave_poder=$data->clave_poder;
-    $ID=$data->ID;
-    $comentario=$data->comentario;
-    $fecha_r=$data->fecha_r;
+    $estado = $data->estado;
+    $col_dest_before = $data->col_dest_before;
+    $col_dest_now = $data->col_dest_now;
+    $clave_poder = $data->clave_poder;
+    $ID = $data->ID;
+    $comentario = $data->comentario;
+    $fecha_r = $data->fecha_r;
     // Verificar si alguno de los campos está vacío
     if (empty($estado)) {
         // Devolver un mensaje de error si algún campo está vacío
@@ -591,10 +599,10 @@ if(isset($_GET["Cambio_Estado_Comunicacion"])){
         $insert_sql = "UPDATE comunicacion SET estado = '$estado' WHERE id = '$ID'";
         if ($conexionBD->query($insert_sql) === TRUE) {
             $insert_sql_2 = "UPDATE destinaciones SET $col_dest_before = $col_dest_before - 1, $col_dest_now = $col_dest_now + 1 WHERE clave_poder = '$clave_poder'";
-            if ($conexionBD->query($insert_sql_2) === TRUE){
+            if ($conexionBD->query($insert_sql_2) === TRUE) {
                 if (!empty($comentario)) {
                     $insert_sql_3 = "UPDATE comunicacion SET comentario = '$comentario', fecha_r = '$fecha_r' WHERE id = '$ID'";
-                    if ($conexionBD->query($insert_sql_3) === TRUE){
+                    if ($conexionBD->query($insert_sql_3) === TRUE) {
                         echo json_encode(["success" => 1, "message" => "comentario y fecha_r insertados exitosamente"]);
                     } else {
                         echo json_encode(["error" => "Error al insertar comentario y fecha_r: " . $conexionBD->error]);
@@ -609,17 +617,17 @@ if(isset($_GET["Cambio_Estado_Comunicacion"])){
     }
 }
 //Inserta un nuevo registro
-if(isset($_GET["insertar_destinacion"])){
+if (isset($_GET["insertar_destinacion"])) {
     $data = json_decode(file_get_contents("php://input"));
     // Obtener los datos del objeto JSON
-    $nombre_area=$data->nombre_area;
-    $descripcion=$data->descripcion;
-    $clave_poder=$data->clave_poder;
-    $iniciados=$data->iniciados;
-    $resueltos=$data->resueltos;
-    $demorados=$data->demorados;
-    $eliminados=$data->eliminados;
-    $email=$data->email;
+    $nombre_area = $data->nombre_area;
+    $descripcion = $data->descripcion;
+    $clave_poder = $data->clave_poder;
+    $iniciados = $data->iniciados;
+    $resueltos = $data->resueltos;
+    $demorados = $data->demorados;
+    $eliminados = $data->eliminados;
+    $email = $data->email;
     // Verificar si alguno de los campos está vacío
     if (empty($nombre_area) || empty($descripcion)) {
         // Devolver un mensaje de error si algún campo está vacío
@@ -636,14 +644,15 @@ if(isset($_GET["insertar_destinacion"])){
         }
     }
 }
-if(isset($_GET["insertar_cuenta_usuario"])){
+if (isset($_GET["insertar_cuenta_usuario"])) {
     $data = json_decode(file_get_contents("php://input"));
     // Obtener los datos del objeto JSON
-    $user=$data->user;
-    $pass=$data->pass;
-    $clave_poder=$data->clave_poder;
-    $nombre=$data->nombre;
-    $rol=$data->rol;
+    $user = $data->user;
+    $pass = $data->pass;
+    $clave_poder = $data->clave_poder;
+    $nombre = $data->nombre;
+    $operador = $data->operador;
+    $rol = $data->rol;
     // Verificar si alguno de los campos está vacío
     if (empty($user) || empty($pass) || empty($nombre) || empty($clave_poder)) {
         // Devolver un mensaje de error si algún campo está vacío
@@ -654,10 +663,12 @@ if(isset($_GET["insertar_cuenta_usuario"])){
                 pass,
                 clave_poder,
                 nombre,
+                operador,
                 rol) VALUES ('$user',
         '$pass',
         '$clave_poder',
         '$nombre',
+        '$operador',
         '$rol')";
         if ($conexionBD->query($insert_sql) === TRUE) {
             echo json_encode(["success" => 1, "message" => "Nuevo usuario insertado"]);

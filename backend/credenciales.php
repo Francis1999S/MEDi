@@ -4,23 +4,26 @@
 //   header("Access-Control-Allow-Origin: $allowed_origin");
 
 // Acceso sin restricción al backend-
-      header("Access-Control-Allow-Origin: *");
-      header("Access-Control-Allow-Headers: access");
-      header("Access-Control-Allow-Methods: GET,POST");
-      header("Content-Type: application/json; charset=UTF-8");
-      header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: access");
+header("Access-Control-Allow-Methods: GET,POST");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // Conecta a la base de datos  con usuario, contraseña y nombre de la BD
-$servidor = "localhost"; $usuario = "j8000542_reclam"; $contrasenia = "01voMIgima"; $nombreBaseDatos = "j8000542_reclam";
+$servidor = "localhost";
+$usuario = "u638824328_medi";
+$contrasenia = "#4?q2GRToT";
+$nombreBaseDatos = "u638824328_medi";
 $conexionBD = new mysqli($servidor, $usuario, $contrasenia, $nombreBaseDatos);
 
 // Establecer la codificación de caracteres
 mysqli_set_charset($conexionBD, "utf8mb4");
 
-if(isset($_GET['login_1'])) {
+if (isset($_GET['login_1'])) {
     $data = json_decode(file_get_contents("php://input"));
     $user = mysqli_real_escape_string($conexionBD, $data->user);
-    
+
     // Consulta SQL para verificar si el usuario existe en la tabla "credenciales"
     $sql = "SELECT * FROM usuario WHERE user = '$user' LIMIT 1";
     $result = $conexionBD->query($sql);
@@ -35,6 +38,7 @@ if(isset($_GET['login_1'])) {
             echo json_encode(array(
                 "Tcgqt7LmvbzxQVpP2xu0" => true,
                 "nombre" => $row['nombre'],
+                "operador" => $row['operador'],
                 "user" => $row['user'],
                 "rol" => $row['rol']
             ));
@@ -48,7 +52,7 @@ if(isset($_GET['login_1'])) {
     }
 }
 
-if(isset($_GET['login_2'])) {
+if (isset($_GET['login_2'])) {
     $data = json_decode(file_get_contents("php://input"));
     $user = mysqli_real_escape_string($conexionBD, $data->user);
     $pass = mysqli_real_escape_string($conexionBD, $data->pass);
@@ -67,17 +71,17 @@ if(isset($_GET['login_2'])) {
             echo json_encode(array(
                 "osVgR8BlDEwfxG292UrEMX5pJ7l7" => true,
                 "wZpPywiGq3kjHTH8sKTe6qaGCVsw" => true
-        ));
+            ));
         } else {
             if ($row['pass'] === $pass) {
                 echo json_encode(array(
                     "osVgR8BlDEwfxG292UrEMX5pJ7l7" => true,
                     "wZpPywiGq3kjHTH8sKTe6qaGCVsw" => false,
                     "clave_poder" => $row['clave_poder']
-            ));
+                ));
             } else {
-            // La contraseña no coincide
-            echo json_encode(array("osVgR8BlDEwfxG292UrEMX5pJ7l7" => false));
+                // La contraseña no coincide
+                echo json_encode(array("osVgR8BlDEwfxG292UrEMX5pJ7l7" => false));
             }
         }
     } else {

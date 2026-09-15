@@ -11,6 +11,14 @@
                 <label for="Input_Descripcion_Area_2">Breve descripción</label>
                 <input formControlName="descripcion" type="text" id="Input_Descripcion_Area_2" maxlength="120">
             </div>
+            <div>
+                <label for="Input_Nombre_responsable">Nombre Completo del Responsable</label>
+                <input formControlName="nombre_responsable" type="text" id="Input_Nombre_responsable" maxlength="200">
+            </div>
+            <div>
+                <label for="Input_Nombre_operador">Nombre Completo del Operador</label>
+                <input formControlName="nombre_operador" type="text" id="Input_Nombre_operador" maxlength="200">
+            </div>
             <p id="Error_Display_1_modificar">{{this.error1}}</p>
             <button class="GLOBAL_CLASSIC_BUTTON" (click)="Verificar_y_cambiar_interfaz(1)">Continuar ⇨</button>
         </fieldset>
@@ -20,25 +28,28 @@
 <!--/////////////////////////////////////////////////////////////////////////////////////////-->
 <section id="Modificar_Area_Container_1_2">
     <img class="Imagen_Areas" src="{{custom.src}}icons/Areas.png">
-<form [formGroup]="Modificar">
-    <fieldset class="Fieldset_creating">
-        <legend>Verificación de E-mail [2/3]</legend>
-        <div>
-            <label for="Input_EMAIL_Area_2">Verifica un Correo Electrónico de Recepción</label>
-            <input formControlName="email" type="email" id="Input_EMAIL_Area_2" maxlength="120" (change)="Cambio_En_Email()">
-        </div>
-        <button *ngIf="this.Modificar.get('email').value.length > 4 && this.Codigo_Enviado == false" class="GLOBAL_CLASSIC_BUTTON" (click)="Enviar_Email_Verificacion()">Enviar Código</button>
-        <p id="Correo_Enviado_Exito_2" style="display: none; color: rgb(40,40,40); margin-top: -20px;">¡Código Enviado con Éxito!</p>
-        <div>
-            <label for="verificacion_mail">Ingresa el Código de Verificación Enviado al E-mail</label>
-            <input type="text" formControlName="codigo_verif_2" id="verificacion_mail" maxlength="8">
-        </div>
-        <p id="Error_Display_2_modificar">{{this.error2}}</p>
-        <button class="GLOBAL_CLASSIC_BUTTON" (click)="Cambio_Interfaz(1)">⇦ Volver</button>
-        <button class="GLOBAL_CLASSIC_BUTTON" (click)="Verificar_y_cambiar_interfaz(2)">Continuar ⇨</button>
-    </fieldset>
-</form>
-<button class="GLOBAL_CLASSIC_BUTTON CANCEL_BTN_POSITION" (click)="NavigateToBack()">Cancelar</button>
+    <form [formGroup]="Modificar">
+        <fieldset class="Fieldset_creating">
+            <legend>Verificación de E-mail [2/3]</legend>
+            <div>
+                <label for="Input_EMAIL_Area_2">Verifica un Correo Electrónico de Recepción</label>
+                <input formControlName="email" type="email" id="Input_EMAIL_Area_2" maxlength="120"
+                    (change)="Cambio_En_Email()">
+            </div>
+            <button *ngIf="this.Modificar.get('email').value.length > 4 && this.Codigo_Enviado == false"
+                class="GLOBAL_CLASSIC_BUTTON" (click)="Enviar_Email_Verificacion()">Enviar Código</button>
+            <p id="Correo_Enviado_Exito_2" style="display: none; color: rgb(40,40,40); margin-top: -20px;">¡Código
+                Enviado con Éxito!</p>
+            <div>
+                <label for="verificacion_mail">Ingresa el Código de Verificación Enviado al E-mail</label>
+                <input type="text" formControlName="codigo_verif_2" id="verificacion_mail" maxlength="8">
+            </div>
+            <p id="Error_Display_2_modificar">{{this.error2}}</p>
+            <button class="GLOBAL_CLASSIC_BUTTON" (click)="Cambio_Interfaz(1)">⇦ Volver</button>
+            <button class="GLOBAL_CLASSIC_BUTTON" (click)="Verificar_y_cambiar_interfaz(2)">Continuar ⇨</button>
+        </fieldset>
+    </form>
+    <button class="GLOBAL_CLASSIC_BUTTON CANCEL_BTN_POSITION" (click)="NavigateToBack()">Cancelar</button>
 </section>
 <!--/////////////////////////////////////////////////////////////////////////////////////////-->
 <section id="Modificar_Area_Container_3">
@@ -47,19 +58,23 @@
             <h1>{{Resultado_Creacion}}</h1>
             <img id="Loader_Modificar" src="{{custom.src}}icons/loader_creator_orange.gif">
             <img id="Exito_Logo_Modificar" src="{{custom.src}}icons/Ok.png">
-            <button class="GLOBAL_CLASSIC_BUTTON" id="Btn_2_volver_super_admin" (click)="NavigateToBack()">Volver</button>
+            <button class="GLOBAL_CLASSIC_BUTTON" id="Btn_2_volver_super_admin"
+                (click)="NavigateToBack()">Volver</button>
         </div>
     </div>
     <img class="Imagen_Areas" src="{{custom.src}}icons/Areas.png">
-        <fieldset class="Final_Info_Confirmation">
-            <legend>Confirmar Datos [3/3]</legend>
-            <div class="Container_Info_Confirm">
-                <p><strong style="text-decoration: underline;">Área:</strong> {{Nombre_area}}</p>
-                <p><strong style="text-decoration: underline;">Descripción:</strong> {{Descripcion}}</p>
-                <p><strong style="text-decoration: underline;">E-mail:</strong> {{Email}}</p>
-            </div>
-            <button class="GLOBAL_CLASSIC_BUTTON" (click)="Cambio_Interfaz(2)">⇦ Volver</button>
-            <button class="GLOBAL_CLASSIC_BUTTON" id="Confirmar_Modificar_Area_Btn" (click)="ConfirmarData()">Confirmar y Modificar</button>
-        </fieldset>
+    <fieldset class="Final_Info_Confirmation">
+        <legend>Confirmar Datos [3/3]</legend>
+        <div class="Container_Info_Confirm">
+            <p><strong style="text-decoration: underline;">Área:</strong> {{Nombre_area}}</p>
+            <p><strong style="text-decoration: underline;">Descripción:</strong> {{Descripcion}}</p>
+            <p><strong style="text-decoration: underline;">E-mail:</strong> {{Email}}</p>
+            <p><strong style="text-decoration: underline;">Responsable:</strong> {{Nombre_responsable}}</p>
+            <p><strong style="text-decoration: underline;">Operador:</strong> {{Nombre_operador}}</p>
+        </div>
+        <button class="GLOBAL_CLASSIC_BUTTON" (click)="Cambio_Interfaz(2)">⇦ Volver</button>
+        <button class="GLOBAL_CLASSIC_BUTTON" id="Confirmar_Modificar_Area_Btn" (click)="ConfirmarData()">Confirmar y
+            Modificar</button>
+    </fieldset>
     <button class="GLOBAL_CLASSIC_BUTTON CANCEL_BTN_POSITION" (click)="NavigateToBack()">Cancelar</button>
 </section>

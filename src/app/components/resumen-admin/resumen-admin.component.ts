@@ -27,45 +27,45 @@ export class ResumenAdminComponent implements OnInit {
 
   INFO_ACTIVE: boolean = false;
 
-  constructor(public custom: CustomService, public navigate: NavigateService, private DS: DataService, private router: Router){}
+  constructor(public custom: CustomService, public navigate: NavigateService, private DS: DataService, private router: Router) { }
 
   ngOnInit(): void {
     this.custom.G_LOADER = true;
     this.DS.GetAllAreas().subscribe(res => {
-      console.log('Get all areas: ',res);
+      console.log('Get all areas: ', res);
       this.Areas_Array = res;
       for (let l = 0; l < this.Areas_Array.length; l++) {
         this.Areas_Array[l].promedio = '';
       }
-      this.DS.Get_Suma_Promedios_Areas().subscribe( res2 => {
-        console.log('Get_Suma_Promedios_Areas: ',res2);
-for (let g = 0; g < res2.length; g++) {
-  for (let j = 0; j < this.Areas_Array.length; j++) {
-    if (this.Areas_Array[j].clave_poder === res2[g].destinacion) {
-      
-      // Función para convertir días decimales en un formato legible
-      const formatTime = (decimalDays) => {
-        const days = Math.floor(decimalDays); // Días completos
-        const hoursDecimal = (decimalDays - days) * 24; // Horas decimales
-        const hours = Math.floor(hoursDecimal); // Horas completas
-        const minutesDecimal = (hoursDecimal - hours) * 60; // Minutos decimales
-        const minutes = Math.round(minutesDecimal); // Minutos completos
+      this.DS.Get_Suma_Promedios_Areas().subscribe(res2 => {
+        console.log('Get_Suma_Promedios_Areas: ', res2);
+        for (let g = 0; g < res2.length; g++) {
+          for (let j = 0; j < this.Areas_Array.length; j++) {
+            if (this.Areas_Array[j].clave_poder === res2[g].destinacion) {
 
-        let result = '';
-        if (days > 0) result += `${days} día${days > 1 ? 's' : ''}`;
-        if (hours > 0) result += `${result ? ', ' : ''}${hours} hora${hours > 1 ? 's' : ''}`;
-        if (minutes > 0) result += `${result ? ' y ' : ''}${minutes} minuto${minutes > 1 ? 's' : ''}`;
-        return result || 'menos de 1 día';
-      };
+              // Función para convertir días decimales en un formato legible
+              const formatTime = (decimalDays) => {
+                const days = Math.floor(decimalDays); // Días completos
+                const hoursDecimal = (decimalDays - days) * 24; // Horas decimales
+                const hours = Math.floor(hoursDecimal); // Horas completas
+                const minutesDecimal = (hoursDecimal - hours) * 60; // Minutos decimales
+                const minutes = Math.round(minutesDecimal); // Minutos completos
 
-      // Calcular y asignar el promedio formateado para cada tipo
-      this.Areas_Array[j].promedio = formatTime(res2[g].promedio_contador_dias_resuelto);
-      this.Areas_Array[j].promedio_p = formatTime(res2[g].promedio_contador_dias_p);
-      this.Areas_Array[j].promedio_g = formatTime(res2[g].promedio_general);
-    }
-    this.Areas_Array[j].procentaje_resueltos = (parseInt(this.Areas_Array[j].total_resueltos) / (parseInt(this.Areas_Array[j].total_pendientes) + parseInt(this.Areas_Array[j].total_iniciados) + parseInt(this.Areas_Array[j].total_demorados) + parseInt(this.Areas_Array[j].total_resueltos))) * 100;
-  }
-}
+                let result = '';
+                if (days > 0) result += `${days} día${days > 1 ? 's' : ''}`;
+                if (hours > 0) result += `${result ? ', ' : ''}${hours} hora${hours > 1 ? 's' : ''}`;
+                if (minutes > 0) result += `${result ? ' y ' : ''}${minutes} minuto${minutes > 1 ? 's' : ''}`;
+                return result || 'menos de 1 día';
+              };
+
+              // Calcular y asignar el promedio formateado para cada tipo
+              this.Areas_Array[j].promedio = formatTime(res2[g].promedio_contador_dias_resuelto);
+              this.Areas_Array[j].promedio_p = formatTime(res2[g].promedio_contador_dias_p);
+              this.Areas_Array[j].promedio_g = formatTime(res2[g].promedio_general);
+            }
+            this.Areas_Array[j].procentaje_resueltos = (parseInt(this.Areas_Array[j].total_resueltos) / (parseInt(this.Areas_Array[j].total_pendientes) + parseInt(this.Areas_Array[j].total_iniciados) + parseInt(this.Areas_Array[j].total_demorados) + parseInt(this.Areas_Array[j].total_resueltos))) * 100;
+          }
+        }
 
         for (let n = 0; n < this.Areas_Array.length; n++) {
           if (this.Areas_Array[n].total_pendientes == 0 && this.Areas_Array[n].total_iniciados == 0 && this.Areas_Array[n].total_demorados == 0 && this.Areas_Array[n].total_resueltos == 0) {
@@ -78,11 +78,11 @@ for (let g = 0; g < res2.length; g++) {
           }
         }
         for (let i = 0; i < this.Areas_Array.length; i++) {
-          this.Contenido_PDF += this.Areas_Array[i].nombre_area + ':\n__________________________________________________________________________________________________________________\n'+'              Pendientes: ' + this.Areas_Array[i].pendientes + '              Iniciados: ' + this.Areas_Array[i].iniciados + '              Demorados: ' + this.Areas_Array[i].demorados + '              Resueltos: ' + this.Areas_Array[i].resueltos  + '\n\nTiempo Promedio de Resolución: ' + this.Areas_Array[i].promedio + '\n\n\n\n';
+          this.Contenido_PDF += this.Areas_Array[i].nombre_area + ':\n__________________________________________________________________________________________________________________\n' + '              Pendientes: ' + this.Areas_Array[i].pendientes + '              Iniciados: ' + this.Areas_Array[i].iniciados + '              Demorados: ' + this.Areas_Array[i].demorados + '              Resueltos: ' + this.Areas_Array[i].resueltos + '\n\nTiempo Promedio de Resolución: ' + this.Areas_Array[i].promedio + '\n\n\n\n';
         }
         this.custom.G_LOADER = false;
       });
-    
+
     }, error => {
       this.custom.G_LOADER = false;
       alert('Error en el Servidor. Inténtelo de nuevo más tarde.');
@@ -90,7 +90,7 @@ for (let g = 0; g < res2.length; g++) {
   }
 
   EntrarArea() {
-    
+
   }
 
   formatDate_1(date: Date): string {
@@ -101,11 +101,11 @@ for (let g = 0; g < res2.length; g++) {
     // Formato HH:mm:ss
     return date.toTimeString().split(' ')[0];
   }
-   ////////////////////////Generador de PDFs////////////////////////////
-   generarPDF() {
+  ////////////////////////Generador de PDFs////////////////////////////
+  generarPDF() {
     const now = new Date();
     this.formatDate = this.formatDate_1(now);
-  this.formatTime = this.formatTime_2(now);
+    this.formatTime = this.formatTime_2(now);
     const documentDefinition = {
       content: [
 
@@ -122,7 +122,7 @@ for (let g = 0; g < res2.length; g++) {
         {
           text: 'Hora: ' + this.formatTime + '\n\n',
           style: 'small4',
-             alignment: 'left'
+          alignment: 'left'
         },
         '\n\n',
         {
@@ -171,7 +171,7 @@ for (let g = 0; g < res2.length; g++) {
         }
       }
     };
-    pdfMake.createPdf(documentDefinition).download('Resumen-de-Estados-MEDi-'+this.formatDate +'.pdf');
+    pdfMake.createPdf(documentDefinition).download('Resumen-de-Estados-MEDi-' + this.formatDate + '.pdf');
   }
 
   ToggleOptions(i: number): void {
@@ -204,11 +204,13 @@ for (let g = 0; g < res2.length; g++) {
   Entry_Area(clave: string): void {
     this.DS.Clave_Poder = clave;
     this.router.navigate(['/Admin-Home']);
-}
+  }
 
-Modificar_Area(clave_poder: string): void {
-  this.DS.Clave_Poder_Modificacion = clave_poder;
-  this.navigate.ToModifyArea();
-}
+  Modificar_Area(clave_poder: string, responsable_name: string, operator_name: string): void {
+    this.DS.RESPONSABLE_NAME = responsable_name;
+    this.DS.OPERATOR_NAME = operator_name;
+    this.DS.Clave_Poder_Modificacion = clave_poder;
+    this.navigate.ToModifyArea();
+  }
 
 }

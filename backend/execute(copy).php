@@ -1,13 +1,16 @@
 <?php
 // Acceso sin restricción al backend-
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Headers: access");
-    header("Access-Control-Allow-Methods: GET,POST");
-    header("Content-Type: application/json; charset=UTF-8");
-    header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: access");
+header("Access-Control-Allow-Methods: GET,POST");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // Conecta a la base de datos  con usuario, contraseña y nombre de la BD
-$servidor = "localhost"; $usuario = "j8000542_reclam"; $contrasenia = "01voMIgima"; $nombreBaseDatos = "j8000542_reclam";
+$servidor = "localhost";
+$usuario = "u638824328_medi";
+$contrasenia = "#4?q2GRToT";
+$nombreBaseDatos = "u638824328_medi";
 $conexionBD = new mysqli($servidor, $usuario, $contrasenia, $nombreBaseDatos);
 
 // Establecer la codificación de caracteres
@@ -18,7 +21,7 @@ if (isset($_GET["iniciar_verificar"])) {
 
     // Obtener los registros con estado 'Iniciado' o 'Demorado'
     $sqlUsuarios = $conexionBD->query("SELECT * FROM comunicacion WHERE estado IN ('Iniciado', 'Demorado')");
-    
+
     // Verificar si hay registros
     if ($sqlUsuarios) {
         // Recorrer los resultados
@@ -34,7 +37,7 @@ if (isset($_GET["iniciar_verificar"])) {
                 $updateQuery = $conexionBD->prepare("UPDATE comunicacion SET estado = 'Demorado', fecha_v = DATE_ADD(fecha_v, INTERVAL 7 DAY), vencimientos = vencimientos + 1 WHERE id = ?");
                 $updateQuery->bind_param("i", $id);
                 $updateQuery->execute();
-                
+
                 if ($updateQuery->errno) {
                     echo json_encode(["success" => 0, "message" => "Error al actualizar el registro con id $id: " . $updateQuery->error]);
                     exit();
@@ -45,7 +48,7 @@ if (isset($_GET["iniciar_verificar"])) {
                     $updateDemorados = $conexionBD->prepare("UPDATE destinaciones SET demorados = demorados + 1 WHERE clave_poder = ?");
                     $updateDemorados->bind_param("s", $destinacion);
                     $updateDemorados->execute();
-                    
+
                     if ($updateDemorados->errno) {
                         echo json_encode(["success" => 0, "message" => "Error al actualizar la columna demorados para destinacion $destinacion: " . $updateDemorados->error]);
                         exit();

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
-import { FormBuilder} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { loginGuard_2 } from '../../guards/login_2.guard';
@@ -14,7 +14,7 @@ import { loginGuard_3 } from '../../guards/login_3.guard';
 export class LoginComponent implements OnInit {
   credenciales: any;
   Mensaje_Error: string = 'Administradores';
-  constructor(private http: HttpClient, private dataService: DataService, private router: Router, public fb: FormBuilder){
+  constructor(private http: HttpClient, private dataService: DataService, private router: Router, public fb: FormBuilder) {
     this.credenciales = this.fb.group({
       user: [''],
     });
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.Mensaje_Error = 'Administradores';
     var error_text = document.getElementById('h1_error');
     if (error_text) {
-     error_text.style.color = 'rgb(50, 50, 50)';
+      error_text.style.color = 'rgb(50, 50, 50)';
     }
     var Loader = document.getElementById('Loader_LogIn');
     var Btn = document.getElementById('Btn_submit_LogIn');
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       this.dataService.LogIn1(data).subscribe(respuesta => {
         if (respuesta.hasOwnProperty('Tcgqt7LmvbzxQVpP2xu0')) {
           if (respuesta.Tcgqt7LmvbzxQVpP2xu0) {
-            this.dataService.User_Name = respuesta.nombre;
+            this.dataService.User_Name = respuesta.operador;
             this.dataService.User_Save = respuesta.user;
             this.dataService.User_Rol = respuesta.rol;
             this.dataService.LogIn_1 = true;
@@ -55,11 +55,11 @@ export class LoginComponent implements OnInit {
               Loader.style.display = 'none';
               Btn.style.display = 'flex';
             }
-           this.Mensaje_Error = 'Usuario Inexistente';
-           var error_text = document.getElementById('h1_error');
-           if (error_text) {
-            error_text.style.color = 'red';
-           }
+            this.Mensaje_Error = 'Usuario Inexistente';
+            var error_text = document.getElementById('h1_error');
+            if (error_text) {
+              error_text.style.color = 'red';
+            }
           }
         }
       })
@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
           this.Mensaje_Error = 'Campos inválidos';
           var error_text = document.getElementById('h1_error');
           if (error_text) {
-           error_text.style.color = 'red';
+            error_text.style.color = 'red';
           }
         }
       }
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
   }
   navigateToHome() {
     this.router.navigate(['/Home']);
-  }  
+  }
   handleFocus(): void {
     var Label = document.getElementById('Label_User');
     if (Label) {

@@ -15,7 +15,9 @@ export class ModificarComponent implements OnInit {
   error3: string = '';
   Modificar: any;
   Nombre_area: string = '';
-  Nombre_area_2:string = '';
+  Nombre_area_2: string = '';
+  Nombre_responsable: string = '';
+  Nombre_operador: string = '';
   Descripcion: string = '';
   Email: string = '';
   Email_Verificado: boolean = false;
@@ -24,7 +26,7 @@ export class ModificarComponent implements OnInit {
   Array_All_Areas: any[] = [];
   Area_a_Modificar: any[] = [];
   Resultado_Creacion: string = '';
-  
+
   constructor(
     private dataService: DataService,
     public fb: FormBuilder,
@@ -34,6 +36,8 @@ export class ModificarComponent implements OnInit {
     this.Modificar = this.fb.group({
       nombre_area: [''],
       descripcion: [''],
+      nombre_responsable: [''],
+      nombre_operador: [''],
       clave_poder: [''],
       email: [''],
       codigo_verif: [''],
@@ -43,21 +47,23 @@ export class ModificarComponent implements OnInit {
   ngOnInit(): void {
     this.Modificar.patchValue({ clave_poder: this.dataService.Clave_Poder_Modificacion })
     this.Codigo_Verificacion_Email = this.generarCodigo(8);
-    this.Modificar.patchValue({ codigo_verif: this.Codigo_Verificacion_Email});
+    this.Modificar.patchValue({ codigo_verif: this.Codigo_Verificacion_Email });
     this.dataService.GetAllAreasSelect(this.Modificar.value).subscribe(data => {
-    this.Area_a_Modificar = data;
-    this.Modificar.patchValue({ nombre_area: data[0].nombre_area});
-    this.Nombre_area_2 = data[0].nombre_area;
-    this.Modificar.patchValue({ descripcion: data[0].descripcion});
-    this.Modificar.patchValue({ email: data[0].email});
-    this.dataService.GetAllAreas().subscribe(data2=> {
-      for (let i = 0; i < data2.length; i++) {
+      this.Area_a_Modificar = data;
+      this.Modificar.patchValue({ nombre_area: data[0].nombre_area });
+      this.Nombre_area_2 = data[0].nombre_area;
+      this.Modificar.patchValue({ descripcion: data[0].descripcion });
+      this.Modificar.patchValue({ nombre_responsable: this.dataService.RESPONSABLE_NAME });
+      this.Modificar.patchValue({ nombre_operador: this.dataService.OPERATOR_NAME });
+      this.Modificar.patchValue({ email: data[0].email });
+      this.dataService.GetAllAreas().subscribe(data2 => {
+        for (let i = 0; i < data2.length; i++) {
           if (!(this.Nombre_area_2 == data2[i].nombre_area)) {
             this.Array_All_Areas.push(data2[i].nombre_area);
           }
-      }
-      this.Cambio_Interfaz(1);
-    });
+        }
+        this.Cambio_Interfaz(1);
+      });
     });
   }
   Cambio_Interfaz(interfaz: number): void {
@@ -113,6 +119,8 @@ export class ModificarComponent implements OnInit {
         if (
           this.Modificar.get('nombre_area').value.length > 5 &&
           this.Modificar.get('descripcion').value.length > 5 &&
+          this.Modificar.get('nombre_responsable').value.length > 5 &&
+          this.Modificar.get('nombre_operador').value.length > 5 &&
           !flag_area_exist
         ) {
           this.Cambio_Interfaz(2);
@@ -129,6 +137,18 @@ export class ModificarComponent implements OnInit {
               Error_Display_1.style.opacity = '1';
             }
           }
+          if (this.Modificar.get('nombre_responsable').value.length < 6) {
+            this.error1 = 'Error: Longitud de nombre del responsable inválida';
+            if (Error_Display_1) {
+              Error_Display_1.style.opacity = '1';
+            }
+          }
+          if (this.Modificar.get('nombre_operador').value.length < 6) {
+            this.error1 = 'Error: Longitud de nombre del operador inválida';
+            if (Error_Display_1) {
+              Error_Display_1.style.opacity = '1';
+            }
+          }
           if (flag_area_exist) {
             this.error1 = 'Error: Ya existe un área con ese nombre.';
             if (Error_Display_1) {
@@ -138,24 +158,26 @@ export class ModificarComponent implements OnInit {
         }
         break;
       case 2:
-        if (this.Modificar.get('codigo_verif_2').value.length < 8) {
-          this.error2 = '¡Código de Verificación Inválido!';
-          if (Error_Display_2) {
-            Error_Display_2.style.opacity = '1';
-          }
-        } else {
-        if (this.Modificar.get('codigo_verif_2').value === this.Codigo_Verificacion_Email) {
-          this.Nombre_area = this.Modificar.get('nombre_area').value;
-          this.Descripcion = this.Modificar.get('descripcion').value;
-          this.Email = this.Modificar.get('email').value;
-          this.Cambio_Interfaz(3);
-        } else {
-          this.error2 = '¡El Código de Verificación es Incorrecto!'
-          if (Error_Display_2) {
-            Error_Display_2.style.opacity = '1';
-          }
-        }
-      }
+        // if (this.Modificar.get('codigo_verif_2').value.length < 8) {
+        //   this.error2 = '¡Código de Verificación Inválido!';
+        //   if (Error_Display_2) {
+        //     Error_Display_2.style.opacity = '1';
+        //   }
+        // } else {
+        // if (this.Modificar.get('codigo_verif_2').value === this.Codigo_Verificacion_Email) {
+        this.Nombre_area = this.Modificar.get('nombre_area').value;
+        this.Descripcion = this.Modificar.get('descripcion').value;
+        this.Nombre_responsable = this.Modificar.get('nombre_responsable').value;
+        this.Nombre_operador = this.Modificar.get('nombre_operador').value;
+        this.Email = this.Modificar.get('email').value;
+        this.Cambio_Interfaz(3);
+        // } else {
+        //   this.error2 = '¡El Código de Verificación es Incorrecto!'
+        //   if (Error_Display_2) {
+        //     Error_Display_2.style.opacity = '1';
+        //   }
+        // }
+        // }
         if (this.Modificar.get('email').value.length < 5) {
           this.error2 = '¡Ingresa tu Email y Envía el Código!'
           console.log('Email Vacio');
@@ -183,40 +205,41 @@ export class ModificarComponent implements OnInit {
       Send_Email.style.display = 'flex';
     }
     this.Codigo_Enviado = true;
-}
-generarCodigo(longitud: number): string {
-  const caracteres: string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  let codigo: string = '';
-  // Obtener la longitud total de la cadena de caracteres
-  const caracteresLongitud: number = caracteres.length;
-  // Generar el código alfanumérico
-  for (let i = 0; i < longitud; i++) {
-    // Obtener un carácter aleatorio de la cadena de caracteres
-    codigo += caracteres.charAt(Math.floor(Math.random() * caracteresLongitud));
   }
-  return codigo;
-}
-ConfirmarData(): void {
-  this.Resultado_Creacion = 'Modificando área de destinación...';
-  var Btn = document.getElementById('Confirmar_Modificar_Area_Btn');
-  var Result = document.getElementById('Container_Results_Modificar_Area');
-  var Loader = document.getElementById('Loader_Modificar');
-  var Exito = document.getElementById('Exito_Logo_Modificar');
-  var Btn_V = document.getElementById('Btn_2_volver_super_admin');
-  if (Btn && Result && Loader) {
-    Result.style.display = 'flex';
-    Btn.style.display = 'none';
-    Loader.style.display = 'flex';
+  generarCodigo(longitud: number): string {
+    const caracteres: string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let codigo: string = '';
+    // Obtener la longitud total de la cadena de caracteres
+    const caracteresLongitud: number = caracteres.length;
+    // Generar el código alfanumérico
+    for (let i = 0; i < longitud; i++) {
+      // Obtener un carácter aleatorio de la cadena de caracteres
+      codigo += caracteres.charAt(Math.floor(Math.random() * caracteresLongitud));
+    }
+    return codigo;
   }
-  this.dataService.Modificar_Destinacion(this.Modificar.value).subscribe(data=>{
-    setTimeout(() => {
-      this.Resultado_Creacion = '¡Area de destinación modificada con éxito!';
-      if (Loader && Exito && Btn_V) {
-        Loader.style.display = 'none';
-        Exito.style.display = 'flex';
-        Btn_V.style.display = 'flex';
-      }
-    }, 3000);
-  })
-}
+  ConfirmarData(): void {
+    this.Resultado_Creacion = 'Modificando área de destinación...';
+    var Btn = document.getElementById('Confirmar_Modificar_Area_Btn');
+    var Result = document.getElementById('Container_Results_Modificar_Area');
+    var Loader = document.getElementById('Loader_Modificar');
+    var Exito = document.getElementById('Exito_Logo_Modificar');
+    var Btn_V = document.getElementById('Btn_2_volver_super_admin');
+    if (Btn && Result && Loader) {
+      Result.style.display = 'flex';
+      Btn.style.display = 'none';
+      Loader.style.display = 'flex';
+    }
+    this.dataService.Modificar_Destinacion(this.Modificar.value).subscribe(data => {
+      setTimeout(() => {
+        this.Resultado_Creacion = '¡Area de destinación modificada con éxito!';
+        console.log(data);
+        if (Loader && Exito && Btn_V) {
+          Loader.style.display = 'none';
+          Exito.style.display = 'flex';
+          Btn_V.style.display = 'flex';
+        }
+      }, 3000);
+    })
+  }
 }

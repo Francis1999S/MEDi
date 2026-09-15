@@ -6,13 +6,29 @@
             </h1>
             <div class="Scroll_Container_Options">
                 <div class="Container_Options">
-                    <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 20px 0 0 0;" (click)="Entry_Area(Areas_Array[INDEX_AREA].clave_poder)">Ir al Panel de Administración ➚</button>
-                    <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 20px 0 0 0;" (click)="Modificar_Area(Areas_Array[INDEX_AREA].clave_poder)">Modificar Datos del Área ✎</button>
-                    <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 20px 0 0 0;" (click)="ToggleCredenciales()">Mostrar Credenciales de Acceso 🔑</button>
+                    <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 20px 0 0 0;"
+                        (click)="Entry_Area(Areas_Array[INDEX_AREA].clave_poder)">Ir al Panel de Administración
+                        ➚</button>
+                    <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 20px 0 0 0;"
+                        (click)="Modificar_Area(Areas_Array[INDEX_AREA].clave_poder, Areas_Array[INDEX_AREA].nombre, Areas_Array[INDEX_AREA].operador)">Modificar
+                        Datos del Área
+                        ✎</button>
+                    <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 20px 0 0 0;"
+                        (click)="ToggleCredenciales()">Mostrar Datos de Usuario 🔑</button>
                     <div class="Credenciales" *ngIf="CREDENCIALES_ACTIVE">
-                        <p style="font-weight: bold; text-align: center;">Credenciales de Acceso al Panel de Administración de <strong style="color: rgb(255,120,50);">{{this.Areas_Array[INDEX_AREA].nombre_area}}</strong></p>
-                        <p><strong style="font-style: italic;">Usuario:</strong> {{this.Areas_Array[INDEX_AREA].user}} <br>
-                            <strong style="font-style: italic;">Contraseña:</strong> {{this.Areas_Array[INDEX_AREA].pass}}</p>
+                        <p style="font-weight: bold; text-align: center;">Datos de Usuario de <strong
+                                style="color: rgb(255,120,50);">{{this.Areas_Array[INDEX_AREA].nombre_area}}</strong>
+                        </p>
+                        <p><strong style="font-style: italic;">Usuario:</strong> {{this.Areas_Array[INDEX_AREA].user}}
+                            <br>
+                            <strong style="font-style: italic;">Contraseña:</strong>
+                            {{this.Areas_Array[INDEX_AREA].pass}} <br>
+                            <strong style="font-style: italic;">Responsable:</strong>
+                            {{this.Areas_Array[INDEX_AREA].nombre | titlecase}}
+                            <br>
+                            <strong style="font-style: italic;">Operador:</strong>
+                            {{this.Areas_Array[INDEX_AREA].operador | titlecase}}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -20,56 +36,88 @@
     </div>
     <div class="Back_Options" *ngIf="INFO_ACTIVE">
         <div class="Options_Menu">
-            <h1 class="title_options">Promedios de Tiempos de Respuesta <br> <strong style="text-decoration: underline;">{{Areas_Array[INDEX_AREA].nombre_area}}</strong>
+            <h1 class="title_options">Promedios de Tiempos de Respuesta <br> <strong
+                    style="text-decoration: underline;">{{Areas_Array[INDEX_AREA].nombre_area}}</strong>
                 <img (click)="ToggleINFO(0)" src="{{custom.src}}icons/close.png" title="Cerrar">
             </h1>
             <div class="Scroll_Container_Options">
                 <div class="Container_Options">
-                   <p style="width: 90%; margin-top: 30px;">Tiempo promedio desde el momento en que se genera la comunicación hasta que es iniciada por el área responsable. P (Pendiente) - I (Iniciado)</p>
-         
-                    <span class="Span_State" title="Tiempo promedio hasta Iniciar la comunicación."><strong style="color: orange;">P</strong> ➝ <strong style="color: rgb(0, 208, 255);">I</strong>: {{Areas_Array[INDEX_AREA].promedio_p}}</span>
-      
+                    <p style="width: 90%; margin-top: 30px;">Tiempo promedio desde el momento en que se genera la
+                        comunicación hasta que es iniciada por el área responsable. P (Pendiente) - I (Iniciado)</p>
 
-                   <p style="width: 90%; margin-top: 30px;">Tiempo promedio desde que se ha iniciado la Comunicación hasta que es resuelta por el área responsable. I (Iniciado) - R (Resuelto)</p>
-    
-                    <span class="Span_State" title="Tiempo promedio hasta Iniciar la comunicación."><strong style="color: rgb(0, 208, 255);">I</strong> ➝ <strong style="color: rgb(34, 255, 0);">R</strong>: {{Areas_Array[INDEX_AREA].promedio}}</span>
+                    <span class="Span_State" title="Tiempo promedio hasta Iniciar la comunicación."><strong
+                            style="color: orange;">P</strong> ➝ <strong style="color: rgb(0, 208, 255);">I</strong>:
+                        {{Areas_Array[INDEX_AREA].promedio_p}}</span>
 
-                   <p style="width: 90%; margin-top: 30px;">Tiempo promedio general desde el momento en que se genera la Comunicación hasta ser resuelta por el área responsable. P (Pendiente) - R (Resuelto)</p>
-             
-                    <span class="Span_State" style="margin-bottom: 50px;" title="Tiempo promedio hasta Iniciar la comunicación."><strong style="color: orange;">P</strong> ➝ <strong style="color: rgb(34, 255, 0);">R</strong>: {{Areas_Array[INDEX_AREA].promedio_g}}</span>
-        
+
+                    <p style="width: 90%; margin-top: 30px;">Tiempo promedio desde que se ha iniciado la Comunicación
+                        hasta que es resuelta por el área responsable. I (Iniciado) - R (Resuelto)</p>
+
+                    <span class="Span_State" title="Tiempo promedio hasta Iniciar la comunicación."><strong
+                            style="color: rgb(0, 208, 255);">I</strong> ➝ <strong
+                            style="color: rgb(34, 255, 0);">R</strong>: {{Areas_Array[INDEX_AREA].promedio}}</span>
+
+                    <p style="width: 90%; margin-top: 30px;">Tiempo promedio general desde el momento en que se genera
+                        la Comunicación hasta ser resuelta por el área responsable. P (Pendiente) - R (Resuelto)</p>
+
+                    <span class="Span_State" style="margin-bottom: 50px;"
+                        title="Tiempo promedio hasta Iniciar la comunicación."><strong style="color: orange;">P</strong>
+                        ➝ <strong style="color: rgb(34, 255, 0);">R</strong>:
+                        {{Areas_Array[INDEX_AREA].promedio_g}}</span>
+
                 </div>
             </div>
         </div>
     </div>
-    <h1 style="margin: 40px 0 0 0; font-size: 190%; color: rgb(40,40,40); font-family: Nunito; font-weight: bold;">Áreas y Resumen</h1>
+    <h1 style="margin: 40px 0 0 0; font-size: 190%; color: rgb(40,40,40); font-family: Nunito; font-weight: bold;">Áreas
+        y Resumen</h1>
     <div style="display: flex; justify-content: start; align-items: center; width: 80%; margin: 0;">
-        <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 10px 0 15px 0;" (click)="generarPDF()"> <img src="{{custom.src}}icons/PDF_Download.png" alt="">Resumen PDF</button>
+        <button class="GLOBAL_CLASSIC_BUTTON" style="margin: 10px 0 15px 0;" (click)="generarPDF()"> <img
+                src="{{custom.src}}icons/PDF_Download.png" alt="">Resumen PDF</button>
     </div>
     <div class="Table_Comunicaciones">
         <div class="Scroll_Container">
             <div class="Comun_Row" *ngFor="let area of Areas_Array, let i = index">
                 <div class="Icon_Area_Box">
-                    <img class="Icon_Area" (click)="Entry_Area(area.clave_poder)" src="{{custom.src}}icons/AREA.png" title="Entrar">
+                    <img class="Icon_Area" (click)="Entry_Area(area.clave_poder)" src="{{custom.src}}icons/AREA.png"
+                        title="Entrar">
                 </div>
                 <div class="Info_Row">
-                    <h1 class="Title_row">{{area.nombre_area}}
+                    <h1 class="Title_row">{{area.nombre_area}} <br>
+                        Responsable: {{area.nombre | titlecase}} | Operador: {{area.operador | titlecase}}
                         <img title="Opciones" src="{{custom.src}}icons/options.png" (click)="ToggleOptions(i)">
                     </h1>
                     <div class="Row_Numbers" style="background-color: rgb(40,40,40);">
-                        <span style="border-bottom: 6px solid orange; color: white;">Pendientes: {{area.total_pendientes}}</span>
-                        <span style="border-bottom: 6px solid rgb(0, 208, 255); color: white;">Iniciados: {{area.total_iniciados}}</span>
-                        <span style="border-bottom: 6px solid rgb(255, 0, 0); color: white;">Demorados: {{area.total_demorados}}</span>
-                        <span style="border-bottom: 6px solid rgb(34, 255, 0); color: white;">Resueltos: {{area.total_resueltos}}</span>
+                        <span style="border-bottom: 6px solid orange; color: white;">Pendientes:
+                            {{area.total_pendientes}}</span>
+                        <span style="border-bottom: 6px solid rgb(0, 208, 255); color: white;">Iniciados:
+                            {{area.total_iniciados}}</span>
+                        <span style="border-bottom: 6px solid rgb(255, 0, 0); color: white;">Demorados:
+                            {{area.total_demorados}}</span>
+                        <span style="border-bottom: 6px solid rgb(34, 255, 0); color: white;">Resueltos:
+                            {{area.total_resueltos}}</span>
                     </div>
                     <div class="Statistics_Box">
-                        <img class="Informacion_BNT" src="{{custom.src}}icons/info2.png" title="Información" (click)="ToggleINFO(i)">
-                        <p style="color: rgb(255,120,50); margin: 0; padding: 0; font-weight: bold; text-decoration: underline; cursor: pointer;" (click)="ToggleINFO(i)">Promedios de Tiempos de Respuesta</p>
+                        <img class="Informacion_BNT" src="{{custom.src}}icons/info2.png" title="Información"
+                            (click)="ToggleINFO(i)">
+                        <p style="color: rgb(255,120,50); margin: 0; padding: 0; font-weight: bold; text-decoration: underline; cursor: pointer;"
+                            (click)="ToggleINFO(i)">Promedios de Tiempos de Respuesta</p>
                         <div class="Statistics_Row">
-                            <span class="Span_State" title="Tiempo promedio hasta Iniciar la comunicación." *ngIf="!(area.promedio_p == '--')"><strong style="color: orange;">P</strong> ➝ <strong style="color: rgb(0, 208, 255);">I</strong>: {{area.promedio_p}}</span>
-                            <span class="Span_State" title="Tiempo promedio hasta Resolver la comunicación luego de iniciarla." *ngIf="!(area.promedio == '--')"><strong style="color: rgb(0, 208, 255);">I</strong> ➝ <strong style="color: rgb(34, 255, 0);">R</strong>: {{area.promedio}}</span>
-                            <span class="Span_State" title="Tiempo promedio hasta Resolver la comunicación desde su creación." *ngIf="!(area.promedio_g == '--')"><strong style="color: orange;">P</strong> ➝ <strong style="color: rgb(34, 255, 0);">R</strong>: {{area.promedio_g}}</span>
-                            <span class="Span_State" title="Porcentaje de Resolucion de todas las comunicaciones recibidas." *ngIf="area.total_resueltos > 0">{{ area.procentaje_resueltos | number:'1.1-1' }}% Resuelto</span>
+                            <span class="Span_State" title="Tiempo promedio hasta Iniciar la comunicación."
+                                *ngIf="!(area.promedio_p == '--')"><strong style="color: orange;">P</strong> ➝ <strong
+                                    style="color: rgb(0, 208, 255);">I</strong>: {{area.promedio_p}}</span>
+                            <span class="Span_State"
+                                title="Tiempo promedio hasta Resolver la comunicación luego de iniciarla."
+                                *ngIf="!(area.promedio == '--')"><strong style="color: rgb(0, 208, 255);">I</strong> ➝
+                                <strong style="color: rgb(34, 255, 0);">R</strong>: {{area.promedio}}</span>
+                            <span class="Span_State"
+                                title="Tiempo promedio hasta Resolver la comunicación desde su creación."
+                                *ngIf="!(area.promedio_g == '--')"><strong style="color: orange;">P</strong> ➝ <strong
+                                    style="color: rgb(34, 255, 0);">R</strong>: {{area.promedio_g}}</span>
+                            <span class="Span_State"
+                                title="Porcentaje de Resolucion de todas las comunicaciones recibidas."
+                                *ngIf="area.total_resueltos > 0">{{ area.procentaje_resueltos | number:'1.1-1' }}%
+                                Resuelto</span>
                         </div>
                     </div>
                 </div>
