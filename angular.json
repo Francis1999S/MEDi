@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "baseHref": "/MEDi/",
+            "baseHref": "/",
             "outputPath": "dist/MEDi",
             "index": "src/index.html",
             "browser": "src/main.ts",
