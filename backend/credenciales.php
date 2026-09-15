@@ -10,28 +10,20 @@ header("Access-Control-Allow-Methods: GET,POST");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-// Conecta a la base de datos  con usuario, contraseña y nombre de la BD
-$servidor = "localhost";
-$usuario = "u638824328_medi";
-$contrasenia = "#4?q2GRToT";
-$nombreBaseDatos = "u638824328_medi";
-$conexionBD = new mysqli($servidor, $usuario, $contrasenia, $nombreBaseDatos);
-
-// Establecer la codificación de caracteres
-mysqli_set_charset($conexionBD, "utf8mb4");
+require_once __DIR__ . '/db.php';
+$conexionBD = medi_conectar();
 
 if (isset($_GET['login_1'])) {
     $data = json_decode(file_get_contents("php://input"));
-    $user = mysqli_real_escape_string($conexionBD, $data->user);
+    $user = $data->user;
 
-    // Consulta SQL para verificar si el usuario existe en la tabla "credenciales"
-    $sql = "SELECT * FROM usuario WHERE user = '$user' LIMIT 1";
-    $result = $conexionBD->query($sql);
+    // Consulta SQL para verificar si el usuario existe en la tabla "usuario"
+    $stmt = $conexionBD->prepare('SELECT * FROM usuario WHERE "user" = :user LIMIT 1');
+    $stmt->execute([':user' => $user]);
+    $row = $stmt->fetch();
 
     // Verificar si se encontró algún resultado
-    if ($result->num_rows > 0) {
-        // Obtener el primer registro
-        $row = $result->fetch_assoc();
+    if ($row) {
         // Comparar la contraseña proporcionada con la contraseña almacenada
         if ($row['user'] === $user) {
             // Usuario y contraseña coinciden
@@ -54,17 +46,16 @@ if (isset($_GET['login_1'])) {
 
 if (isset($_GET['login_2'])) {
     $data = json_decode(file_get_contents("php://input"));
-    $user = mysqli_real_escape_string($conexionBD, $data->user);
-    $pass = mysqli_real_escape_string($conexionBD, $data->pass);
+    $user = $data->user;
+    $pass = $data->pass;
 
-    // Consulta SQL para verificar si el usuario existe en la tabla "credenciales"
-    $sql = "SELECT * FROM usuario WHERE user = '$user' LIMIT 1";
-    $result = $conexionBD->query($sql);
+    // Consulta SQL para verificar si el usuario existe en la tabla "usuario"
+    $stmt = $conexionBD->prepare('SELECT * FROM usuario WHERE "user" = :user LIMIT 1');
+    $stmt->execute([':user' => $user]);
+    $row = $stmt->fetch();
 
     // Verificar si se encontró algún resultado
-    if ($result->num_rows > 0) {
-        // Obtener el primer registro
-        $row = $result->fetch_assoc();
+    if ($row) {
         // Comparar la contraseña proporcionada con la contraseña almacenada
         if ($row['pass'] === $pass && $row['clave_poder'] === 'UxRsyURf04IvIdkrGZHeuMIGEciXgHY059gWeuz') {
             // Usuario y contraseña coinciden
@@ -90,8 +81,5 @@ if (isset($_GET['login_2'])) {
     }
 
 }
-
-// Cerrar conexión
-$conexionBD->close();
 
 ?>

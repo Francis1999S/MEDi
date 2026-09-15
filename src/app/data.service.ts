@@ -33,7 +33,7 @@ export class DataService {
   RESPONSABLE_NAME: string = '';
   OPERATOR_NAME: string = '';
 
-  apiUrl: string = 'https://tinogasta.tur.ar/MEDi/';
+  apiUrl: string = 'https://medi-flame-kappa.vercel.app/backend/';
   constructor(private http: HttpClient) { }
   //-------------------METODOS DE SESION "LOGIN" (START)--------------------
   LogIn1(data: Credenciales): Observable<any> {

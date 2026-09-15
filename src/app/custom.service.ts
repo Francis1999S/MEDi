@@ -10,7 +10,7 @@ export class CustomService {
 
   NAV_MENU_CELLPHONE: boolean = true;
 
-  src: string = '../../../MEDi/assets/';
+  src: string = '/assets/';
 
   Versionado_Global_App: string = 'ver 1.1.0 - Noviembre 2024';
 
