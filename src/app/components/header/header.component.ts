@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CustomService } from '../../custom.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  constructor(private router: Router){}
+  constructor(private router: Router, public G: CustomService){}
   navigateToHome() {
     this.router.navigate(['/Home']);
   }
